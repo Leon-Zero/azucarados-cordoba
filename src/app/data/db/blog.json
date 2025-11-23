@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "title": "Primer rescate exitoso",
+    "excerpt": "Con ayuda de voluntarios logramos salvar a un perrito herido...",
+    "image": "https://cdn-icons-png.flaticon.com/512/616/616408.png"
+  },
+  {
+    "id": 2,
+    "title": "Nueva jornada de adopción",
+    "excerpt": "Este fin de semana más de 20 animales encontraron familia...",
+    "image": "https://cdn-icons-png.flaticon.com/512/2495/2495007.png"
+  }
+]

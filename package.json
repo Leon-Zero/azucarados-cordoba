@@ -7,7 +7,9 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:mock": "node dist/mock/server/server.mjs"
+    "serve:ssr:mock": "node dist/mock/server/server.mjs",
+    "page": "node ./src/app/core/schematics/page.schema.cjs",
+    "service": "node ./src/app/core/schematics/service.schema.cjs"
   },
   "prettier": {
     "printWidth": 100,
@@ -32,6 +34,9 @@
     "@angular/router": "^20.3.0",
     "@angular/ssr": "^20.3.6",
     "express": "^5.1.0",
+    "ngx-quill": "^28.0.1",
+    "postcss": "^8.5.6",
+    "quill": "^2.0.3",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
   },

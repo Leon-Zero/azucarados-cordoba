@@ -1,0 +1,26 @@
+<app-header [imgBanner]="_imgBanner" />
+
+<section>
+  <div class="container">
+    <div class="blog-dashboard">
+      @for (post of paginatedPosts; track post.id) {
+      <div class="blog-item">
+        <div class="item-head">
+          <img [src]="post.image" [alt]="post.title" loading="lazy" />
+        </div>
+        <div class="item-text">
+          <h3>{{ post.title }}</h3>
+          <p>{{ post.content }}</p>
+        </div>
+      </div>
+      }
+    </div>
+
+    <app-pag-control
+      [currentPage]="currentPage"
+      [totalPages]="totalPages"
+      (pageChange)="goToPage($event)"
+    >
+    </app-pag-control>
+  </div>
+</section>

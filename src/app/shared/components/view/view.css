@@ -1,0 +1,8 @@
+.viewer {
+  max-width: 50vw;
+  width: 50vw;
+  height: auto;
+  background: #ffffff;
+  border: 1px solid black;
+  padding: 1rem;
+}

@@ -1,0 +1,68 @@
+<nav class="parent">
+  <div class="nav-container">
+    <div class="nav-left">
+      <div class="logo" routerLink="/home" (click)="isOpen.set(false)">
+        <img src="/logo azucarados.svg" alt="" />
+        <h4>Azucarados Córdoba</h4>
+      </div>
+    </div>
+    <div class="nav-right">
+      <ul class="list-content">
+        <li class="list-item">
+          <a routerLink="/home" fragment="about-us" routerLinkActive="linked"> Sobre Nosotros </a>
+        </li>
+        <li class="list-item">
+          <a routerLink="/donaciones" routerLinkActive="linked"> Donaciones </a>
+        </li>
+        <li class="list-item">
+          <a routerLink="blog" routerLinkActive="linked"> Blog </a>
+        </li>
+        <li class="list-item">
+          <a routerLink="nuestros-peludos" routerLinkActive="linked"> Nuestros Guerreros </a>
+        </li>
+        <li class="list-item">
+          <a routerLink="contacto" routerLinkActive="linked"> Contacto </a>
+        </li>
+        <li class="list-item">
+          <a href="#"> Login </a>
+        </li>
+      </ul>
+
+      <!-- menu hamburguesa para celular y pantallas menores a 860px -->
+      <div class="menu-container">
+        <div
+          class="menu-burguer"
+          [ngClass]="{ 'open-burguer': isOpen(), 'closed-burguer': !isOpen() }"
+          (click)="isOpen.set(!isOpen())"
+        >
+          <button><span></span><span></span><span></span></button>
+        </div>
+
+        <!-- desplegable de menu hamburguesa -->
+      </div>
+    </div>
+
+    <div class="menu-content" [ngClass]="{ 'active-menu': isOpen(), 'closed-menu': !isOpen() }">
+      <ul>
+        <li>
+          <a routerLink="/home" fragment="about-us" (click)="isOpen.set(false)"> sobre nostros </a>
+        </li>
+        <li>
+          <a routerLink="/donaciones" (click)="isOpen.set(false)"> Donaciones </a>
+        </li>
+        <li>
+          <a routerLink="blog" (click)="isOpen.set(false)"> blog </a>
+        </li>
+        <li>
+          <a routerLink="nuestros-peludos" (click)="isOpen.set(false)"> nuestros guerreros </a>
+        </li>
+        <li>
+          <a routerLink="contacto" (click)="isOpen.set(false)"> contacto </a>
+        </li>
+        <li>
+          <a href="#"> login </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

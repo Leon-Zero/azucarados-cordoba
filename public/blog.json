@@ -1,0 +1,142 @@
+[
+  {
+    "id": 1,
+    "slug": "controlar-glucosa-en-perros-diabeticos",
+    "title": "Controlar la glucosa en perros diabéticos",
+    "image": "https://cdn-icons-png.flaticon.com/512/2495/2495007.png",
+    "content": "Aprendé a medir correctamente la glucosa en tu perro diabético y cómo interpretar los resultados para mantenerlo estable. La constancia en la medición y el registro diario son claves para un buen control."
+  },
+  {
+    "id": 2,
+    "slug": "sintomas-tempranos-de-la-diabetes-felina",
+    "title": "Síntomas tempranos de la diabetes felina",
+    "image": "https://cdn-icons-png.flaticon.com/512/2495/2495007.png",
+    "content": "Los gatos diabéticos suelen beber y orinar con más frecuencia, además de perder peso a pesar de tener buen apetito. Detectarlo a tiempo mejora notablemente el pronóstico."
+  },
+  {
+    "id": 3,
+    "slug": "alimentacion-adecuada-para-mascotas-con-diabetes",
+    "title": "Alimentación adecuada para mascotas con diabetes",
+    "image": "https://cdn-icons-png.flaticon.com/512/616/616430.png",
+    "content": "Una dieta rica en fibra y baja en carbohidratos ayuda a estabilizar los niveles de azúcar. Consultá siempre con tu veterinario antes de cambiar el alimento."
+  },
+  {
+    "id": 4,
+    "slug": "el-caso-de-luna-superando-la-diabetes-felina",
+    "title": "El caso de Luna: superando la diabetes felina",
+    "image": "https://cdn-icons-png.flaticon.com/512/616/616554.png",
+    "content": "Luna fue diagnosticada con diabetes a los 9 años. Gracias al compromiso de su familia y al seguimiento veterinario, lleva tres años con valores normales sin insulina."
+  },
+  {
+    "id": 5,
+    "slug": "ejercicio-y-control-del-peso-en-mascotas",
+    "title": "Ejercicio y control del peso en mascotas",
+    "image": "https://cdn-icons-png.flaticon.com/512/2495/2495007.png",
+    "content": "El ejercicio moderado, adaptado a la edad y condición de tu mascota, mejora la sensibilidad a la insulina y favorece la salud cardiovascular."
+  },
+  {
+    "id": 6,
+    "slug": "como-aplicar-insulina-de-forma-segura",
+    "title": "Cómo aplicar insulina de forma segura",
+    "image": "https://cdn-icons-png.flaticon.com/512/2495/2495007.png",
+    "content": "Aplicar insulina puede ser un desafío al principio. Aprendé las técnicas adecuadas de aplicación y conservación para mantener la eficacia del tratamiento."
+  },
+  {
+    "id": 7,
+    "slug": "rescate-de-firulais",
+    "title": "Rescate de Firulais",
+    "image": "https://cdn-icons-png.flaticon.com/512/2495/2495007.png",
+    "content": "Firulais fue encontrado en situación de abandono y desnutrición. Hoy vive feliz con una familia que lo cuida y lo acompaña en su tratamiento de diabetes."
+  },
+  {
+    "id": 8,
+    "slug": "snacks-saludables-para-mascotas-diabeticas",
+    "title": "Snacks saludables para mascotas con diabetes",
+    "image": "https://cdn-icons-png.flaticon.com/512/616/616408.png",
+    "content": "Conocé algunas recetas caseras de premios bajos en carbohidratos y seguros para tu mascota diabética."
+  },
+  {
+    "id": 9,
+    "slug": "viajar-con-una-mascota-diabetica",
+    "title": "Cómo viajar con una mascota diabética",
+    "image": "https://cdn-icons-png.flaticon.com/512/616/616430.png",
+    "content": "Planificá tus viajes teniendo en cuenta los horarios de insulina, refrigeración del medicamento y disponibilidad de veterinarios en destino."
+  },
+  {
+    "id": 10,
+    "slug": "monitoreo-continuo-de-glucosa-en-mascotas",
+    "title": "Monitoreo continuo de glucosa en mascotas",
+    "image": "https://cdn-icons-png.flaticon.com/512/616/616430.png",
+    "content": "Los sensores de glucosa permiten medir los niveles sin necesidad de pinchazos frecuentes, reduciendo el estrés de las mascotas diabéticas."
+  },
+  {
+    "id": 11,
+    "slug": "mitos-sobre-la-insulina-veterinaria",
+    "title": "Mitos sobre la insulina veterinaria",
+    "image": "https://cdn-icons-png.flaticon.com/512/616/616408.png",
+    "content": "Desmentimos los mitos más comunes: la insulina no genera adicción, ni todas las insulinas humanas son aptas para animales."
+  },
+  {
+    "id": 12,
+    "slug": "cuidar-mascota-diabetica-guia-principiantes",
+    "title": "Cuidar una mascota diabética: guía para principiantes",
+    "image": "https://cdn-icons-png.flaticon.com/512/2495/2495007.png",
+    "content": "Esta guía te enseña cómo controlar el azúcar, administrar insulina y mantener hábitos saludables desde el día uno."
+  },
+  {
+    "id": 13,
+    "slug": "hidratacion-y-cuidado-diario",
+    "title": "Hidratación y cuidado diario",
+    "image": "https://cdn-icons-png.flaticon.com/512/2495/2495007.png",
+    "content": "El acceso constante al agua es esencial para evitar complicaciones renales en animales diabéticos."
+  },
+  {
+    "id": 14,
+    "slug": "gatos-mayores-y-riesgo-de-diabetes",
+    "title": "Gatos mayores y riesgo de diabetes",
+    "image": "https://cdn-icons-png.flaticon.com/512/616/616554.png",
+    "content": "Los gatos mayores de 7 años presentan mayor riesgo de desarrollar diabetes. Descubrí cómo prevenirla con chequeos regulares."
+  },
+  {
+    "id": 15,
+    "slug": "cuidado-dental-y-metabolismo",
+    "title": "Cuidado dental y metabolismo",
+    "image": "https://cdn-icons-png.flaticon.com/512/616/616408.png",
+    "content": "Una boca sana ayuda a mantener estables los niveles de glucosa y previene infecciones que pueden complicar la diabetes."
+  },
+  {
+    "id": 16,
+    "slug": "rol-del-veterinario-endocrinologo",
+    "title": "El rol del veterinario endocrinólogo",
+    "image": "https://cdn-icons-png.flaticon.com/512/616/616554.png",
+    "content": "El especialista en endocrinología veterinaria puede ayudarte a ajustar tratamientos y detectar problemas hormonales asociados."
+  },
+  {
+    "id": 17,
+    "slug": "vacunacion-responsable",
+    "title": "Vacunación responsable",
+    "image": "https://cdn-icons-png.flaticon.com/512/2495/2495007.png",
+    "content": "Las vacunas ayudan a prevenir enfermedades que podrían descompensar a una mascota diabética."
+  },
+  {
+    "id": 18,
+    "slug": "adoptar-vs-comprar",
+    "title": "Adoptar vs Comprar",
+    "image": "https://cdn-icons-png.flaticon.com/512/2495/2495007.png",
+    "content": "Adoptar salva vidas. Las mascotas adultas con enfermedades crónicas, como la diabetes, también merecen una oportunidad."
+  },
+  {
+    "id": 19,
+    "slug": "historias-felices-mascotas-que-inspiran",
+    "title": "Historias felices: mascotas que inspiran",
+    "image": "https://cdn-icons-png.flaticon.com/512/2495/2495007.png",
+    "content": "Casos reales de perros y gatos que superaron los desafíos de la diabetes gracias a sus familias y a un seguimiento veterinario adecuado."
+  },
+  {
+    "id": 20,
+    "slug": "vida-saludable-mascotas-diabeticas",
+    "title": "Vida saludable para mascotas diabéticas",
+    "image": "https://cdn-icons-png.flaticon.com/512/616/616430.png",
+    "content": "Mantener un estilo de vida activo, una dieta balanceada y revisiones periódicas es clave para la longevidad de tu compañero peludo."
+  }
+]

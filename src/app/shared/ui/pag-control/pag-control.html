@@ -1,0 +1,13 @@
+<div class="galery-controls">
+  <app-btn (click)="prev()">atras</app-btn>
+
+  <div class="pagination">
+    @for (page of pages; track $index) {
+    <span (click)="goTo(page)" [class.active]="page === currentPage" [class.dots]="page === '...'">
+      {{ page }}
+    </span>
+    }
+  </div>
+
+  <app-btn (click)="next()">adelante</app-btn>
+</div>

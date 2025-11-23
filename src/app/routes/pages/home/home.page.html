@@ -1,0 +1,13 @@
+<app-header [spacingColor]="_spacingColor" [imgBanner]="_imgBanner" />
+<app-about-us />
+<section>
+  <div class="flex">
+    @for (item of data; track $index) {
+    <app-card [_img]="item.img">
+      {{ item.text }}
+    </app-card>
+    }
+  </div>
+
+  <app-gallery [photos]="_gallery" />
+</section>

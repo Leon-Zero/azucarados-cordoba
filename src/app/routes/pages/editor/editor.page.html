@@ -1,0 +1,34 @@
+<section>
+  <h1>Formulario de Edición</h1>
+
+  <form (ngSubmit)="saveEditor(formEditor)" #formEditor="ngForm">
+    <div class="form-container">
+      <div class="input-wrap">
+        <input
+          type="text"
+          name="title"
+          [(ngModel)]="blog().title"
+          placeholder=" "
+          minlength="3"
+          required
+        />
+        <label for="title">Titulo</label>
+      </div>
+
+      <div id="editor">
+        <quill-editor
+          name="content"
+          [(ngModel)]="blog().content"
+          [modules]="modulesQuill"
+          (onEditorChanged)="onChangedEditor($event)"
+        ></quill-editor>
+      </div>
+
+      <div class="flex">
+        <app-btn [size]="_size" (click)="cleanForm(formEditor)">Limpiar</app-btn>
+        <app-btn [size]="_size" type="submit">Guardar</app-btn>
+      </div>
+    </div>
+  </form>
+  <app-view [content]="viewContent()"></app-view>
+</section>

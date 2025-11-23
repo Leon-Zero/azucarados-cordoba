@@ -1,0 +1,27 @@
+<div class="card">
+  <div class="card-container">
+    <div class="card-banner">
+      <img [src]="_img" alt="Imagen" />
+    </div>
+
+    <span class="card-divider"></span>
+
+    <div class="card-stamp">
+      <i>
+        <img
+          src="https://static.vecteezy.com/system/resources/previews/016/135/987/non_2x/cartoon-newspaper-icon-in-comic-style-news-sign-illustration-pictogram-newsletter-business-splash-effect-concept-vector.jpg"
+          alt=""
+        />
+      </i>
+    </div>
+
+    <div class="card-footer">
+      <div class="card-text">
+        <strong>
+          <ng-content></ng-content>
+        </strong>
+      </div>
+      <app-btn [size]="_size">Saber Más</app-btn>
+    </div>
+  </div>
+</div>

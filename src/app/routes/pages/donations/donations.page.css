@@ -1,0 +1,139 @@
+/* * {
+  outline: 1px dashed red;
+} */
+section {
+  padding: 3rem 1rem;
+  width: 100%;
+  height: fit-content;
+  position: relative;
+  display: grid;
+  place-items: center;
+  gap: 2rem;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.container {
+  width: 80%;
+  height: 100%;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem auto;
+}
+
+.text-float {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+.text-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  margin: 1rem 0;
+}
+
+.bg-content {
+  width: auto;
+  height: 100%;
+  padding: 1rem;
+  backdrop-filter: blur(1px) saturate(200%);
+  -webkit-backdrop-filter: blur(1px) saturate(100%);
+  background-color: var(--color-tertiary-100);
+  border-radius: 1rem 0 1rem 0;
+  border: 1px solid var(--color-border-100);
+  opacity: 0.8;
+  color: var(--color-dark-500);
+  font-weight: bold;
+}
+
+.img-float {
+  float: right;
+  display: block;
+  width: 280px;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  shape-outside: circle(50%);
+  z-index: 200;
+  padding: 1rem;
+}
+
+.text-wrap p {
+  margin: 1rem 4rem;
+}
+
+.text-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: row wrap;
+  height: fit-content;
+}
+.text-flex .bg-content {
+  flex: 0 0 50%;
+  display: grid;
+  place-items: center;
+  padding: 1rem 2rem;
+  margin: 0;
+  height: auto;
+}
+.img-flex {
+  flex: 0 0 50%;
+  clip-path: circle(50%);
+  padding: 1rem;
+  aspect-ratio: 16/9;
+}
+.img-flex img {
+  object-fit: cover;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .img-float {
+    float: none;
+    display: block;
+    shape-outside: none;
+    -webkit-shape-outside: none;
+    clip-path: none;
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .text-wrap .bg-content {
+    text-align: left;
+    padding: 0.5rem;
+  }
+  .text-wrap p {
+    margin: 0;
+  }
+  .text-flex {
+    justify-content: center;
+    gap: 1rem;
+    flex-flow: column nowrap;
+    margin: 3rem 0;
+  }
+  .text-flex .bg-content {
+    width: 100%;
+    padding: 1rem;
+    margin: 3rem 0;
+    height: auto;
+  }
+  section {
+    padding: 1rem;
+  }
+  .container {
+    padding-block: 0;
+    width: 100%;
+  }
+}
