@@ -1,0 +1,14 @@
+<div class="galery">
+  @for (item of paginatedItems; track $index) { @defer (on viewport) {
+  <div class="item">
+    <img [src]="item.src" [alt]="item.alt" loading="lazy" />
+    <div class="item-hov">
+      <i>zoom +</i>
+    </div>
+  </div>
+  } @placeholder {
+  <div class="item placeholder">
+    <div class="loading-skeleton"></div>
+  </div>
+  } }
+</div>

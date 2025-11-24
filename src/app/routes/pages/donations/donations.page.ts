@@ -2,10 +2,11 @@ import { Component, signal } from '@angular/core';
 import { HeaderLayout } from '../../../shared/layouts/header/header.layout';
 import { Btn } from '../../../shared/ui/btn/btn';
 import { SizeButton } from '../../../data/interfaces/size-button.interface';
+import { TextFloatComponent } from '../../../shared/components/text-float/text-float.component';
 
 @Component({
   selector: 'app-donations',
-  imports: [HeaderLayout, Btn],
+  imports: [HeaderLayout, Btn, TextFloatComponent],
   templateUrl: './donations.page.html',
   styleUrl: './donations.page.css',
 })

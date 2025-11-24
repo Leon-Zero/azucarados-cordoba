@@ -25,3 +25,15 @@ span {
 .spacing-color {
   background-image: linear-gradient(90deg, var(--color-tertiary-100) 50%, var(--color-bg-200) 50%);
 }
+
+@media screen and (max-width: 860px) {
+  .banner {
+    aspect-ratio: 4/3;
+  }
+  .banner img {
+    object-fit: fill;
+  }
+  span {
+    height: 5rem;
+  }
+}

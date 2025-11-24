@@ -3,10 +3,12 @@ import { HeaderLayout } from '../../../shared/layouts/header/header.layout';
 import { PagControl } from '../../../shared/ui/pag-control/pag-control';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PaginationService } from '../../../core/services/pagination.service';
+import { MainGaleryComponent } from '../../../shared/components/main-galery/main-galery.component';
+import { Gallery } from '../../../data/interfaces/gallery.interface';
 
 @Component({
   selector: 'app-gallery',
-  imports: [HeaderLayout, PagControl],
+  imports: [HeaderLayout, PagControl, MainGaleryComponent],
   templateUrl: './gallery.page.html',
   styleUrl: './gallery.page.css',
 })

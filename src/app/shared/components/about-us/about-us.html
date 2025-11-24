@@ -2,17 +2,20 @@
   <div class="flex" id="about-us">
     <h1>Quienes Somos</h1>
     <div class="container">
-      <div class="bg-content">
-        <h3>Nuestra Mision:</h3>
-        <p>
-          Con el apoyo de todos, podemos salir adelante y ayudar a nuestras mascotas a sobrellevar
-          esta enfermedad. ¡La diabetes no es el final!, puede llevarse una vida sana para nuestros
-          pequeños. JUNTOS podemos más. Somos una comunidad de
-          <strong>Dueños de Mascotas Diabeticas</strong>, con el objetivo de acompañar, aconsejar,
-          poner en manifiesto nuestras experiencias y el ayudar en la gestion de donaciones de
-          medicamentos e insumos para quienes no pueden acarrear los costos del tratamiento.
-        </p>
-      </div>
+      <app-text-float side="left" img="/gotita-sangre.jpg">
+        <ng-template #content>
+          <h3>Nuestra Mision:</h3>
+          <br />
+          <p>
+            Con el apoyo de todos, podemos salir adelante y ayudar a nuestras mascotas a sobrellevar
+            esta enfermedad. ¡La diabetes no es el final!, puede llevarse una vida sana para
+            nuestros pequeños. JUNTOS podemos más. Somos una comunidad de
+            <strong>Dueños de Mascotas Diabeticas</strong>, con el objetivo de acompañar, aconsejar,
+            poner en manifiesto nuestras experiencias y el ayudar en la gestion de donaciones de
+            medicamentos e insumos para quienes no pueden acarrear los costos del tratamiento.
+          </p>
+        </ng-template>
+      </app-text-float>
     </div>
     <app-btn [size]="_size">Unirme al GRUPO</app-btn>
     <app-btn [size]="_size">Quiero Donar</app-btn>

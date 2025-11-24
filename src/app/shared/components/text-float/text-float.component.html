@@ -1,0 +1,33 @@
+<ng-container
+  [ngTemplateOutlet]="side === 'left' ? leftTpl : rightTpl"
+  [ngTemplateOutletContext]="{ $implicit: contentTpl }"
+>
+</ng-container>
+
+<!-- TEMPLATE IZQUIERDA -->
+<ng-template #leftTpl let-content>
+  <div class="text-wrap bg-content">
+    <img class="img-float" [src]="img" alt="" />
+    <ng-container [ngTemplateOutlet]="content"></ng-container>
+  </div>
+</ng-template>
+
+<!-- TEMPLATE DERECHA -->
+<ng-template #rightTpl let-content>
+  <div class="text-flex">
+    <div class="img-flex">
+      <img [src]="img" alt="" />
+    </div>
+    <div class="bg-content">
+      <ng-container [ngTemplateOutlet]="content"></ng-container>
+    </div>
+  </div>
+</ng-template>
+
+<!-- modo de uso del template 
+
+<app-text-float side="left" img="/img.jpg">
+  <ng-template #content>
+    <p>Mi texto proyectado ✔</p>
+  </ng-template>
+</app-text-float> -->

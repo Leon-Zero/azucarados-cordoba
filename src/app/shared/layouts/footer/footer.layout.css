@@ -5,8 +5,10 @@ footer {
   padding: 0.5rem;
   display: grid;
   place-items: center;
-  background: linear-gradient(25deg, var(--color-tertiary-100) 10%, var(--color-tertiary-300) 40%);
+  background: linear-gradient(33deg, var(--color-primary-200) 40%, var(--color-primary-400) 60%);
   margin-top: 2rem;
+  border-radius: 6rem 6rem 0 0;
+  box-shadow: 0 -2px 10px var(--color-dark-200);
 }
 .top-btn {
   width: 3.5rem;

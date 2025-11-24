@@ -13,15 +13,17 @@ nav {
 }
 
 a {
-  color: var(--color-secondary-500);
+  color: var(--color-secondary-700);
   padding: 0 0.3rem;
   text-decoration: none;
+  font-weight: 600;
   transition: 0.1s linear all;
+  text-shadow: 1px 0 var(--color-border-100);
 }
 
 .linked {
   outline: 2px solid var(--color-secondary-300);
-  background-color: var(--color-primary-100);
+  background-color: var(--color-tertiary-100);
   border-radius: 0.2rem;
   font-size: 1.1rem;
   color: var(--color-dark-100);
@@ -30,7 +32,7 @@ a {
 .nav-container {
   position: relative;
   height: 100%;
-  background: linear-gradient(15deg, var(--color-tertiary-100) 10%, var(--color-tertiary-300) 40%);
+  background: linear-gradient(33deg, var(--color-primary-200) 40%, var(--color-primary-400) 60%);
   border: 1px solid var(--color-dark);
   border-top: none;
   border-radius: 0 0 0.5rem 0.5rem;
@@ -86,12 +88,12 @@ a {
 }
 .open-burguer {
   border: 1px solid var(--color-bg-100);
-  background-color: var(--color-tertiary-900);
+  background-color: var(--color-primary-100);
   box-shadow: inset 1px 1px 2px var(--color-bg-200), inset -1px -1px 2px var(--color-bg-200);
 }
 .closed-burguer {
   border: 1px solid var(--color-dark-200);
-  background-color: var(--color-secondary-200);
+  background-color: var(--color-secondary-100);
   box-shadow: 1px 1px 4px var(--color-secondary-800), -1px -1px 4px var(--color-secondary-800);
 }
 .menu-burguer button {
@@ -123,11 +125,10 @@ a {
   top: 100%;
   right: 0;
   width: 100%;
-  opacity: 0.9;
-  filter: brightness(80%);
+  filter: brightness(90%);
   box-shadow: inset 0px -2px 4px var(--color-secondary-700);
   border-radius: 0.3rem 0.3rem 1rem 1rem;
-  background: linear-gradient(15deg, var(--color-tertiary-100) 10%, var(--color-tertiary-300) 40%);
+  background: linear-gradient(15deg, var(--color-primary-200) 40%, var(--color-primary-400) 60%);
   transition: ease-in-out 0.2s all;
 }
 
@@ -144,16 +145,17 @@ a {
 }
 
 .menu-content ul li {
-  border: 1px solid var(--color-tertiary-200);
+  border: 1px solid var(--color-border-200);
   width: 90%;
+  height: fit-content;
   text-align: center;
   border-radius: 0.3rem;
   padding: 5px;
-  background-color: var(--color-tertiary-700);
+  background-color: var(--color-tertiary-100);
 }
 
 .menu-content ul li a {
-  color: var(--color-tertiary-100);
+  color: var(--color-dark-300);
   scale: 0.9;
 }
 
@@ -174,10 +176,16 @@ a {
 }
 
 @media screen and (max-width: 860px) {
+  nav {
+    height: 5.5rem;
+  }
   .nav-right .list-content {
     display: none;
   }
   .menu-burguer {
     display: block;
+  }
+  .nav-container {
+    grid-area: 1 / 1 / 2 / 13;
   }
 }
