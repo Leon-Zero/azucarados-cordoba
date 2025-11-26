@@ -3,10 +3,10 @@
 } */
 .text-wrap {
   position: relative;
-  width: 100%;
+  max-width: 100%;
   height: 18rem;
   overflow: visible;
-  margin: 1rem 0;
+  margin: 1rem auto;
 }
 .text-wrap img {
   border-radius: 50%;
@@ -15,7 +15,7 @@
 }
 
 .bg-content {
-  width: 90%;
+  width: 100%;
   min-height: fit-content;
   padding: 1rem 2rem;
   backdrop-filter: blur(1px) saturate(200%);
@@ -46,9 +46,11 @@
   flex-flow: row nowrap;
   height: fit-content;
   gap: 1rem;
+  margin: 0 auto;
+  width: 100%;
 }
 .text-flex .bg-content {
-  flex: 0 0 60%;
+  flex: 1 1 50%;
   display: grid;
   place-items: center;
   padding: 1rem;
@@ -81,7 +83,7 @@
   }
 
   .text-wrap .bg-content {
-    text-align: left;
+    text-align: center;
     padding: 0.5rem;
   }
   .text-wrap p {
@@ -89,7 +91,7 @@
   }
   .text-flex {
     justify-content: center;
-    gap: 0rem;
+    gap: 1rem;
     flex-flow: column nowrap;
   }
 

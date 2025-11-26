@@ -1,0 +1,60 @@
+<form>
+  <div class="form-container">
+    <h2>Formulario De Contacto</h2>
+
+    <div class="flex">
+      <div class="input-wrap">
+        <input type="text" id="name" placeholder=" " minlength="3" required />
+        <label for="name">Nombre</label>
+      </div>
+
+      <div class="input-wrap">
+        <input type="text" id="lastname" placeholder=" " minlength="3" required />
+        <label for="lastname">Apellido</label>
+      </div>
+    </div>
+
+    <div class="input-wrap">
+      <input
+        type="email"
+        id="email"
+        placeholder=" "
+        pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+        required
+      />
+      <label for="email">Email</label>
+    </div>
+
+    <div class="input-wrap">
+      <input
+        type="tel"
+        id="tel"
+        placeholder=" "
+        inputmode="numeric"
+        pattern="^\+?\d{7,12}$"
+        required
+      />
+      <label for="tel">Teléfono</label>
+    </div>
+
+    <fieldset>
+      <legend>¿Método de contacto que prefieres?</legend>
+      <div class="field-wrap">
+        <input type="radio" id="contact-telefono" name="contact_method" value="telefono" required />
+        <label for="contact-telefono">Teléfono</label>
+      </div>
+
+      <div class="field-wrap">
+        <input type="radio" id="contact-mail" name="contact_method" value="mail" />
+        <label for="contact-mail">Mail</label>
+      </div>
+    </fieldset>
+
+    <div class="area-wrap" id="_area">
+      <textarea name="message" placeholder=" " id="message" rows="6" cols="2" required></textarea>
+      <label for="message">Escribe Tu Consulta...</label>
+    </div>
+
+    <app-btn [size]="_size">Enviar Mensaje</app-btn>
+  </div>
+</form>
