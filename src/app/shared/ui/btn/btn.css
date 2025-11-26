@@ -16,13 +16,29 @@
   align-items: center;
   gap: 1rem;
 }
+.btn-primary p {
+  text-align: center;
+}
+
+.btn-xsmall {
+  width: 10rem;
+}
+.btn-xsmall p {
+  font-size: 0.9rem;
+}
 
 .btn-small {
   width: 12rem;
 }
+.btn-small p {
+  font-size: 1rem;
+}
 
 .btn-medium {
   width: 16rem;
+}
+.btn-medium p {
+  font-size: 1.2rem;
 }
 
 .btn-large {

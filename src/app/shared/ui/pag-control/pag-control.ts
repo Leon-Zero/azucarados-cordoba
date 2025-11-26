@@ -9,13 +9,13 @@ import { Btn } from '../btn/btn';
   styleUrl: './pag-control.css',
 })
 export class PagControl {
-  _size = signal<SizeButton>('small');
+  _size = signal<SizeButton>('xsmall');
 
   @Input() currentPage = 1;
   @Input() totalPages = 1;
   @Output() pageChange = new EventEmitter<number>();
 
-  maxVisible = 8; // 👈 cantidad de páginas visibles por tramo
+  maxVisible = 7; // 👈 cantidad de páginas visibles por tramo
 
   get pages(): (number | string)[] {
     const pages: (number | string)[] = [];

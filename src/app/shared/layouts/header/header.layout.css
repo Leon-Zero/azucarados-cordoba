@@ -27,12 +27,6 @@ span {
 }
 
 @media screen and (max-width: 860px) {
-  .banner {
-    aspect-ratio: 4/3;
-  }
-  .banner img {
-    object-fit: fill;
-  }
   span {
     height: 5rem;
   }

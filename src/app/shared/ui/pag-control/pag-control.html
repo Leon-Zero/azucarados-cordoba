@@ -1,5 +1,5 @@
 <div class="galery-controls">
-  <app-btn (click)="prev()">atras</app-btn>
+  <app-btn (click)="prev()" [size]="_size">atras</app-btn>
 
   <div class="pagination">
     @for (page of pages; track $index) {
@@ -9,5 +9,5 @@
     }
   </div>
 
-  <app-btn (click)="next()">adelante</app-btn>
+  <app-btn (click)="next()" [size]="_size">adelante</app-btn>
 </div>
