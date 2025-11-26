@@ -43,8 +43,6 @@ export class HomePage {
 
   _gallery = signal<string[]>([
     'https://www.ladridosybigotes.com/content/images/2024/10/2024-08-13-animal-hoarding-disorder.webp',
-    'https://nupec.com/wp-content/uploads/2020/07/Captura-de-pantalla-2020-07-02-a-las-15.33.21.png',
-    'https://www.purina.com.ar/sites/default/files/2022-10/purina-consulta-veterinaria-para-mascotas-lo-que-debes-saber.jpg',
     'https://www.veggieanimals.com/img/ybc_blog/post/thumb/thumbmaimascotas.jpg',
     'https://www.canal12misiones.com/wp-content/uploads/2023/12/0000-g00pit.jpg',
     'https://dus6dayednven.cloudfront.net/app/uploads/2022/05/1-DSC00855-Editar_baja.jpg',
