@@ -1,9 +1,9 @@
 <div class="container">
-  <div class="div1">
-    <img src="/not found.png" alt="" />
-  </div>
-  <div class="div2">
-    <h1>PÁGINA NO EXISTENTE...</h1>
-    <app-btn [size]="_size">Volver Al Home</app-btn>
-  </div>
+  <app-text-float side="right" img="/not found.png">
+    <ng-template #content>
+      <h2>¡Uy, parece que te has perdido!...</h2>
+    </ng-template>
+  </app-text-float>
+
+  <app-btn [size]="_size">Volver Al Home</app-btn>
 </div>
