@@ -1,60 +1,98 @@
-<form>
+<form
+  ngNoForm
+  class="hvr-shutter-out-horizontal"
+  id="form-contacto"
+  [action]="'https://formsubmit.co/' + mail"
+  method="POST"
+  role="form"
+  name="contact"
+>
   <div class="form-container">
     <h2>Formulario De Contacto</h2>
 
     <div class="flex">
       <div class="input-wrap">
-        <input type="text" id="name" placeholder=" " minlength="3" required />
+        <input type="text" id="name" name="Nombre" placeholder=" " minlength="3" required />
         <label for="name">Nombre</label>
       </div>
 
       <div class="input-wrap">
-        <input type="text" id="lastname" placeholder=" " minlength="3" required />
+        <input type="text" id="lastname" name="Apellido" placeholder=" " minlength="3" required />
         <label for="lastname">Apellido</label>
       </div>
     </div>
 
-    <div class="input-wrap">
-      <input
-        type="email"
-        id="email"
-        placeholder=" "
-        pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
-        required
-      />
-      <label for="email">Email</label>
-    </div>
-
-    <div class="input-wrap">
-      <input
-        type="tel"
-        id="tel"
-        placeholder=" "
-        inputmode="numeric"
-        pattern="^\+?\d{7,12}$"
-        required
-      />
-      <label for="tel">Teléfono</label>
-    </div>
-
+    <!-- MÉTODO DE CONTACTO -->
     <fieldset>
       <legend>¿Método de contacto que prefieres?</legend>
+
       <div class="field-wrap">
-        <input type="radio" id="contact-telefono" name="contact_method" value="telefono" required />
+        <input
+          type="radio"
+          id="contact-telefono"
+          name="metodo_de_contacto"
+          value="telefono"
+          required
+          (change)="onContactMethodChange('telefono')"
+        />
         <label for="contact-telefono">Teléfono</label>
       </div>
 
       <div class="field-wrap">
-        <input type="radio" id="contact-mail" name="contact_method" value="mail" />
+        <input
+          type="radio"
+          id="contact-mail"
+          name="metodo_de_contacto"
+          value="mail"
+          (change)="onContactMethodChange('mail')"
+          required
+        />
         <label for="contact-mail">Mail</label>
       </div>
     </fieldset>
 
+    <!-- telefono -->
+    @if (contactMethod === 'telefono') {
+    <div class="input-wrap">
+      <input
+        type="tel"
+        id="tel"
+        name="Telefono"
+        placeholder=" "
+        inputmode="numeric"
+        pattern="^\+?\d{7,13}$"
+        required
+      />
+      <label for="tel">Teléfono</label>
+    </div>
+    }
+
+    <!-- mail -->
+    @if (contactMethod === 'mail') {
+    <div class="input-wrap">
+      <input
+        type="email"
+        id="email"
+        name="Email"
+        placeholder=" "
+        pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
+        required
+      />
+      <label for="email">Email</label>
+    </div>
+    }
+
     <div class="area-wrap" id="_area">
-      <textarea name="message" placeholder=" " id="message" rows="8" cols="2" required></textarea>
+      <textarea name="Consulta" placeholder=" " id="message" rows="8" cols="2" required></textarea>
       <label for="message">Escribe Tu Consulta...</label>
     </div>
 
-    <app-btn [size]="_size">Enviar Mensaje</app-btn>
+    <!-- campos ocultos para formsubmit -->
+    <input type="hidden" name="_subject" [value]="asunto" />
+    <input type="hidden" name="_autoresponse" [value]="autoResponse" />
+    <input type="hidden" name="_next" [value]="return" />
+    <input type="hidden" name="_template" value="box" />
+
+    <app-btn [size]="_size" type="submit">Enviar Mensaje</app-btn>
   </div>
 </form>
