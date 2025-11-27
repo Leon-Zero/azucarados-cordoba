@@ -1,9 +1,10 @@
 <section>
-  <h1>Galeria De Fotos</h1>
+  <h2>fotos recientes</h2>
+  <span class="spacing"></span>
   <div class="container">
     @for (item of photos(); track $index) {
     <div class="wrap-photo"><img [src]="item" alt="" /></div>
     }
   </div>
-  <app-btn [size]="_size">Ir A La Galeria</app-btn>
+  <app-btn [size]="_size">Ir a la Galeria</app-btn>
 </section>

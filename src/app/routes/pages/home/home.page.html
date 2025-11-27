@@ -1,6 +1,9 @@
 <app-header [spacingColor]="_spacingColor" [imgBanner]="_imgBanner" />
 <app-about-us />
+<span class="spacing"></span>
 <section>
+  <h2>Blog/noticias Destacadas!</h2>
+  <span class="spacing"></span>
   <div class="flex">
     @for (item of data; track $index) {
     <app-card [_img]="item.img">
@@ -8,6 +11,6 @@
     </app-card>
     }
   </div>
-
+  <span class="spacing"></span>
   <app-gallery [photos]="_gallery" />
 </section>

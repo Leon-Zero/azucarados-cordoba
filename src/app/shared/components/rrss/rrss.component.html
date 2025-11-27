@@ -1,0 +1,7 @@
+<ul>
+  @for (item of rrss(); track $index) {
+  <li>
+    <i><img [src]="item.src" [alt]="item.alt" /></i>
+  </li>
+  }
+</ul>

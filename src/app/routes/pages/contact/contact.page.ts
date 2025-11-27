@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { HeaderLayout } from '../../../shared/layouts/header/header.layout';
 import { ContactForm } from '../../../shared/forms/contact/contact.form';
 import { TextFloatComponent } from '../../../shared/components/text-float/text-float.component';
+import { RrssComponent } from '../../../shared/components/rrss/rrss.component';
 
 @Component({
   selector: 'app-contact',
-  imports: [ContactForm, TextFloatComponent],
+  imports: [ContactForm, TextFloatComponent, RrssComponent],
   templateUrl: './contact.page.html',
   styleUrl: './contact.page.css',
 })
