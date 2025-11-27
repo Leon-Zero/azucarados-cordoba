@@ -6,7 +6,6 @@ import { GalleryPage } from '../pages/gallery/gallery.page';
 import { NotFoundPage } from '../pages/not-found/not-found.page';
 import { BlogPage } from '../pages/blog/blog.page';
 import { EditorPage } from '../pages/editor/editor.page';
-import { CrudAdminPage } from '../pages/crud-admin/crud-admin.page';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -17,7 +16,10 @@ export const routes: Routes = [
   { path: 'contacto', component: ContactPage },
   { path: 'blog', redirectTo: 'blog/pagina/1', pathMatch: 'full' },
   { path: 'blog/pagina/:page', component: BlogPage },
-  { path: 'admin', component: CrudAdminPage },
+  {
+    path: 'admin',
+    loadChildren: () => import('../routing/admin.routes').then((m) => m.admin),
+  },
   { path: 'editor', component: EditorPage },
   { path: '**', component: NotFoundPage },
 ];
