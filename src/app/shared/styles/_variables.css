@@ -62,4 +62,8 @@
   --color-dark-400: #170e14;
   --color-dark-500: #11090e;
   --color-dark: var(--color-dark-100);
+
+  /* crud y advertencias */
+  --color-danger: #da2c38;
+  --color-blank: #f8f8f8;
 }

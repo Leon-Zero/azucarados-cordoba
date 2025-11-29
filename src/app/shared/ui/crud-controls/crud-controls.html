@@ -1,0 +1,46 @@
+<div class="crud-toolbar" role="toolbar" aria-label="CRUD actions">
+  <button
+    class="btn btn-add"
+    type="button"
+    title="Agregar"
+    aria-label="Agregar"
+    [disabled]="onDisabled == 'add'"
+  >
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z" />
+    </svg>
+    <span class="label">Agregar</span>
+  </button>
+
+  <div class="divider" aria-hidden="true"></div>
+
+  <button
+    class="btn btn-edit"
+    type="button"
+    title="Editar"
+    aria-label="Editar"
+    [disabled]="onDisabled == 'edit'"
+  >
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path
+        d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"
+      />
+    </svg>
+    <span class="label">Editar</span>
+  </button>
+
+  <div class="divider" aria-hidden="true"></div>
+
+  <button
+    class="btn btn-delete"
+    type="button"
+    title="Eliminar"
+    aria-label="Eliminar"
+    [disabled]="onDisabled == 'delete'"
+  >
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
+    </svg>
+    <span class="label">Eliminar</span>
+  </button>
+</div>
