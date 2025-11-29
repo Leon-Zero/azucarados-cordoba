@@ -23,7 +23,7 @@ export class BlogPage implements OnInit {
   ngOnInit() {
     this.http.get<Blog[]>('/blog.json').subscribe((posts) => {
       this.pagination.setItems(posts);
-      this.pagination.setItemsPerPage(4);
+      this.pagination.setItemsPerPage(5);
     });
 
     // nº page ruta

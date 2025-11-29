@@ -40,17 +40,4 @@ export class HomePage {
   ];
   _spacingColor = signal<boolean>(true);
   _imgBanner = signal<string>('/banner-home.png');
-
-  _gallery = signal<string[]>([
-    'https://www.ladridosybigotes.com/content/images/2024/10/2024-08-13-animal-hoarding-disorder.webp',
-    'https://www.veggieanimals.com/img/ybc_blog/post/thumb/thumbmaimascotas.jpg',
-    'https://www.canal12misiones.com/wp-content/uploads/2023/12/0000-g00pit.jpg',
-    'https://dus6dayednven.cloudfront.net/app/uploads/2022/05/1-DSC00855-Editar_baja.jpg',
-    'https://images.pagina12.com.ar/styles/focal_content_1200x1050/public/2022-07/583430-mascotas_0.jpg?h=7d6ffc47&itok=OExsV-1h',
-    'https://www.lanacion.com.ar/resizer/v2/mascotas-en-el-hospital-los-centros-de-salud-BGQZPDNVEJGKPGXWPE5UD67CQU?auth=5b214fdf7494b049b767843efa4569990330a7289e9b452ff9d62e974a7dc6b9&width=420&height=280&quality=70&smart=true',
-    'https://www.fedpat.com.ar/wp-content/uploads/2017/09/mascotas3-web-fedpat-scaled.jpg',
-    'https://escuelainenka.com/wp-content/uploads/auxiliar-de-veterinaria.jpg',
-    'https://img.freepik.com/foto-gratis/vista-frontal-veterinaria-examinando-perro-mesa_23-2147928403.jpg?semt=ais_hybrid&w=740&q=80',
-    'https://www.fundacionclinicadelafamilia.org/wp-content/uploads/2024/04/el-poder-curativo-de-las-mascotas-2-1024x896-1024x896.jpg',
-  ]);
 }

@@ -2,8 +2,8 @@
   <h2>fotos recientes</h2>
   <span class="spacing"></span>
   <div class="container">
-    @for (item of photos(); track $index) {
-    <div class="wrap-photo"><img [src]="item" alt="" /></div>
+    @for (item of topImg(); track $index) {
+    <div class="wrap-photo"><img [src]="item.src" [alt]="item.alt" /></div>
     }
   </div>
   <span class="spacing"></span>

@@ -4,7 +4,8 @@ import { PagControl } from '../../../shared/ui/pag-control/pag-control';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PaginationService } from '../../../core/services/pagination.service';
 import { MainGaleryComponent } from '../../../shared/components/main-galery/main-galery.component';
-import { Gallery } from '../../../data/interfaces/gallery.interface';
+import { GalleryService } from '../../../core/services/gallery.service';
+import { Img } from '../../../data/interfaces/img.interface';
 
 @Component({
   selector: 'app-gallery',
@@ -13,19 +14,14 @@ import { Gallery } from '../../../data/interfaces/gallery.interface';
   styleUrl: './gallery.page.css',
 })
 export class GalleryPage {
+  private galleryService = inject(GalleryService);
+  private pagination = inject(PaginationService);
   _imgBanner = signal<string>('/banner-galeria.png');
-  pagination = inject(PaginationService);
 
   constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
-    const items = Array.from({ length: 150 }, (_, i) => ({
-      src: `https://picsum.photos/seed/${i}/400/300`,
-      alt: `Imagen ${i + 1}`,
-    }));
-
-    this.pagination.setItems(items);
-    this.pagination.setItemsPerPage(12);
+    this.loadImages();
 
     this.route.paramMap.subscribe((params) => {
       const page = Number(params.get('page')) || 1;
@@ -33,14 +29,19 @@ export class GalleryPage {
     });
   }
 
+  loadImages() {
+    this.galleryService.getAllImages().subscribe((items: Img[]) => {
+      this.pagination.setItems(items);
+      this.pagination.setItemsPerPage(12);
+    });
+  }
+
   get currentPage() {
     return this.pagination.currentPage();
   }
-
   get totalPages() {
     return this.pagination.totalPages();
   }
-
   get paginatedItems() {
     return this.pagination.paginatedItems();
   }
