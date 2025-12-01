@@ -1,4 +1,4 @@
-import { Component, Input, signal } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { NgClass } from '@angular/common';
 
 @Component({
@@ -8,6 +8,8 @@ import { NgClass } from '@angular/common';
   styleUrl: './header.layout.css',
 })
 export class HeaderLayout {
-  @Input() spacingColor = signal<boolean>(false);
-  @Input() imgBanner = signal<string>('');
+  // @Input() spacingColor = signal<boolean>(false);
+  // @Input() imgBanner = signal<string>('');
+  spacingColor = input<boolean>(false);
+  imgBanner = input<string>('')
 }

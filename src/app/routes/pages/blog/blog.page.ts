@@ -4,7 +4,7 @@ import { PagControl } from '../../../shared/ui/pag-control/pag-control';
 import { PaginationService } from '../../../core/services/pagination.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { Blog } from '../../../data/interfaces/blog.interface';
+import { Blog } from '../../../data/interfaces/database/blog.interface';
 
 @Component({
   selector: 'app-blog',
@@ -14,7 +14,6 @@ import { Blog } from '../../../data/interfaces/blog.interface';
   styleUrl: './blog.page.css',
 })
 export class BlogPage implements OnInit {
-  _imgBanner = signal<string>('/banner-blog.png');
   private http = inject(HttpClient);
   private pagination = inject(PaginationService<Blog>);
   private route = inject(ActivatedRoute);

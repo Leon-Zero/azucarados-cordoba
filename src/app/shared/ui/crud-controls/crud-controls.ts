@@ -1,5 +1,5 @@
-import { Component, Input, signal } from '@angular/core';
-import { DisabledCrud } from '../../../data/interfaces/disabledCrud';
+import { Component, input, output } from '@angular/core';
+import { DisabledCrud } from '../../../data/interfaces/types/disabledCrud';
 
 @Component({
   selector: 'app-crud-controls',
@@ -8,5 +8,10 @@ import { DisabledCrud } from '../../../data/interfaces/disabledCrud';
   styleUrl: './crud-controls.css',
 })
 export class CrudControls {
-  @Input() onDisabled: DisabledCrud = '';
+  onDisabled = input<DisabledCrud>('');
+  optionCrud = output<DisabledCrud>();
+
+  selectCrud(opt: DisabledCrud): void {
+    this.optionCrud.emit(opt);
+  }
 }

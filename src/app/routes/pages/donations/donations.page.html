@@ -1,4 +1,4 @@
-<app-header [imgBanner]="_imgBanner" [spacingColor]="_spacingColor" />
+<app-header [imgBanner]="'/banner-donacion.png'" [spacingColor]="true" />
 <section>
   <div class="container">
     <div class="text-float">
@@ -22,7 +22,7 @@
       </app-text-float>
     </div>
 
-    <app-btn [size]="_size">DONAR MEDICAMENTOS</app-btn>
+    <app-btn [size]="'large'">DONAR MEDICAMENTOS</app-btn>
   </div>
 
   <div class="container">
@@ -40,6 +40,6 @@
       </ng-template>
     </app-text-float>
 
-    <app-btn [size]="_size">DONAR EFECTIVO</app-btn>
+    <app-btn [size]="'large'">DONAR EFECTIVO</app-btn>
   </div>
 </section>

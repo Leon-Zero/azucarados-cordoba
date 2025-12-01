@@ -1,5 +1,5 @@
 <div class="galery">
-  @for (item of paginatedItems; track $index) { @defer (on viewport) {
+  @for (item of paginatedItems; track item.id) { @defer (on viewport) {
   <div class="item">
     <img [src]="item.src" [alt]="item.alt" loading="lazy" />
     <div class="item-hov">

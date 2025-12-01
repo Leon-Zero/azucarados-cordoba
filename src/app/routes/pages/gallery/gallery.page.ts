@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PaginationService } from '../../../core/services/pagination.service';
 import { MainGaleryComponent } from '../../../shared/components/main-galery/main-galery.component';
 import { GalleryService } from '../../../core/services/gallery.service';
-import { Img } from '../../../data/interfaces/img.interface';
+import { Img } from '../../../data/interfaces/database/img.interface';
 
 @Component({
   selector: 'app-gallery',
@@ -16,9 +16,8 @@ import { Img } from '../../../data/interfaces/img.interface';
 export class GalleryPage {
   private galleryService = inject(GalleryService);
   private pagination = inject(PaginationService);
-  _imgBanner = signal<string>('/banner-galeria.png');
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.loadImages();

@@ -1,8 +1,7 @@
 import { Component, inject, Input, signal, SimpleChanges } from '@angular/core';
 import { Btn } from '../../ui/btn/btn';
-import { SizeButton } from '../../../data/interfaces/size-button.interface';
-import { Img } from '../../../data/interfaces/img.interface';
 import { GalleryService } from '../../../core/services/gallery.service';
+import { Img } from '../../../data/interfaces/database/img.interface';
 
 @Component({
   selector: 'app-gallery',
@@ -11,7 +10,6 @@ import { GalleryService } from '../../../core/services/gallery.service';
   styleUrl: './gallery.css',
 })
 export class Gallery {
-  _size = signal<SizeButton>('large');
   private galleryService = inject(GalleryService);
   topImg = signal<Img[]>([]);
 

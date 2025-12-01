@@ -1,6 +1,6 @@
 import { NgClass } from '@angular/common';
-import { Component, Input, signal } from '@angular/core';
-import { SizeButton } from '../../../data/interfaces/size-button.interface';
+import { Component, input } from '@angular/core';
+import { SizeButton } from '../../../data/interfaces/types/size-button.interface';
 
 @Component({
   selector: 'app-btn',
@@ -9,5 +9,5 @@ import { SizeButton } from '../../../data/interfaces/size-button.interface';
   styleUrl: './btn.css',
 })
 export class Btn {
-  @Input() size = signal<SizeButton>('medium');
+  size = input<SizeButton>('medium');
 }

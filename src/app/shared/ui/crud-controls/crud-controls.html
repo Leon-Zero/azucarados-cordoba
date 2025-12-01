@@ -4,7 +4,8 @@
     type="button"
     title="Agregar"
     aria-label="Agregar"
-    [disabled]="onDisabled == 'add'"
+    [disabled]="onDisabled() == 'add'"
+    (click)="selectCrud('add')"
   >
     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
       <path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z" />
@@ -19,7 +20,8 @@
     type="button"
     title="Editar"
     aria-label="Editar"
-    [disabled]="onDisabled == 'edit'"
+    [disabled]="onDisabled() == 'edit'"
+    (click)="selectCrud('edit')"
   >
     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
       <path
@@ -36,11 +38,15 @@
     type="button"
     title="Eliminar"
     aria-label="Eliminar"
-    [disabled]="onDisabled == 'delete'"
+    [disabled]="onDisabled() == 'delete'"
+    (click)="selectCrud('delete')"
   >
     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
       <path d="M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
     </svg>
     <span class="label">Eliminar</span>
   </button>
+
+    <div class="divider" aria-hidden="true"></div>
+    <button (click)="selectCrud('')">reiniciar</button>
 </div>

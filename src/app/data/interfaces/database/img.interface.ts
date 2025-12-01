@@ -1,5 +1,5 @@
 export interface Img {
-  id?: number;
+  id: number;
   src: string;
   alt: string;
 }

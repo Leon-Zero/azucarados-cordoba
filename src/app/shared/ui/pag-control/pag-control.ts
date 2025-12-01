@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
-import { SizeButton } from '../../../data/interfaces/size-button.interface';
 import { Btn } from '../btn/btn';
 
 @Component({
@@ -9,7 +8,6 @@ import { Btn } from '../btn/btn';
   styleUrl: './pag-control.css',
 })
 export class PagControl {
-  _size = signal<SizeButton>('xsmall');
 
   @Input() currentPage = 1;
   @Input() totalPages = 1;

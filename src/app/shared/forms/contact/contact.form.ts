@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { Btn } from '../../ui/btn/btn';
-import { SizeButton } from '../../../data/interfaces/size-button.interface';
+import { SizeButton } from '../../../data/interfaces/types/size-button.interface';
 
 @Component({
   selector: 'form-contact',
@@ -9,7 +9,6 @@ import { SizeButton } from '../../../data/interfaces/size-button.interface';
   styleUrl: './contact.form.css',
 })
 export class ContactForm {
-  _size = signal<SizeButton>('large');
   mail: string = 'leon.cba09@gmail.com';
   asunto: string = 'WEB Azucarados Cordoba - form. contacto';
   web: string = 'http://localhost:4200';

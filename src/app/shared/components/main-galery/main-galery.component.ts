@@ -1,5 +1,4 @@
 import { Component, Input, signal } from '@angular/core';
-import { Gallery } from '../../../data/interfaces/gallery.interface';
 
 @Component({
   selector: 'app-main-galery',

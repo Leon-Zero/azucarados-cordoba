@@ -1,9 +1,8 @@
 import { Component, signal } from '@angular/core';
-import { QuillEditor } from '../../../data/interfaces/quill-editor.interface';
+import { QuillEditor } from '../../../data/interfaces/dynamic-form/quill-editor.interface';
 import { QuillModule } from 'ngx-quill';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Btn } from '../../../shared/ui/btn/btn';
-import { SizeButton } from '../../../data/interfaces/size-button.interface';
 import { View } from '../../../shared/components/view/view';
 
 @Component({
@@ -13,7 +12,6 @@ import { View } from '../../../shared/components/view/view';
   styleUrl: './editor.page.css',
 })
 export class EditorPage {
-  _size = signal<SizeButton>('medium');
   viewContent = signal<string>('');
 
   blog = signal<QuillEditor>({

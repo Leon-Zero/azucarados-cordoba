@@ -150,6 +150,15 @@ textarea:not(:placeholder-shown):invalid {
   box-shadow: 0 0 4px var(--color-dark-100);
 }
 
+.error {
+  font-size: 0.8rem;
+  color: var(--color-danger);
+  margin-top: 0.3rem;
+  padding-left: 0.3rem;
+  position: absolute;
+  right: 0;
+}
+
 @media screen and (max-width: 620px) {
   form {
     width: 100%;

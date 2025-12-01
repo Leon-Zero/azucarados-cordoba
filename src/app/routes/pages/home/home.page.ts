@@ -12,6 +12,7 @@ import { AboutUs } from '../../../shared/components/about-us/about-us';
   styleUrl: './home.page.css',
 })
 export class HomePage {
+
   data = [
     {
       img: 'https://www.zooplus.es/magazine/wp-content/uploads/2023/03/Ano-de-perro-en-humano.webp',
@@ -38,6 +39,5 @@ export class HomePage {
       text: ' ',
     },
   ];
-  _spacingColor = signal<boolean>(true);
-  _imgBanner = signal<string>('/banner-home.png');
+
 }

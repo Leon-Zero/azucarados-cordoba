@@ -1,7 +1,6 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { HeaderLayout } from '../../../shared/layouts/header/header.layout';
 import { Btn } from '../../../shared/ui/btn/btn';
-import { SizeButton } from '../../../data/interfaces/size-button.interface';
 import { TextFloatComponent } from '../../../shared/components/text-float/text-float.component';
 
 @Component({
@@ -11,7 +10,4 @@ import { TextFloatComponent } from '../../../shared/components/text-float/text-f
   styleUrl: './donations.page.css',
 })
 export class DonationsPage {
-  _imgBanner = signal<string>('/banner-donacion.png');
-  _size = signal<SizeButton>('large');
-  _spacingColor = signal<boolean>(true);
 }

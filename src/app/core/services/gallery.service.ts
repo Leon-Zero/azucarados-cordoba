@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs';
-import { Img } from '../../data/interfaces/img.interface';
+import { Img } from '../../data/interfaces/database/img.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +10,6 @@ export class GalleryService {
   private http = inject(HttpClient);
   private baseUrl = 'http://localhost:3001/perros';
 
-  /** Trae las últimas N imágenes (ordenado por id descendente) */
   getLastImages(limit: number) {
     return this.http.get<Img[]>(`${this.baseUrl}?_sort=id&_order=desc&_limit=${limit}`).pipe(
       map((items) =>
@@ -23,16 +22,25 @@ export class GalleryService {
     );
   }
 
-  /** Trae TODAS las imágenes, pero ordenadas descendente (id mayor primero) */
   getAllImages() {
-    return this.http.get<Img[]>(`${this.baseUrl}?_sort=id&_order=desc`).pipe(
-      map((items) =>
-        items.map((img, i) => ({
+    return this.http.get<Img[]>(this.baseUrl).pipe(
+      map((items) => {
+        const sorted = [...items].sort((a, b) => b.id - a.id);
+        return sorted.map((img, i) => ({
           src: img.src,
           alt: img.alt ?? `Foto ${i + 1}`,
           id: img.id,
-        }))
-      )
+        }));
+      })
     );
   }
+
+  deleteImage(id: number) {
+    return this.http.delete(`${this.baseUrl}/${id}`);
+  }
+
+  addImage(image: { src: string; alt: string | null }) {
+  return this.http.post(`${this.baseUrl}`, image);
+}
+
 }
