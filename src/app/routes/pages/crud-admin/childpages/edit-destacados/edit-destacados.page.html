@@ -2,7 +2,11 @@
   <div class="container">
     <h2>Edita los Destacados</h2>
     <span class="spacing"></span>
-    <app-crud-controls></app-crud-controls>
+    <app-crud-controls (optionCrud)="selectOpt($event)"></app-crud-controls>
     <!-- contenido para editar -->
   </div>
 </section>
+
+@switch (_selectOpt()) { @case ('delete') { } @case ('add') {
+<form-destacados-add></form-destacados-add>
+} }

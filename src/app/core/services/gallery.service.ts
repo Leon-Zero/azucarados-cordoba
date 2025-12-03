@@ -40,7 +40,7 @@ export class GalleryService {
   }
 
   addImage(image: { src: string; alt: string | null }) {
-  return this.http.post(`${this.baseUrl}`, image);
-}
+    return this.http.post(`${this.baseUrl}`, image);
+  }
 
 }
