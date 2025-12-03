@@ -1,17 +1,13 @@
 <section>
-  <div class="container">
-    <h2>Edita los Destacados</h2>
-    <span class="spacing"></span>
-    <app-crud-controls (optionCrud)="selectOpt($event)" onDisabled="edit"></app-crud-controls>
-    <!-- contenido para editar -->
-    <span class="spacing"></span>
-    @switch (_selectOpt()) {
-      @case ('delete') {
-        <form-photo-delete></form-photo-delete>
-      }
-      @case ('add') {
-        <form-photo-add></form-photo-add>
-      }
-    }
-  </div>
+  <h2>Edita los Destacados</h2>
+  <span class="spacing"></span>
+  <app-crud-controls (optionCrud)="selectOpt($event)" onDisabled="edit"></app-crud-controls>
+  <!-- contenido para editar -->
+  <span class="spacing"></span>
 </section>
+
+@switch (_selectOpt()) { @case ('delete') {
+<form-photo-delete></form-photo-delete>
+} @case ('add') {
+<form-photo-add></form-photo-add>
+} }

@@ -2,8 +2,8 @@
   outline: 1px dashed red;
 } */
 section {
-  margin: 2rem;
-  padding: 2rem;
+  margin: 2rem auto;
+  padding: 1 2rem;
   text-align: center;
 }
 .option {
@@ -46,4 +46,12 @@ section {
   height: 100%;
   width: 100%;
   text-align: center;
+}
+
+@media screen and (max-width: 620px) {
+  .container {
+    margin-top: 2rem;
+    padding: 0;
+    width: 100%;
+  }
 }

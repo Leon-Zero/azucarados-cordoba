@@ -1,65 +1,43 @@
-<form
-  [formGroup]="imgForm"
-  (ngSubmit)="onSubmit()"
-  class="hvr-shutter-out-horizontal"
-  id="form-img"
->
+<form [formGroup]="imgForm" (ngSubmit)="onSubmit()" id="form-img">
   <div class="form-container">
     <h2>Agregar Imagen</h2>
 
     <!-- id provicional  -->
-     <div class="input-wrap">
-        <input
-          type="number"
-          formControlName="id"
-          id="id"
-          placeholder=" "
-        />
-        <label for="id">ID</label>
+    <div class="input-wrap">
+      <input type="number" formControlName="id" id="id" placeholder=" " />
+      <label for="id">ID</label>
 
-        <!-- validaciones -->
-         @if (id.invalid && (alt.dirty || id.touched)) {
-            <p class="error">
-               @if (id.errors?.['required']) { El ID es obligatorio. }
-             </p>
-         }
-      </div>
+      <!-- validaciones -->
+      @if (id.invalid && (alt.dirty || id.touched)) {
+      <p class="error">@if (id.errors?.['required']) { El ID es obligatorio. }</p>
+      }
+    </div>
 
-      <div class="input-wrap">
-        <input
-          type="text"
-          formControlName="alt"
-          id="alt"
-          placeholder=" "
-        />
-        <label for="alt">Título</label>
+    <div class="input-wrap">
+      <input type="text" formControlName="alt" id="alt" placeholder=" " />
+      <label for="alt">Título</label>
 
-        <!-- validaciones -->
-         @if (alt.invalid && (alt.dirty || alt.touched)) {
-             <p class="error">
-               @if (alt.errors?.['required']) { El TÍTULO es obligatorio. }
-               @if (alt.errors?.['minlength']) { Mínimo 5 caracteres. }
-             </p>
-         }
-      </div>
+      <!-- validaciones -->
+      @if (alt.invalid && (alt.dirty || alt.touched)) {
+      <p class="error">
+        @if (alt.errors?.['required']) { El TÍTULO es obligatorio. } @if (alt.errors?.['minlength'])
+        { Mínimo 5 caracteres. }
+      </p>
+      }
+    </div>
 
-      <div class="input-wrap">
-        <input
-          type="text"
-          formControlName="src"
-          id="src"
-          placeholder=" "
-        />
-        <label for="src">URL de la imagen</label>
+    <div class="input-wrap">
+      <input type="text" formControlName="src" id="src" placeholder=" " />
+      <label for="src">URL de la imagen</label>
 
-        <!-- validaciones -->
-        @if (src.invalid && (src.dirty || src.touched)) {
-            <p class="error">
-              @if (src.errors?.['required']) { La URL es obligatoria. }
-              @if (src.errors?.['pattern']) { Debe ser una URL válida. }
-            </p>
-        }
-      </div>
+      <!-- validaciones -->
+      @if (src.invalid && (src.dirty || src.touched)) {
+      <p class="error">
+        @if (src.errors?.['required']) { La URL es obligatoria. } @if (src.errors?.['pattern']) {
+        Debe ser una URL válida. }
+      </p>
+      }
+    </div>
 
     <app-btn [size]="'large'" type="submit" [attr.disabled]="imgForm.invalid">
       Guardar Imagen

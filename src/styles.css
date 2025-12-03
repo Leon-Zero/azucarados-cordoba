@@ -1,4 +1,5 @@
 @import '../src/app/shared/styles/_variables.css';
+@import '../src/app/shared/styles/_normalize.css';
 
 /* * {
   outline: dashed 1px red;
@@ -22,9 +23,7 @@ html {
 }
 body {
   background-color: var(--color-bg-100);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  min-height: 100dvh;
 }
 
 .bg {
@@ -52,6 +51,7 @@ body {
 
 section {
   padding: 2rem 1rem;
+  width: 100%;
 }
 
 .flex {
@@ -93,6 +93,7 @@ strong {
   font-size: 1.1rem;
   letter-spacing: 0.08rem;
 }
+
 @media screen and (max-width: 620px) {
   html {
     font-size: 14px;
