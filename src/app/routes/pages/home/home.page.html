@@ -5,7 +5,7 @@
   <h2>Blog/noticias Destacadas!</h2>
   <span class="spacing"></span>
   <div class="flex">
-    @for (item of data; track $index) {
+    @for (item of destacados(); track item.id) {
     <app-card [_img]="item.img">
       {{ item.text }}
     </app-card>

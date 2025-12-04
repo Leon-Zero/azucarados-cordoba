@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DestacadoService } from '../../../core/services/destacado.service';
 import { Btn } from "../../ui/btn/btn";
+import { Destacado } from '../../../data/interfaces/database/destacado.interface';
 
 @Component({
   selector: 'form-destacados-add',
@@ -14,10 +15,9 @@ export class DestacadosAddForm {
   private destacadosService = inject(DestacadoService);
 
   destacadosForm = this.fb.group({
-    id: ["", Validators.required],
+    id: [, Validators.required],
     text: ['', [Validators.required, Validators.minLength(8)]],
-    img: [
-      '',
+    img: ['',
       [
         Validators.required,
         Validators.pattern(
@@ -45,16 +45,16 @@ export class DestacadosAddForm {
       this.destacadosForm.markAllAsTouched();
       return;
     }
-    const newImage: any = this.destacadosForm.value;
-    console.log('POST a json-server:', newImage);
+    const newDestacado: any = this.destacadosForm.value;
+    console.log('POST a json-server:', newDestacado);
 
-    this.destacadosService.addImage(newImage).subscribe({
+    this.destacadosService.addDestacado(newDestacado).subscribe({
       next: (res) => {
-        console.log('Imagen guardada:', res);
+        console.log('Destacado guardada:', res);
         this.destacadosForm.reset();
       },
       error: (err) => {
-        console.error('Error al guardar imagen', err);
+        console.error('Error al guardar Destacado', err);
       }
     });
   }

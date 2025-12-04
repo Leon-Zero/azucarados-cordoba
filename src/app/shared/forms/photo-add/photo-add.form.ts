@@ -35,7 +35,6 @@ export class PhotoAddForm {
   get src() {
     return this.imgForm.get('src')!;
   }
-
   get id() {
     return this.imgForm.get('id')!;
   }

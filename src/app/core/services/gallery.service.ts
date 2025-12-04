@@ -39,7 +39,7 @@ export class GalleryService {
     return this.http.delete(`${this.baseUrl}/${id}`);
   }
 
-  addImage(image: { src: string; alt: string | null }) {
+  addImage(image: Img) {
     return this.http.post(`${this.baseUrl}`, image);
   }
 
