@@ -1,37 +1,27 @@
 {
   "destacados": [
     {
-      "id": 1,
+      "id": "1",
       "img": "https://cdn.colombia.com/sdi/2021/11/13/diabetes-perros-y-gatos-cuales-son-signos-alerta-970414.jpg",
       "text": "Tipos de Insulinas"
     },
     {
-      "id": 2,
+      "id": "2",
       "img": "https://www.anicura.es/cdn-cgi/image/f=auto,fit=cover,w=640,h=640,g=auto,sharpen=1/AdaptiveImages/powerinit/52437/_SNI2031.jpg?stamp=a2efc90c9d13cd9fdc0f5f7a2e3b2231238dc8cf",
       "text": "como alimentar a nuestras mascotas"
     },
     {
-      "id": 3,
+      "id": "3",
       "img": "https://www.whiskas.com.ar/cdn-cgi/image/format=auto,q=90/sites/g/files/fnmzdf4921/files/2022-11/elever-un-Chaton-ses-premiers-mois.jpg",
       "text": "guia practica de veterinarios y profesionales"
     },
     {
-      "id": 4,
-      "img": "https://www.universodelasaludanimal.com/wp-content/uploads/sites/61/2021/07/Cacho-e-gato-juntos-no-chao-posando-pra-foto_3.jpg",
-      "text": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio, in temporibus! Esse omnis iure unde dignissimos molestiae nihil aliquam dolorum hic saepe, tenetur et"
-    },
-    {
-      "id": 5,
+      "id": "5",
       "img": "https://universidadeuropea.com/resources/media/images/medicina-veterinaria-1200x630.original.jpg",
       "text": "Texto largo pero no tanto hecho para probar la card entre otras cosas"
     },
     {
-      "id": 6,
-      "img": "https://blog.agrovetmarket.com/wp-content/uploads/2020/05/vet.jpg",
-      "text": " "
-    },
-    {
-      "id": 9,
+      "id": "9",
       "text": "prueba de jsonserver para metodo post addDestacado (id: 9)",
       "img": "https://www.shutterstock.com/image-vector/cute-cartoon-blood-drop-diabetes-260nw-2498342863.jpg"
     }

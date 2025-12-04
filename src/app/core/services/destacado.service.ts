@@ -17,6 +17,9 @@ export class DestacadoService {
   setDestacado(dest: Destacado[]) {
     this._destacadoItem.set(dest);
   }
+  updateDestacado(id: number) {
+    this._destacadoItem.update((upd) => upd.filter((upd: any) => upd.id !== id));
+  }
 
 
 
@@ -35,6 +38,10 @@ export class DestacadoService {
 
   addDestacado(dest: Destacado) {
     return this.http.post(`${this.baseUrl}`, dest);
+  }
+
+  deleteDestacado(id: number) {
+    return this.http.delete(`${this.baseUrl}/${id}`);
   }
 
 }

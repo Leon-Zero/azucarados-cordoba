@@ -7,6 +7,8 @@
   </div>
 </section>
 
-@switch (_selectOpt()) { @case ('delete') { } @case ('add') {
+@switch (_selectOpt()) { @case ('delete') {
+<form-destacados-delete></form-destacados-delete>
+} @case ('add') {
 <form-destacados-add></form-destacados-add>
 } }

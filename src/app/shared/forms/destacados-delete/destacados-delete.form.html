@@ -1,0 +1,13 @@
+<div class="grid-parent">
+  @for (dest of destacados(); track dest.id) {
+  <div class="card">
+    <img class="thumb" [src]="dest.img" [alt]="dest.text" />
+
+    <div class="info">
+      <span class="id">ID: {{ dest.id }}</span>
+      <span class="id">{{ dest.text }}</span>
+      <button class="btn-delete" (click)="deleteDestacado(dest.id)">Eliminar</button>
+    </div>
+  </div>
+  }
+</div>
