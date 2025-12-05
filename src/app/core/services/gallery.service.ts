@@ -8,7 +8,7 @@ import { Img } from '../../data/interfaces/database/img.interface';
 })
 export class GalleryService {
   private http = inject(HttpClient);
-  private baseUrl = 'http://localhost:3001/perros';
+  private baseUrl = 'http://localhost:3001/gallery';
 
   getLastImages(limit: number) {
     return this.http.get<Img[]>(`${this.baseUrl}?_sort=id&_order=desc&_limit=${limit}`).pipe(
