@@ -3,6 +3,7 @@ import { CrudControls } from '../../../../../shared/ui/crud-controls/crud-contro
 import { DestacadosAddForm } from "../../../../../shared/forms/destacados-add/destacados-add.form";
 import { DisabledCrud } from '../../../../../data/interfaces/types/disabledCrud';
 import { DestacadosDeleteForm } from "../../../../../shared/forms/destacados-delete/destacados-delete.form";
+import { Destacado } from '../../../../../data/interfaces/database/destacado.interface';
 
 @Component({
   selector: 'app-edit-destacados',
@@ -12,8 +13,10 @@ import { DestacadosDeleteForm } from "../../../../../shared/forms/destacados-del
 })
 export class EditDestacadosPage {
   _selectOpt = signal<DisabledCrud>('');
+  _object = signal<any>([]);
 
   selectOpt(opt: DisabledCrud): void {
     this._selectOpt.set(opt);
   }
+
 }

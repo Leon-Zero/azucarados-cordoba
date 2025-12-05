@@ -1,6 +1,5 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { DestacadoService } from '../../../core/services/destacado.service';
-import { Destacado } from '../../../data/interfaces/database/destacado.interface';
 
 @Component({
   selector: 'form-destacados-delete',
@@ -11,6 +10,17 @@ import { Destacado } from '../../../data/interfaces/database/destacado.interface
 export class DestacadosDeleteForm {
 
   private destacadoService = inject(DestacadoService);
+  object = output();
+  onEdit = input<boolean>(false);
+
+  get destacados() {
+    return this.destacadoService.destacadoItem();
+  }
+
+  setObject(obj: any): void {
+    return this.object.emit(obj);
+  }
+
 
   ngOnInit() {
     this.loadDestacados();
@@ -24,6 +34,19 @@ export class DestacadosDeleteForm {
     });
   }
 
+  getForId(id: number) {
+    this.destacadoService.getDestacoForId(id).subscribe(
+      {
+        next: (res) => {
+          console.log('item por id', res);
+          this.setObject(res);
+        }, error: (err) => {
+          console.log('error al buscar por id', err);
+        }
+      }
+    );
+  }
+
   deleteDestacado(id: number) {
     console.log(typeof id, id);
     this.destacadoService.deleteDestacado(id).subscribe(
@@ -35,8 +58,6 @@ export class DestacadosDeleteForm {
     );
   }
 
-  get destacados() {
-    return this.destacadoService.destacadoItem();
-  }
+
 
 }

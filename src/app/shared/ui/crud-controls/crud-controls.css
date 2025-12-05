@@ -62,12 +62,12 @@
 
 /* agregar */
 .btn-add {
-  background: var(--color-primary-300);
+  background: var(--color-primary-400);
   border-color: var(--color-primary-500);
   color: var(--color-blank);
   padding: 10px 14px;
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(255, 150, 150, 0.27);
+  box-shadow: 0 4px 10px var(--color-dark-300);
 }
 
 .btn-add:hover {

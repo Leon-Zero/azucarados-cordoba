@@ -6,7 +6,11 @@
     <div class="info">
       <span class="id">ID: {{ dest.id }}</span>
       <span class="id">{{ dest.text }}</span>
+      @if (!onEdit()) {
       <button class="btn-delete" (click)="deleteDestacado(dest.id)">Eliminar</button>
+      } @if (onEdit()) {
+      <button class="btn-edit" (click)="getForId(dest.id)">editar</button>
+      }
     </div>
   </div>
   }

@@ -1,6 +1,6 @@
 <section>
   <div class="container">
-    <h2>Edita los Destacados</h2>
+    <h2>Destacados</h2>
     <span class="spacing"></span>
     <app-crud-controls (optionCrud)="selectOpt($event)"></app-crud-controls>
     <!-- contenido para editar -->
@@ -8,7 +8,15 @@
 </section>
 
 @switch (_selectOpt()) { @case ('delete') {
+<h2>elimina un destacado</h2>
+<br />
 <form-destacados-delete></form-destacados-delete>
 } @case ('add') {
-<form-destacados-add></form-destacados-add>
+<form-destacados-add [onEdit]="false"></form-destacados-add>
+} @case ('edit') {
+<h2>edita un destacado</h2>
+<br />
+<form-destacados-delete (object)="_object.set($event)" [onEdit]="true"></form-destacados-delete>
+<span class="spacing"></span>
+<form-destacados-add [onEdit]="true" [object]="_object()"></form-destacados-add>
 } }

@@ -4,7 +4,7 @@
 
     <!-- id provicional  -->
     <div class="input-wrap">
-      <input type="number" formControlName="id" id="id" placeholder=" " />
+      <input type="text" formControlName="id" id="id" placeholder=" " />
       <label for="id">ID</label>
 
       <!-- validaciones -->
@@ -40,7 +40,7 @@
     </div>
 
     <app-btn [size]="'large'" type="submit" [attr.disabled]="destacadosForm.invalid">
-      Guardar Destacados
+      {{ onEdit() ? 'Actualizar Destacados' : 'Subir Nuevo Destacado' }}
     </app-btn>
   </div>
 </form>
