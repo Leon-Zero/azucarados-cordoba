@@ -206,16 +206,6 @@
       "alt": "Perro 42"
     },
     {
-      "id": "43",
-      "src": "https://images.dog.ceo/breeds/danish-swedish-farmdog/ebba_002.jpg",
-      "alt": "Perro 43"
-    },
-    {
-      "id": "44",
-      "src": "https://images.dog.ceo/breeds/terrier-cairn/n02096177_181.jpg",
-      "alt": "Perro 44"
-    },
-    {
       "id": "45",
       "src": "https://images.dog.ceo/breeds/chow/n02112137_9405.jpg",
       "alt": "Perro 45"
@@ -224,11 +214,6 @@
       "id": "46",
       "src": "https://images.dog.ceo/breeds/poodle-standard/n02113799_4458.jpg",
       "alt": "Perro 46"
-    },
-    {
-      "id": "47",
-      "src": "https://images.dog.ceo/breeds/pointer-germanlonghair/hans4.jpg",
-      "alt": "Perro 47"
     },
     {
       "id": "48",
@@ -241,7 +226,7 @@
       "alt": "Perro 49"
     },
     {
-      "id": 60,
+      "id": "60",
       "alt": "pitoca esperanzita",
       "src": "https://ichef.bbci.co.uk/ace/ws/640/cpsprodpb/15665/production/_107435678_perro1.jpg.webp"
     }

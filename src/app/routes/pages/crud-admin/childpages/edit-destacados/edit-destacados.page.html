@@ -14,9 +14,9 @@
 } @case ('add') {
 <form-destacados-add [onEdit]="false"></form-destacados-add>
 } @case ('edit') {
-<h2>edita un destacado</h2>
+<h2 id="form-delete">edita un destacado</h2>
 <br />
 <form-destacados-delete (object)="_object.set($event)" [onEdit]="true"></form-destacados-delete>
-<span class="spacing"></span>
+<span id="form-edit" class="spacing"></span>
 <form-destacados-add [onEdit]="true" [object]="_object()"></form-destacados-add>
 } }

@@ -11,16 +11,19 @@ export class GalleryService {
   private baseUrl = 'http://localhost:3001/gallery';
 
   getLastImages(limit: number) {
-    return this.http.get<Img[]>(`${this.baseUrl}?_sort=id&_order=desc&_limit=${limit}`).pipe(
-      map((items) =>
-        items.map((img, i) => ({
+    return this.http.get<Img[]>(this.baseUrl).pipe(
+      map((items) => {
+        const sorted = [...items].sort((a, b) => Number(b.id) - Number(a.id));
+        const limited = sorted.slice(0, limit);
+        return limited.map((img, i) => ({
           src: img.src,
           alt: img.alt ?? `Foto ${i + 1}`,
           id: img.id,
-        }))
-      )
+        }));
+      })
     );
   }
+
 
   getAllImages() {
     return this.http.get<Img[]>(this.baseUrl).pipe(

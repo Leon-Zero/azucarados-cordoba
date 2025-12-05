@@ -2,8 +2,8 @@
   "destacados": [
     {
       "id": "1",
-      "img": "https://cdn.colombia.com/sdi/2021/11/13/diabetes-perros-y-gatos-cuales-son-signos-alerta-970414.jpg",
-      "text": "Tipos de Insulinas"
+      "text": "Medidores de glucosa",
+      "img": "https://cdn.colombia.com/sdi/2021/11/13/diabetes-perros-y-gatos-cuales-son-signos-alerta-970414.jpg"
     },
     {
       "id": "2",
@@ -13,21 +13,16 @@
     {
       "id": "3",
       "text": "guia practica de veterinarios y profesionales",
-      "img": "https://universidadeuropea.com/resources/media/images/medicina-veterinaria-1200x630.original.jpg"
-    },
-    {
-      "id": "5",
-      "text": "Texto largo pero no tanto hecho para probar la card entre otras cosas",
-      "img": "https://www.emagister.com/blog/wp-content/uploads/2020/01/auxiliar-veterinario-kraken.jpg"
+      "img": "https://www.cdc.gov/diabetes/images/basics/types-of-insulin2-cr.jpg"
     },
     {
       "id": "9",
-      "text": "metodo completado para editar",
+      "text": "informe de valores de glucosa en sangre",
       "img": "https://www.shutterstock.com/image-vector/cute-cartoon-blood-drop-diabetes-260nw-2498342863.jpg"
     },
     {
       "id": "4",
-      "text": "prueba tras actualizacion",
+      "text": "diabetes felina",
       "img": "https://www.infobae.com/resizer/v2/L6GI2ZSXFZGADESR57UO666ZE4.jpg?auth=cb109d482e01e575014ae1fb6ef5ffc0ed65aafdf59ba4c150930f1fb03eba7a&smart=true&width=1200&height=1200&quality=85"
     }
   ]

@@ -95,6 +95,7 @@ export class DestacadosAddForm {
       next: (res) => {
         console.log('Destacado actualizado:', res);
         this.destacadosForm.reset({});
+        this.destacadosService.scrollToDelete();
       }, error: (err => {
         console.error('error al actualizar Destacado', err);
       })

@@ -40,6 +40,7 @@ export class DestacadosDeleteForm {
         next: (res) => {
           console.log('item por id', res);
           this.setObject(res);
+          this.destacadoService.scrollToEdit();
         }, error: (err) => {
           console.log('error al buscar por id', err);
         }

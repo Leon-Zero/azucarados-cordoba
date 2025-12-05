@@ -58,4 +58,18 @@ export class DestacadoService {
       tap(() => this.refreshDestacados())
     );
   }
+
+  scrollToEdit() {
+    const el = document.getElementById('form-edit');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  scrollToDelete() {
+    const el = document.getElementById('form-delete');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
 }
