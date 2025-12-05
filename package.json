@@ -9,6 +9,7 @@
     "test": "ng test",
     "serve:ssr:mock": "node dist/mock/server/server.mjs",
     "page": "node ./src/app/core/schematics/page.schema.cjs",
+    "form": "node ./src/app/core/schematics/form.schema.cjs",
     "service": "node ./src/app/core/schematics/service.schema.cjs",
     "endpoint": "node ./src/app/core/schematics/endpoint.schema.cjs"
   },

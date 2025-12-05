@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { Destacado } from '../../data/interfaces/database/destacado.interface';
-import { map, Observable } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +35,12 @@ export class DestacadoService {
     );
   }
 
+  refreshDestacados() {
+    this.getAllDestacados().subscribe(res => {
+      this.setDestacado(res);
+    });
+  }
+
   getDestacoForId(id: number) {
     return this.http.get<Destacado[]>(`${this.baseUrl}/${id}`)
   }
@@ -48,7 +54,8 @@ export class DestacadoService {
   }
 
   editDestacado(id: number, data: Destacado) {
-    return this.http.put<Destacado>(`${this.baseUrl}/${id}`, data);
+    return this.http.put<Destacado>(`${this.baseUrl}/${id}`, data).pipe(
+      tap(() => this.refreshDestacados())
+    );
   }
-
 }

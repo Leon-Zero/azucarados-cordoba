@@ -58,6 +58,10 @@ export class DestacadosAddForm {
         this.setInputs();
       }
     });
+    effect(() => {
+      const refresh = this.destacadosService.destacadoItem();
+      console.log("recarga de datos", refresh);
+    })
   }
 
   onSubmit() {
