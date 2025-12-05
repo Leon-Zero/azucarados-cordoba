@@ -1,5 +1,6 @@
 import { Component, inject, input, output } from '@angular/core';
 import { DestacadoService } from '../../../core/services/destacado.service';
+import { ToastService } from '../../../core/services/toast.service';
 
 @Component({
   selector: 'form-destacados-delete',
@@ -10,6 +11,7 @@ import { DestacadoService } from '../../../core/services/destacado.service';
 export class DestacadosDeleteForm {
 
   private destacadoService = inject(DestacadoService);
+  private toastService = inject(ToastService);
   object = output();
   onEdit = input<boolean>(false);
 
@@ -53,7 +55,11 @@ export class DestacadosDeleteForm {
     this.destacadoService.deleteDestacado(id).subscribe(
       {
         next: () => {
+          this.toastService.success('Destacado eliminado con exito!')
           this.destacadoService.updateDestacado(id);
+        }, error: (err) => {
+          this.toastService.error('ERROR al eliminar destacado')
+          console.log("error al elimina", err);
         }
       }
     );

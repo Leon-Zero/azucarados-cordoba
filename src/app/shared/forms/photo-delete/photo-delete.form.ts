@@ -1,6 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { GalleryService } from '../../../core/services/gallery.service';
 import { Img } from '../../../data/interfaces/database/img.interface';
+import { ToastService } from '../../../core/services/toast.service';
 
 @Component({
   selector: 'form-photo-delete',
@@ -10,6 +11,7 @@ import { Img } from '../../../data/interfaces/database/img.interface';
 })
 export class PhotoDelete {
   private imageService = inject(GalleryService);
+  private toastService = inject(ToastService);
   images = signal<Img[]>([]);
 
   ngOnInit() {
@@ -28,8 +30,12 @@ export class PhotoDelete {
   deleteImage(id: number) {
     this.imageService.deleteImage(id).subscribe({
       next: () => {
+        this.toastService.success('Imagen eliminada con exito!');
         this.images.update((imgs) => imgs.filter((img) => img.id !== id));
-      },
+      }, error: (err) => {
+        this.toastService.error('ERROR al eliminar la imagen');
+        console.log('error al eliminar', err);
+      }
     });
   }
 }

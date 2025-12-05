@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { Btn } from "../../ui/btn/btn";
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { GalleryService } from '../../../core/services/gallery.service';
+import { ToastService } from '../../../core/services/toast.service';
 
 @Component({
   selector: 'form-photo-add',
@@ -12,6 +13,7 @@ import { GalleryService } from '../../../core/services/gallery.service';
 export class PhotoAddForm {
   private fb = inject(FormBuilder);
   private imgService = inject(GalleryService);
+  private toastService = inject(ToastService);
 
   imgForm = this.fb.group({
     id: ["", Validators.required],
@@ -50,9 +52,11 @@ export class PhotoAddForm {
     this.imgService.addImage(newImage).subscribe({
       next: (res) => {
         console.log('Imagen guardada:', res);
+        this.toastService.success('Imagen añadida correctamente')
         this.imgForm.reset();
       },
       error: (err) => {
+        this.toastService.error('ERROR al guardar la imagen')
         console.error('Error al guardar imagen', err);
       }
     });

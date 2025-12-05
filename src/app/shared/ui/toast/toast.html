@@ -1,0 +1,12 @@
+<div class="toast-container">
+  @for (msg of toast.messages(); track $index) {
+  <div
+    class="toast"
+    [class.success]="msg.type === 'success'"
+    [class.error]="msg.type === 'error'"
+    [class.info]="msg.type === 'info'"
+  >
+    {{ msg.text }}
+  </div>
+  }
+</div>

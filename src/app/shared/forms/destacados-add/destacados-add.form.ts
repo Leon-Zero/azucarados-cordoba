@@ -3,6 +3,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DestacadoService } from '../../../core/services/destacado.service';
 import { Btn } from "../../ui/btn/btn";
 import { Destacado } from '../../../data/interfaces/database/destacado.interface';
+import { ToastService } from '../../../core/services/toast.service';
 
 @Component({
   selector: 'form-destacados-add',
@@ -13,6 +14,7 @@ import { Destacado } from '../../../data/interfaces/database/destacado.interface
 export class DestacadosAddForm {
   private fb = inject(FormBuilder);
   private destacadosService = inject(DestacadoService);
+  private toastService = inject(ToastService);
   object = input<any>([]);
   onEdit = input<boolean>(false);
 
@@ -58,11 +60,8 @@ export class DestacadosAddForm {
         this.setInputs();
       }
     });
-    effect(() => {
-      const refresh = this.destacadosService.destacadoItem();
-      console.log("recarga de datos", refresh);
-    })
   }
+  // Metodos http *******
 
   onSubmit() {
     if (this.destacadosForm.invalid) {
@@ -81,10 +80,12 @@ export class DestacadosAddForm {
   sendPost(newDestacado: Destacado) {
     this.destacadosService.addDestacado(newDestacado).subscribe({
       next: (res) => {
-        console.log('Destacado guardada:', res);
+        // console.log('Destacado guardada:', res);
+        this.toastService.success('Destacado guardado correctamente');
         this.destacadosForm.reset();
       },
       error: (err) => {
+        this.toastService.error('ERROR al guardar Destacado')
         console.error('Error al guardar Destacado', err);
       }
     });
@@ -94,9 +95,11 @@ export class DestacadosAddForm {
     this.destacadosService.editDestacado(id, newDestacado).subscribe({
       next: (res) => {
         console.log('Destacado actualizado:', res);
+        this.toastService.success('Destacado actualizado con exito')
         this.destacadosForm.reset({});
         this.destacadosService.scrollToDelete();
       }, error: (err => {
+        this.toastService.error('ERROR al actualizar Destacado');
         console.error('error al actualizar Destacado', err);
       })
     })
