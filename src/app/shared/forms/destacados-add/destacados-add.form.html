@@ -6,7 +6,6 @@
     <div class="input-wrap">
       <input type="text" formControlName="id" id="id" placeholder=" " />
       <label for="id">ID</label>
-
       <!-- validaciones -->
       @if (id.invalid && (text.dirty || id.touched)) {
       <p class="error">@if (id.errors?.['required']) { El ID es obligatorio. }</p>
@@ -16,12 +15,11 @@
     <div class="input-wrap">
       <input type="text" formControlName="img" id="img" placeholder=" " />
       <label for="img">URL imagen</label>
-
       <!-- validaciones -->
       @if (img.invalid && (img.dirty || img.touched)) {
       <p class="error">
-        @if (img.errors?.['required']) { El TÍTULO es obligatorio. } @if (img.errors?.['minlength'])
-        { Mínimo 5 caracteres. }
+        @if (img.errors?.['required']) { La URL es obligatoria. } @if (img.errors?.['pattern']) {
+        Debe ser una URL válida. }
       </p>
       }
     </div>
@@ -31,10 +29,11 @@
       <label for="text">texto</label>
 
       <!-- validaciones -->
+
       @if (text.invalid && (text.dirty || text.touched)) {
       <p class="error">
-        @if (text.errors?.['required']) { La URL es obligatoria. } @if (text.errors?.['pattern']) {
-        Debe ser una URL válida. }
+        @if (text.errors?.['required']) { El TÍTULO es obligatorio. } @if
+        (text.errors?.['minlength']) { Mínimo 8 caracteres. }
       </p>
       }
     </div>

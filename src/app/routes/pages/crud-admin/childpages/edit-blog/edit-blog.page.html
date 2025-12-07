@@ -1,8 +1,22 @@
 <section>
   <div class="container">
-    <h2>Edita los Blog / Noticias</h2>
+    <h2>Blog / Noticias</h2>
     <span class="spacing"></span>
-    <app-crud-controls></app-crud-controls>
+    <app-crud-controls (optionCrud)="selectOpt($event)"></app-crud-controls>
     <!-- contenido para editar -->
   </div>
 </section>
+
+@switch (_selectOpt()) { @case ('delete') {
+<h2>elimina un Blog/Noticia</h2>
+<br />
+<!-- <form-destacados-delete></form-destacados-delete> -->
+} @case ('add') {
+<form-blog-add [onEdit]="false"></form-blog-add>
+} @case ('edit') {
+<h2 id="form-delete">edita un Blog/Noticia</h2>
+<br />
+<!-- <form-destacados-delete (object)="_object.set($event)" [onEdit]="true"></form-destacados-delete>
+<span id="form-edit" class="spacing"></span>
+<form-destacados-add [onEdit]="true" [object]="_object()"></form-destacados-add> -->
+} }

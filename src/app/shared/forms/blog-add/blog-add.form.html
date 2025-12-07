@@ -1,0 +1,57 @@
+<form [formGroup]="blogForm" (ngSubmit)="onSubmit()" id="form-img">
+  <div class="form-container">
+    <h2>Agregar Blog/Noticia</h2>
+
+    <!-- id provicional  -->
+    <div class="input-wrap">
+      <input type="text" formControlName="id" id="id" placeholder=" " />
+      <label for="id">ID</label>
+
+      <!-- validaciones -->
+      @if (id.invalid && (title.dirty || id.touched)) {
+      <p class="error">@if (id.errors?.['required']) { El ID es obligatorio. }</p>
+      }
+    </div>
+
+    <div class="input-wrap">
+      <input type="text" formControlName="title" id="title" placeholder=" " />
+      <label for="title">Título</label>
+
+      <!-- validaciones -->
+      @if (title.invalid && (title.dirty || title.touched)) {
+      <p class="error">
+        @if (title.errors?.['required']) { El TÍTULO es obligatorio. } @if
+        (title.errors?.['minlength']) { Mínimo 8 caracteres. }
+      </p>
+      }
+    </div>
+
+    <div class="input-wrap">
+      <input type="text" formControlName="resume" id="resume" placeholder=" " />
+      <label for="resume">Resumen</label>
+
+      <!-- validaciones -->
+      @if (resume.invalid && (resume.dirty || resume.touched)) {
+      <p class="error">@if (resume.errors?.['required']) { El resumen es obligatorio. }</p>
+      }
+    </div>
+
+    <div class="input-wrap">
+      <input type="text" formControlName="img" id="img" placeholder=" " />
+      <label for="img">URL imagen</label>
+      <!-- validaciones -->
+      @if (img.invalid && (img.dirty || img.touched)) {
+      <p class="error">
+        @if (img.errors?.['required']) { La URL es obligatoria. } @if (img.errors?.['pattern']) {
+        Debe ser una URL válida. }
+      </p>
+      }
+    </div>
+
+    <app-editor (editorQ)="_editorQ.set($event)"></app-editor>
+
+    <app-btn [size]="'large'" type="submit" [attr.disabled]="blogForm.invalid">
+      {{ onEdit() ? 'Actualizar Blog/Noticia' : 'Subir Nuevo Blog/Noticia' }}
+    </app-btn>
+  </div>
+</form>

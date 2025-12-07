@@ -1,58 +1,58 @@
-import { Component, signal } from '@angular/core';
+import { Component, output, signal } from '@angular/core';
 import { QuillEditor } from '../../../data/interfaces/dynamic-form/quill-editor.interface';
 import { QuillModule } from 'ngx-quill';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Btn } from '../../../shared/ui/btn/btn';
-import { View } from '../../../shared/components/view/view';
+// import { View } from '../../../shared/components/view/view';
 
 @Component({
   selector: 'app-editor',
-  imports: [QuillModule, FormsModule, Btn, View],
+  imports: [QuillModule, FormsModule, Btn],
   templateUrl: './editor.page.html',
   styleUrl: './editor.page.css',
 })
 export class EditorPage {
-  viewContent = signal<string>('');
+  editorQ = output<string>();
 
-  blog = signal<QuillEditor>({
-    title: '',
-    content: '',
-  });
-
-  htmlContent = signal<string>('');
+  // Guardamos la instancia real de Quill acá
+  private quill!: any;
 
   modulesQuill = {
     toolbar: [
-      ['bold', 'italic', 'underline', 'strike'], // botones de formato
+      ['bold', 'italic', 'underline', 'strike'],
       [{ font: [] }],
-      [{ size: ['small', false, 'large', 'huge'] }], // tamaño de fuente personalizado
+      [{ size: ['small', false, 'large', 'huge'] }],
       [{ header: [1, 2, 3, 4, 5, 6, false] }],
       [{ align: [] }],
-      [{ color: [] }, { background: [] }], // colores de texto y fondo
+      [{ color: [] }, { background: [] }],
       ['blockquote'],
       [{ list: 'ordered' }, { list: 'bullet' }],
-      [{ indent: '-1' }, { indent: '+1' }], // aumentar/disminuir sangría
+      [{ indent: '-1' }, { indent: '+1' }],
       ['link', 'image', 'video'],
-      ['clean'], // botón para limpiar formato
+      ['clean'],
     ],
   };
 
+  onEditorCreated(editor: any) {
+    console.log('EDITOR CREATED:', editor);
+    this.quill = editor;
+  }
+
   onChangedEditor(event: any) {
-    if (event.html) {
-      this.htmlContent.set(event.html);
+    console.log("EVENT QUILL:", event);
+
+    if (event?.html !== undefined) {
+      this.editorQ.emit(event.html ?? '');
     }
   }
 
-  saveEditor(formEditor: NgForm) {
-    if (formEditor.value.titulo !== '' && formEditor.value.contenido !== '') {
-      console.log(formEditor.value.content);
-      this.viewContent.set(formEditor.value.content);
-    } else {
-      window.alert('Debe Completar Los Campos');
+  cleanContent() {
+    if (!this.quill) {
+      console.warn('Quill todavía no está inicializado.');
+      return;
     }
-  }
 
-  cleanForm(formEditor: NgForm) {
-    formEditor.resetForm([{}]);
+    this.quill.setContents([]);
+    this.editorQ.emit('');
   }
 }

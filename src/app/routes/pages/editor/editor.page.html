@@ -1,34 +1,17 @@
 <section>
-  <h1>Formulario de Edición</h1>
-
-  <form (ngSubmit)="saveEditor(formEditor)" #formEditor="ngForm">
-    <div class="form-container">
-      <div class="input-wrap">
-        <input
-          type="text"
-          name="title"
-          [(ngModel)]="blog().title"
-          placeholder=" "
-          minlength="3"
-          required
-        />
-        <label for="title">Titulo</label>
-      </div>
-
-      <div id="editor">
-        <quill-editor
-          name="content"
-          [(ngModel)]="blog().content"
-          [modules]="modulesQuill"
-          (onEditorChanged)="onChangedEditor($event)"
-        ></quill-editor>
-      </div>
+  <h2>Contenido</h2>
+  <div class="form-container">
+    <div id="editor">
+      <quill-editor
+        [modules]="modulesQuill"
+        (onEditorCreated)="onEditorCreated($event)"
+        (onContentChanged)="onChangedEditor($event)"
+      >
+      </quill-editor>
 
       <div class="flex">
-        <app-btn [size]="'medium'" (click)="cleanForm(formEditor)">Limpiar</app-btn>
-        <app-btn [size]="'medium'" type="submit">Guardar</app-btn>
+        <app-btn size="medium" label="Limpiar" (click)="cleanContent()">Limpiar</app-btn>
       </div>
     </div>
-  </form>
-  <app-view [content]="viewContent()"></app-view>
+  </div>
 </section>
