@@ -1,14 +1,60 @@
-[
-  {
-    "id": 1,
-    "title": "Primer rescate exitoso",
-    "excerpt": "Con ayuda de voluntarios logramos salvar a un perrito herido...",
-    "image": "https://cdn-icons-png.flaticon.com/512/616/616408.png"
-  },
-  {
-    "id": 2,
-    "title": "Nueva jornada de adopción",
-    "excerpt": "Este fin de semana más de 20 animales encontraron familia...",
-    "image": "https://cdn-icons-png.flaticon.com/512/2495/2495007.png"
-  }
-]
+{
+  "noticias": [
+    {
+      "id": "1",
+      "title": "Controlar la glucosa en perros diabéticos",
+      "resume": "Aprendé a medir correctamente la glucosa en tu perro diabético y cómo interpretar los resultados para mantenerlo estable. La constancia en la medición y el registro diario son claves para un buen control.",
+      "content": "controlar-glucosa-en-perros-diabeticos",
+      "img": "https://cdn-icons-png.flaticon.com/512/2495/2495007.png"
+    },
+    {
+      "id": "2",
+      "title": "Síntomas tempranos de la diabetes felina",
+      "resume": "Los gatos diabéticos suelen beber y orinar con más frecuencia, además de perder peso a pesar de tener buen apetito. Detectarlo a tiempo mejora notablemente el pronóstico.",
+      "content": "sintomas-tempranos-de-la-diabetes-felina",
+      "img": "https://cdn-icons-png.flaticon.com/512/2495/2495007.png"
+    },
+    {
+      "id": "3",
+      "title": "Alimentación adecuada para mascotas con diabetes",
+      "resume": "Una dieta rica en fibra y baja en carbohidratos ayuda a estabilizar los niveles de azúcar. Consultá siempre con tu veterinario antes de cambiar el alimento.",
+      "content": "alimentacion-adecuada-para-mascotas-con-diabetes",
+      "img": "https://cdn-icons-png.flaticon.com/512/616/616430.png"
+    },
+    {
+      "id": "4",
+      "title": "El caso de Luna: superando la diabetes felina",
+      "resume": "Luna fue diagnosticada con diabetes a los 9 años. Gracias al compromiso de su familia y al seguimiento veterinario, lleva tres años con valores normales sin insulina.",
+      "content": "el-caso-de-luna-superando-la-diabetes-felina",
+      "img": "https://cdn-icons-png.flaticon.com/512/616/616554.png"
+    },
+    {
+      "id": "5",
+      "title": "Controlar la glucosa en perros diabéticos",
+      "resume": "Aprendé a medir correctamente la glucosa en tu perro diabético y cómo interpretar los resultados para mantenerlo estable. La constancia en la medición y el registro diario son claves para un buen control.",
+      "content": "controlar-glucosa-en-perros-diabeticos",
+      "img": "https://cdn-icons-png.flaticon.com/512/2495/2495007.png"
+    },
+    {
+      "id": "6",
+      "title": "Síntomas tempranos de la diabetes felina",
+      "resume": "Los gatos diabéticos suelen beber y orinar con más frecuencia, además de perder peso a pesar de tener buen apetito. Detectarlo a tiempo mejora notablemente el pronóstico.",
+      "content": "sintomas-tempranos-de-la-diabetes-felina",
+      "img": "https://cdn-icons-png.flaticon.com/512/2495/2495007.png"
+    },
+    {
+      "id": "7",
+      "title": "Alimentación adecuada para mascotas con diabetes",
+      "resume": "Una dieta rica en fibra y baja en carbohidratos ayuda a estabilizar los niveles de azúcar. Consultá siempre con tu veterinario antes de cambiar el alimento.",
+      "content": "alimentacion-adecuada-para-mascotas-con-diabetes",
+      "img": "https://cdn-icons-png.flaticon.com/512/616/616430.png"
+    },
+    {
+      "id": "8",
+      "title": "El caso de Luna: superando la diabetes felina",
+      "resume": "Luna fue diagnosticada con diabetes a los 9 años. Gracias al compromiso de su familia y al seguimiento veterinario, lleva tres años con valores normales sin insulina.",
+      "content": "el-caso-de-luna-superando-la-diabetes-felina",
+      "img": "https://cdn-icons-png.flaticon.com/512/616/616554.png"
+    }
+  ]
+}

@@ -17,3 +17,4 @@ function runJsonServer(file, port) {
 // Iniciar json-server
 runJsonServer('src/app/data/db/gallery.json', 3001);
 runJsonServer('src/app/data/db/destacados.json', 3005);
+runJsonServer('src/app/data/db/blog.json', 3009);

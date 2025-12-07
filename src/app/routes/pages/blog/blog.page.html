@@ -3,14 +3,14 @@
 <section>
   <div class="container">
     <div class="blog-dashboard">
-      @for (post of paginatedPosts; track post.id) {
+      @for (blog of paginatedItems; track blog.id) {
       <div class="blog-item">
         <div class="item-head">
-          <img [src]="post.image" [alt]="post.title" loading="lazy" />
+          <img [src]="blog.img" [alt]="blog.title" loading="lazy" />
         </div>
         <div class="item-text">
-          <h3>{{ post.title }}</h3>
-          <p>{{ post.content }}</p>
+          <h3>{{ blog.title }}</h3>
+          <p>{{ blog.resume }}</p>
         </div>
       </div>
       }

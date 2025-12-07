@@ -1,5 +1,7 @@
-export interface Blog {
+export interface Blogs {
+  id: number;
   title: string;
-  image: string;
+  resume: string;
   content: string;
+  img: string;
 }
