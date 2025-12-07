@@ -1,16 +1,13 @@
 section {
-  padding: 1rem;
   width: 100%;
   display: block;
   text-align: center;
-  margin: 2rem 0;
-  overflow: hidden;
+  margin: 2rem auto;
 }
 .container {
-  padding: 0.5rem;
-  columns: 230px;
+  columns: 250px;
   display: block;
-  margin: 1rem 0;
+  margin: 1rem auto;
 }
 .wrap-photo {
   margin-bottom: 1rem;
