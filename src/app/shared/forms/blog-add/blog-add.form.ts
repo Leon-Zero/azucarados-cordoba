@@ -17,7 +17,7 @@ export class BlogAddForm {
   private blogsService = inject(BlogService);
   private toastService = inject(ToastService);
   _editorQ = signal<any>([]);
-  object = input<any>([]);
+  object = input<any>(null);
   onEdit = input<boolean>(false);
 
   blogForm = this.fb.group({
@@ -121,7 +121,7 @@ export class BlogAddForm {
         console.log('Blog/Noticia actualizado:', res);
         this.toastService.success('Blog actualizado con exito')
         this.blogForm.reset({});
-        // this.blogsService.scrollToDelete();
+        this.blogsService.scrollToDelete();
       }, error: (err => {
         this.toastService.error('ERROR al actualizar Blog/Noticia');
         console.error('error al actualizar Blog/Noticia', err);

@@ -1,9 +1,7 @@
-import { Component, output, signal } from '@angular/core';
-import { QuillEditor } from '../../../data/interfaces/dynamic-form/quill-editor.interface';
+import { Component, effect, input, output, signal } from '@angular/core';
 import { QuillModule } from 'ngx-quill';
-import { FormsModule, NgForm } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { Btn } from '../../../shared/ui/btn/btn';
-// import { View } from '../../../shared/components/view/view';
 
 @Component({
   selector: 'app-editor',
@@ -13,9 +11,10 @@ import { Btn } from '../../../shared/ui/btn/btn';
 })
 export class EditorPage {
   editorQ = output<string>();
+  initialContent = input<string>('');
 
-  // Guardamos la instancia real de Quill acá
-  private quill!: any;
+  private quill: any = null;
+  private pendingContent: string = "";
 
   modulesQuill = {
     toolbar: [
@@ -33,25 +32,33 @@ export class EditorPage {
     ],
   };
 
+  constructor() {
+    effect(() => {
+      const content = this.initialContent();
+      if (this.quill) {
+        this.quill.root.innerHTML = content || '';
+      } else {
+        this.pendingContent = content || '';
+      }
+    });
+  }
+
   onEditorCreated(editor: any) {
-    console.log('EDITOR CREATED:', editor);
     this.quill = editor;
+    if (this.pendingContent !== "") {
+      this.quill.root.innerHTML = this.pendingContent;
+      this.pendingContent = "";
+    }
   }
 
   onChangedEditor(event: any) {
-    console.log("EVENT QUILL:", event);
-
     if (event?.html !== undefined) {
       this.editorQ.emit(event.html ?? '');
     }
   }
 
   cleanContent() {
-    if (!this.quill) {
-      console.warn('Quill todavía no está inicializado.');
-      return;
-    }
-
+    if (!this.quill) return;
     this.quill.setContents([]);
     this.editorQ.emit('');
   }

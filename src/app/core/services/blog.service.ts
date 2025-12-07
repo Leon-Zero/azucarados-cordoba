@@ -69,17 +69,18 @@ export class BlogService {
       .replace(/\-\-+/g, '-');
   }
 
-  // scrollToEdit() {
-  //   const el = document.getElementById('form-edit');
-  //   if (el) {
-  //     el.scrollIntoView({ behavior: 'smooth' });
-  //   }
-  // }
+  scrollToEdit() {
+    const el = document.getElementById('blog-edit');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
 
-  // scrollToDelete() {
-  //   const el = document.getElementById('form-delete');
-  //   if (el) {
-  //     el.scrollIntoView({ behavior: 'smooth' });
-  //   }
-  // }
+  scrollToDelete() {
+    const el = document.getElementById('blog-delete');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
 }

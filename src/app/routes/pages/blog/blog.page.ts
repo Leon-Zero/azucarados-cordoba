@@ -53,9 +53,12 @@ export class BlogPage implements OnInit {
     this.router.navigate(['/blog/pagina', page]);
   }
 
-  goToArticle(blog: string) {
-    const path = this.blogService.generatePath(blog);
-    this.router.navigate(['/blog/articulo', path]);
-  }
+ goToArticle(blog: string) {
+  const path = this.blogService.generatePath(blog);
+  this.router.navigate(['/blog/articulo', path]).then(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+
 
 }

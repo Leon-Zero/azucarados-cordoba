@@ -9,9 +9,9 @@
       @if (!onEdit()) {
       <button class="btn-delete" (click)="deleteBlog(blog.id)">Eliminar</button>
       }
-      <!-- @if (onEdit()) {
-      <button class="btn-edit" (click)="getBlogForId(blog.id)">editar</button>
-      } -->
+      @if (onEdit()) {
+      <button class="btn-edit" (click)="getForId(blog.id)">editar</button>
+      }
     </div>
   </div>
   }

@@ -3,7 +3,6 @@
     <h2>Blog / Noticias</h2>
     <span class="spacing"></span>
     <app-crud-controls (optionCrud)="selectOpt($event)"></app-crud-controls>
-    <!-- contenido para editar -->
   </div>
 </section>
 
@@ -14,9 +13,10 @@
 } @case ('add') {
 <form-blog-add [onEdit]="false"></form-blog-add>
 } @case ('edit') {
-<h2 id="form-delete">edita un Blog/Noticia</h2>
+<h2 id="blog-delete">edita un Blog/Noticia</h2>
 <br />
-<!-- <form-destacados-delete (object)="_object.set($event)" [onEdit]="true"></form-destacados-delete>
-<span id="form-edit" class="spacing"></span>
-<form-destacados-add [onEdit]="true" [object]="_object()"></form-destacados-add> -->
-} }
+<form-blog-delete [onEdit]="true" (object)="_object.set($event)"> </form-blog-delete>
+<span id="blog-edit" class="spacing"></span>
+@if (idSelected()) {
+<form-blog-add [onEdit]="true" [object]="_object()"></form-blog-add>
+} } }

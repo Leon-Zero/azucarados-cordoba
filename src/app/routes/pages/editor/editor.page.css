@@ -4,8 +4,12 @@ section {
   display: grid;
   place-items: center;
   gap: 1rem;
-  margin-top: 2rem;
-  padding: 2rem auto;
+  padding: .5rem auto;
+}
+.flex{
+  padding: 0;
+  margin: 0;
+  width: 100%;
 }
 
 form {
@@ -26,10 +30,14 @@ form {
 quill-editor {
   background: #ffffff;
   height: 30rem;
+  min-width: 15rem;
+  max-width: 100vw;
   width: 100%;
 }
 #editor {
   background-color: #ffffff;
+  max-width: 100%;
+  width: 80vw;
 }
 
 .form-container {

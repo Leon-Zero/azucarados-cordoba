@@ -36,19 +36,21 @@ export class BlogDeleteForm {
     });
   }
 
-  // getForId(id: number) {
-  //   this.blogService.getBlogForId(id).subscribe(
-  //     {
-  //       next: (res) => {
-  //         console.log('item por id', res);
-  //         this.setObject(res);
-  //         this.blogService.scrollToEdit();
-  //       }, error: (err) => {
-  //         console.log('error al buscar por id', err);
-  //       }
-  //     }
-  //   );
-  // }
+  
+
+  getForId(id: number) {
+    this.blogService.getBlogForId(id).subscribe(
+      {
+        next: (res) => {
+          console.log('item por id', res);
+          this.setObject(res);
+          this.blogService.scrollToEdit();
+        }, error: (err) => {
+          console.log('error al buscar por id', err);
+        }
+      }
+    );
+  }
 
   deleteBlog(id: number) {
     console.log(typeof id, id);
