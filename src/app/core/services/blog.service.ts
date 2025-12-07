@@ -60,6 +60,15 @@ export class BlogService {
     );
   }
 
+  generatePath(title: string): string {
+    return title
+      .trim()
+      .toLowerCase()
+      .replace(/\s+/g, '-')
+      .replace(/[^\w\-]+/g, '')
+      .replace(/\-\-+/g, '-');
+  }
+
   // scrollToEdit() {
   //   const el = document.getElementById('form-edit');
   //   if (el) {

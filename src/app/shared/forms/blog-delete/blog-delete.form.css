@@ -1,0 +1,63 @@
+.grid-parent {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  background: var(--color-bg-100);
+  aspect-ratio: 16/9;
+  border: 1px solid var(--color-border-300);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.thumb {
+  width: 7rem;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 2px solid var(--color-border);
+}
+
+.info {
+  flex: 1;
+  height: 80%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.id {
+  font-weight: bold;
+  color: var(--color-dark);
+}
+
+.btn-delete,
+.btn-edit {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  background: var(--color-primary-800);
+  color: white;
+  cursor: pointer;
+  width: 80%;
+}
+
+.btn-edit {
+  background: var(--color-tertiary-300);
+}
+
+.btn-edit:hover {
+  background: var(--color-tertiary-500);
+}
+
+.btn-delete:hover {
+  background: var(--color-primary-900);
+}

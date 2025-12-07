@@ -17,6 +17,10 @@ export const routes: Routes = [
   { path: 'blog', redirectTo: 'blog/pagina/1', pathMatch: 'full' },
   { path: 'blog/pagina/:page', component: BlogPage },
   {
+    path: 'blog/articulo/:slug', loadComponent: () =>
+      import('../pages/article/article.page').then(m => m.ArticlePage)
+  },
+  {
     path: 'admin',
     loadChildren: () => import('../routing/admin.routes').then((m) => m.admin),
   },

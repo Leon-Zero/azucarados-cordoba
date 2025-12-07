@@ -53,38 +53,9 @@ export class BlogPage implements OnInit {
     this.router.navigate(['/blog/pagina', page]);
   }
 
-  // private http = inject(HttpClient);
-  // private pagination = inject(PaginationService<Blog>);
-  // private route = inject(ActivatedRoute);
-  // private router = inject(Router);
+  goToArticle(blog: string) {
+    const path = this.blogService.generatePath(blog);
+    this.router.navigate(['/blog/articulo', path]);
+  }
 
-  // ngOnInit() {
-  //   this.http.get<Blog[]>('/blog.json').subscribe((posts) => {
-  //     this.pagination.setItems(posts);
-  //     this.pagination.setItemsPerPage(5);
-  //   });
-
-  //   // nº page ruta
-  //   this.route.paramMap.subscribe((params) => {
-  //     const page = Number(params.get('page')) || 1;
-  //     this.pagination.setPage(page);
-  //   });
-  // }
-
-  // //getters
-  // get paginatedPosts() {
-  //   return this.pagination.paginatedItems();
-  // }
-  // get currentPage() {
-  //   return this.pagination.currentPage();
-  // }
-  // get totalPages() {
-  //   return this.pagination.totalPages();
-  // }
-
-  // //navigation
-  // goToPage(page: number) {
-  //   this.pagination.setPage(page);
-  //   this.router.navigate(['/blog/pagina', page]);
-  // }
 }

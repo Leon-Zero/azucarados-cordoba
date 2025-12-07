@@ -1,0 +1,13 @@
+<span class="spacing"></span>
+<section>
+  <div class="container">
+    <h2>{{ blog()!.title }}</h2>
+    <br />
+  </div>
+
+  @if (blog()) {
+  <app-view [content]="blog()!.content"></app-view>
+  } @else {
+  <p>Cargando...</p>
+  }
+</section>

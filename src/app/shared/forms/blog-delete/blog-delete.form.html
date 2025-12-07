@@ -1,1 +1,18 @@
-<p>blog-delete works!</p>
+<div class="grid-parent">
+  @for (blog of blogs(); track blog.id) {
+  <div class="card">
+    <img class="thumb" [src]="blog.img" [alt]="blog.title" />
+
+    <div class="info">
+      <span class="id">ID: {{ blog.id }}</span>
+      <span class="id">{{ blog.title }}</span>
+      @if (!onEdit()) {
+      <button class="btn-delete" (click)="deleteBlog(blog.id)">Eliminar</button>
+      }
+      <!-- @if (onEdit()) {
+      <button class="btn-edit" (click)="getBlogForId(blog.id)">editar</button>
+      } -->
+    </div>
+  </div>
+  }
+</div>

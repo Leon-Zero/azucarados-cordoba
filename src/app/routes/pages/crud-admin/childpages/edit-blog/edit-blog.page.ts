@@ -2,10 +2,11 @@ import { Component, signal } from '@angular/core';
 import { CrudControls } from '../../../../../shared/ui/crud-controls/crud-controls';
 import { DisabledCrud } from '../../../../../data/interfaces/types/disabledCrud';
 import { BlogAddForm } from "../../../../../shared/forms/blog-add/blog-add.form";
+import { BlogDeleteForm } from "../../../../../shared/forms/blog-delete/blog-delete.form";
 
 @Component({
   selector: 'app-edit-blog',
-  imports: [CrudControls, BlogAddForm],
+  imports: [CrudControls, BlogAddForm, BlogDeleteForm],
   templateUrl: './edit-blog.page.html',
   styleUrl: './edit-blog.page.css',
 })

@@ -1,8 +1,9 @@
 .viewer {
-  max-width: 50vw;
-  width: 50vw;
+  width: 100%;
+  max-width: 95vw;
   height: auto;
-  background: #ffffff;
-  border: 1px solid black;
+  border: 1px solid var(--color-dark-100);
+  background: var(--color-tertiary-100);
   padding: 1rem;
+  box-shadow: 1px -1px 8px 4px var(--color-primary-100);
 }

@@ -46,7 +46,6 @@ export class BlogAddForm {
   get resume() {
     return this.blogForm.get('resume')!;
   }
-
   get img() {
     return this.blogForm.get('img')!;
   }
