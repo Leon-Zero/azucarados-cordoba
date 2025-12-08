@@ -1,3 +1,4 @@
+
 .viewer {
   width: 100%;
   max-width: 95vw;
@@ -6,4 +7,30 @@
   background: var(--color-tertiary-100);
   padding: 1rem;
   box-shadow: 1px -1px 8px 4px var(--color-primary-100);
+
 }
+
+/* Para los <br> */
+.viewer br {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+/* Para los gaps grandes */
+.quill-gap {
+  width: 100%;
+}
+
+.quill-gap.quill-gap-3 {
+  height: 2rem;
+}
+
+.quill-gap.quill-gap-4 {
+  height: 2.5rem;
+}
+
+/* opcional: suavizar aún más */
+.quill-gap {
+  margin: 0.3rem 0;
+}
+

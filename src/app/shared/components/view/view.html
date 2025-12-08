@@ -1,7 +1,6 @@
 <div class="viewer">
-  <div class="ql-container ql-snow">
-    <div class="ql-editor">
-      <div [innerHTML]="safeHtml"></div>
-    </div>
-  </div>
+      <!-- <div [innerHTML]=""></div> -->
+      <quill-view-html   [content]="html()" theme="snow" [sanitize]="false"  ></quill-view-html>
+      
 </div>
+

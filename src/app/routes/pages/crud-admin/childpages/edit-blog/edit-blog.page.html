@@ -6,17 +6,28 @@
   </div>
 </section>
 
-@switch (_selectOpt()) { @case ('delete') {
-<h2>elimina un Blog/Noticia</h2>
-<br />
-<form-blog-delete></form-blog-delete>
-} @case ('add') {
-<form-blog-add [onEdit]="false"></form-blog-add>
-} @case ('edit') {
-<h2 id="blog-delete">edita un Blog/Noticia</h2>
-<br />
-<form-blog-delete [onEdit]="true" (object)="_object.set($event)"> </form-blog-delete>
-<span id="blog-edit" class="spacing"></span>
-@if (idSelected()) {
-<form-blog-add [onEdit]="true" [object]="_object()"></form-blog-add>
-} } }
+@switch (_selectOpt()) { 
+  @case ('delete') {
+    <h2>elimina un Blog/Noticia</h2>
+    <br />
+    <form-blog-delete></form-blog-delete>
+  } 
+  @case ('add') {
+    <form-blog-add [onEdit]="false"></form-blog-add>
+  } 
+  @case ('edit') {
+    <h2 id="blog-delete">edita un Blog/Noticia</h2>
+    <br />
+    <form-blog-delete 
+      [onEdit]="true" 
+      (object)="_object.set($event)"> 
+    </form-blog-delete>
+    <span id="blog-edit" class="spacing"></span>
+    @if (idSelected()) {
+      <form-blog-add 
+        [onEdit]="true" 
+        [object]="_object()">
+      </form-blog-add>
+    } 
+  } 
+}
