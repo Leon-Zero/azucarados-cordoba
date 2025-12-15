@@ -186,11 +186,6 @@
       "alt": "Perro 39"
     },
     {
-      "id": "40",
-      "src": "https://images.dog.ceo/breeds/elkhound-norwegian/n02091467_4903.jpg",
-      "alt": "Perro 40"
-    },
-    {
       "id": "41",
       "src": "https://images.dog.ceo/breeds/vizsla/n02100583_10787.jpg",
       "alt": "Perro 41"
@@ -216,12 +211,7 @@
       "alt": "Perro 48"
     },
     {
-      "id": "49",
-      "src": "https://images.dog.ceo/breeds/terrier-tibetan/n02097474_1747.jpg",
-      "alt": "Perro 49"
-    },
-    {
-      "id": "60",
+      "id": "65",
       "alt": "pitoca esperanzita",
       "src": "https://ichef.bbci.co.uk/ace/ws/640/cpsprodpb/15665/production/_107435678_perro1.jpg.webp"
     }

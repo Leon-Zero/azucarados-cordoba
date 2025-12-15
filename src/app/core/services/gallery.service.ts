@@ -38,7 +38,7 @@ export class GalleryService {
     );
   }
 
-  deleteImage(id: number) {
+  deleteImage(id: any) {
     return this.http.delete(`${this.baseUrl}/${id}`);
   }
 

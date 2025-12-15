@@ -1,4 +1,5 @@
 @import '../src/app/shared/styles/_variables.css';
+@import '../src/app/shared/styles/_font.css';
 @import '../src/app/shared/styles/_normalize.css';
 
 
@@ -15,11 +16,6 @@
 }
 
 html {
-  font-size: clamp(0.8rem, 1rem + 0.1vw, 1.8rem);
-  font-family: 'Winky Sans', sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
   scroll-behavior: smooth;
 }
 body {
@@ -64,46 +60,11 @@ section {
   padding: 1rem;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  color: var(--color-secondary-300);
-  font-weight: 900;
-  letter-spacing: 0.2rem;
-  text-transform: uppercase;
-  text-shadow: 1px 0 1px var(--color-dark-200);
-  font-style: oblique;
-}
-h1 {
-  font-size: 3rem;
-  color: var(--color-secondary-600);
-  text-shadow: 0 1px 2px var(--color-dark-100);
-}
-h2 {
-  font-size: 2rem;
-}
-p {
-  text-align: justify;
-}
-strong {
-  color: var(--color-secondary-500);
-  text-shadow: 1px 0 1px var(--color-primary-100);
-  letter-spacing: 0.03rem;
-  font-size: .9rem;
-}
 
 @media screen and (max-width: 620px) {
-  html {
-    font-size: 14px;
-  }
+
   app-btn {
     scale: 0.8;
-  }
-  h1 {
-    font-size: 3rem;
   }
   section {
     padding: 1rem 0.5rem;

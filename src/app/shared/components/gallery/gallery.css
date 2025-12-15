@@ -18,7 +18,7 @@ section {
 }
 .container > .wrap-photo:nth-child(odd) img {
   border-radius: 1rem 0 1rem 0;
-}
+} 
 
 img {
   width: 100%;
@@ -31,4 +31,11 @@ img {
 img:hover {
   scale: 1.5;
   z-index: 500;
+}
+
+@media screen and (max-width: 620px) {
+.container {
+  columns: 150px;
+}
+  
 }
