@@ -25,7 +25,7 @@ h6 {
 }
 
 h1 {
-  font-size: clamp(2.6rem, 5vw, 3.4rem);
+  font-size: clamp(2rem, .5rem + 5vw, 3.5rem);
   color: var(--color-secondary-600);
   letter-spacing: 0.26rem;
   margin-bottom: 1.4rem;
@@ -43,9 +43,8 @@ h2 {
 }
 
 h3 {
-  font-size: clamp(1.4rem, 2.8vw, 1.9rem);
+  font-size: clamp(1rem, .5vw, 1.9rem);
   color: var(--color-secondary-400);
-
   text-shadow: 1px 1px 0 var(--color-bg-100), 2px 2px 0 var(--color-bg-200);
 }
 
@@ -69,11 +68,11 @@ h6 {
 
 p {
   font-size: 1rem;
-  line-height: 1.65;
-  text-align: justify;
+  line-height: 1.1;
   color: var(--color-dark-100);
-  margin-bottom: 1.2rem;
   text-shadow: 0.5px 0.5px 0 var(--color-bg-100);
+    margin: .2rem 0;
+
 }
 
 strong {
@@ -87,6 +86,6 @@ strong {
 h1 strong,
 h2 strong,
 h3 strong {
-  color: var(--color-tertiary-300);
+  color: var(--color-bg-300);
   text-shadow: 1px 1px 0 var(--color-bg-100), 2px 2px 0 var(--color-bg-200);
 }

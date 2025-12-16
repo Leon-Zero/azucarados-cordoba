@@ -3,10 +3,11 @@ import { View } from "../../../shared/components/view/view";
 import { ActivatedRoute } from '@angular/router';
 import { BlogService } from '../../../core/services/blog.service';
 import { Blogs } from '../../../data/interfaces/database/blog.interface';
+import { Btn } from "../../../shared/ui/btn/btn";
 
 @Component({
   selector: 'app-article',
-  imports: [View],
+  imports: [View, Btn],
   templateUrl: './article.page.html',
   styleUrl: './article.page.css',
 })

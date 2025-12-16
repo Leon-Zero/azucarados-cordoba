@@ -70,15 +70,13 @@ footer {
   width: 100%;
 }
 
-
-
 .logo-img {
   width: 8rem;
 }
 
 .foot-text {
   width: 90%;
-  margin: 0 auto;
+  margin-top: 1rem;
 }
 
 .foot-left img {

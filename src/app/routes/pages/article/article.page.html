@@ -1,8 +1,7 @@
 <span class="spacing"></span>
-<section>
+<article>
   <div class="container">
-    <h2>{{ blog()!.title }}</h2>
-    <br />
+    <app-btn [size]="'large'">volver a Blog</app-btn>
   </div>
 
   @if (blog()) {
@@ -10,4 +9,8 @@
   } @else {
   <p>Cargando...</p>
   }
-</section>
+
+  <div class="container">
+    <app-btn [size]="'large'">volver a Blog</app-btn>
+  </div>
+</article>

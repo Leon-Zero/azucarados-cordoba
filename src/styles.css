@@ -2,7 +2,6 @@
 @import '../src/app/shared/styles/_font.css';
 @import '../src/app/shared/styles/_normalize.css';
 
-
 /* * {
   outline: dashed 1px red;
 } */
@@ -62,11 +61,13 @@ section {
 
 
 @media screen and (max-width: 620px) {
-
   app-btn {
     scale: 0.8;
   }
   section {
     padding: 1rem 0.5rem;
   }
+  .spacing {
+  height: 3.5rem;
+}
 }

@@ -9,7 +9,7 @@ h5 {
 .btn-primary {
   position: relative;
   margin: auto;
-  padding: 1rem .5rem;
+  padding: 1rem 0.5rem;
   border: none;
   background: none;
   cursor: pointer;
@@ -25,10 +25,11 @@ h5 {
 }
 
 .btn-xsmall {
-  width: 10rem;
+  width: 9rem;
 }
 .btn-xsmall h5 {
-  font-size: 0.9rem;
+  text-align: left;
+  font-size: 0.8rem;
 }
 
 .btn-small {

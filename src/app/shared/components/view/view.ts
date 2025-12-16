@@ -10,7 +10,7 @@ import { QuillViewHTMLComponent } from "ngx-quill";
 })
 export class View {
   content = input('');
- html = signal<any>('');
+  html = signal<any>('');
 
 
   // constructor(private sanitizer: DomSanitizer) { }
@@ -21,5 +21,5 @@ export class View {
       this.html.set(transformed);
     }
   }
-  
+
 }
