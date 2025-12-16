@@ -1,6 +1,8 @@
 @import '../src/app/shared/styles/_variables.css';
 @import '../src/app/shared/styles/_font.css';
 @import '../src/app/shared/styles/_normalize.css';
+@import '../src/app/shared/features/animations/_view-transition.css';
+
 
 /* * {
   outline: dashed 1px red;

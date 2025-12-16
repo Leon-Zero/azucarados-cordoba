@@ -22,7 +22,6 @@ export class HomePage {
 
   loadDestacados() {
     this.destacadoService.getAllDestacados().subscribe((dest: Destacado[]) => {
-      console.log(dest);
       this.destacadoService.setDestacado(dest);
     });
   }
