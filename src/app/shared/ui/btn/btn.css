@@ -126,3 +126,32 @@ h5 {
 .btn-primary:active {
   transform: scale(0.95);
 }
+
+/* DISABLED STATE */
+
+.btn-primary:disabled {
+  cursor: not-allowed;
+  filter: grayscale(40%) opacity(0.6);
+  box-shadow: none;
+}
+
+.btn-primary:disabled h5 {
+  color: var(--color-dark-200);
+  text-shadow: none;
+}
+
+.btn-primary:disabled::before {
+  background: var(--color-bg-200);
+  width: 3.15rem;
+}
+
+.btn-primary:disabled::after {
+  border: 2px dashed var(--color-border-200);
+  box-shadow: none;
+}
+
+.btn-primary:disabled svg {
+  stroke: var(--color-dark-200);
+  right: calc(3.15rem / 3);
+}
+

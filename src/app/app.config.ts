@@ -5,9 +5,10 @@ import {
 } from '@angular/core';
 import { provideRouter, withInMemoryScrolling, withViewTransitions } from '@angular/router';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
-import { httpResource, provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
+import {provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { routes } from './routes/routing/app.routes';
 import { errorInterceptor } from './core/interceptors/error-interceptor';
+import { jwtInterceptor } from './core/interceptors/jwt-interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -22,8 +23,10 @@ export const appConfig: ApplicationConfig = {
       })
     ),
     provideClientHydration(withEventReplay()),
-    provideHttpClient(withInterceptors([
-      errorInterceptor
+    provideHttpClient(  withFetch(), 
+    withInterceptors([
+      errorInterceptor,
+      jwtInterceptor
     ])),
   ],
 };

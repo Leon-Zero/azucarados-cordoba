@@ -1,0 +1,22 @@
+<section>
+  <span class="spacing"></span>
+  @if (changeForm()) {
+  <h3> volver al 
+    <a (click)="changeForm.set(false)"> 
+    <strong>Login</strong></a>
+  </h3>
+  <div class="container slide-in-right">
+    <app-register></app-register>
+  </div>
+  } @else {
+  <h3> inicia sesion, si no tienes cuenta
+    <a (click)="changeForm.set(true)">
+      <strong>registrate</strong>
+    </a>
+  </h3>
+
+  <div class="container slide-in-left">
+    <app-login></app-login>
+  </div>
+  }
+</section>

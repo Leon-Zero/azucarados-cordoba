@@ -10,4 +10,5 @@ import { SizeButton } from '../../../data/interfaces/types/size-button.interface
 })
 export class Btn {
   size = input<SizeButton>('medium');
+  disabled = input<boolean>(false);
 }
