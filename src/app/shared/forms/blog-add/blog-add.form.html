@@ -4,14 +4,11 @@
 
     <!-- id provicional  -->
     <div class="input-wrap">
-      <input type="text" formControlName="id" id="id" placeholder=" " />
-      <label for="id">ID</label>
-
-      <!-- validaciones -->
-      @if (id.invalid && (title.dirty || id.touched)) {
-      <p class="error">@if (id.errors?.['required']) { El ID es obligatorio. }</p>
-      }
+        @if (onEdit()) {
+          <h4>ID: {{id.value}}</h4>
+        }
     </div>
+    <input type="hidden" formControlName="id" id="id" placeholder=" " />
 
     <div class="input-wrap">
       <input type="text" formControlName="title" id="title" placeholder=" " />

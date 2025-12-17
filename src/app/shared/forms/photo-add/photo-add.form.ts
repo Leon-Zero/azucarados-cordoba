@@ -11,34 +11,37 @@ import { ToastService } from '../../../core/services/toast.service';
   styleUrl: './photo-add.form.css',
 })
 export class PhotoAddForm {
-  private fb = inject(FormBuilder);
+ private fb = inject(FormBuilder);
   private imgService = inject(GalleryService);
   private toastService = inject(ToastService);
 
   imgForm = this.fb.group({
-    id: ["", Validators.required],
+    id: [null],
     alt: ['', [Validators.required, Validators.minLength(5)]],
+    description: ['', [Validators.required, Validators.minLength(10)]],
     src: [
       '',
       [
         Validators.required,
         Validators.pattern(
-          // patrón simple para URL
           /(https?:\/\/.*\.(?:png|jpg|jpeg|gif|webp|svg))/i
         ),
       ],
     ],
   });
 
-  // getters para validaciones
+  /* GETTERS */
+  get id() {
+    return this.imgForm.get('id')!;
+  }
   get alt() {
     return this.imgForm.get('alt')!;
   }
+  get description() {
+    return this.imgForm.get('description')!;
+  }
   get src() {
     return this.imgForm.get('src')!;
-  }
-  get id() {
-    return this.imgForm.get('id')!;
   }
 
   onSubmit() {
@@ -46,20 +49,18 @@ export class PhotoAddForm {
       this.imgForm.markAllAsTouched();
       return;
     }
-    const newImage: any = this.imgForm.value;
-    console.log('POST a json-server:', newImage);
 
-    this.imgService.addImage(newImage).subscribe({
-      next: (res) => {
-        console.log('Imagen guardada:', res);
-        this.toastService.success('Imagen añadida correctamente')
+    const payload: any = this.imgForm.getRawValue();
+
+    this.imgService.addImage(payload).subscribe({
+      next: () => {
+        this.toastService.success('Imagen añadida correctamente');
         this.imgForm.reset();
       },
       error: (err) => {
-        this.toastService.error('ERROR al guardar la imagen')
+        this.toastService.error('ERROR al guardar la imagen');
         console.error('Error al guardar imagen', err);
-      }
+      },
     });
   }
-
 }

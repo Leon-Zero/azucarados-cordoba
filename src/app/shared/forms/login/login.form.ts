@@ -1,8 +1,10 @@
 import { Component, inject } from '@angular/core';
-import { Btn } from "../../ui/btn/btn";
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Btn } from "../../ui/btn/btn";
 import { AuthService } from '../../../core/services/auth.service';
 import { LoginRequest } from '../../../data/interfaces/auth/login-request.interface';
+import { ToastService } from '../../../core/services/toast.service';
 
 @Component({
   selector: 'app-login',
@@ -11,35 +13,33 @@ import { LoginRequest } from '../../../data/interfaces/auth/login-request.interf
   styleUrl: './login.form.css',
 })
 export class LoginForm {
+
   private fb = inject(FormBuilder);
   private authService = inject(AuthService);
+  private toastService = inject(ToastService);
+  private router = inject(Router);
 
   loginForm: FormGroup;
   showPassword = false;
 
   constructor() {
     this.loginForm = this.fb.group({
-      identifier: [
+      username: [
         '',
-        [
-          Validators.required,
-          Validators.minLength(4)
-        ]
+        [Validators.required, Validators.minLength(4)]
       ],
       password: [
         '',
-        [
-          Validators.required,
-          Validators.minLength(8)
-        ]
+        [Validators.required, Validators.minLength(8)]
       ]
     });
   }
 
   /* GETTERS */
-  get identifier() {
-    return this.loginForm.get('identifier')!;
+  get username() {
+    return this.loginForm.get('username')!;
   }
+
   get password() {
     return this.loginForm.get('password')!;
   }
@@ -53,11 +53,13 @@ export class LoginForm {
     const payload: LoginRequest = this.loginForm.value;
 
     this.authService.login(payload).subscribe({
-      next: (res) => {
-        console.log('Login correcto', res);
+      next: () => {
+        this.toastService.success('Sesión iniciada correctamente');
         this.loginForm.reset();
+        this.router.navigateByUrl('/admin');
       },
       error: (err) => {
+        this.toastService.error('Usuario o contraseña incorrectos');
         console.error('Error en login', err);
       }
     });

@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { Blogs } from '../../data/interfaces/database/blog.interface';
 import { map, tap } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BlogService {
   private http = inject(HttpClient);
-  private baseUrl = 'http://localhost:3009/noticias';
+  private baseUrl = environment.urlBack + '/blog';
   private _blogItem = signal<Blogs[]>([]);
 
   // getter y setter
@@ -47,15 +48,15 @@ export class BlogService {
   }
 
   addBlog(blog: Blogs) {
-    return this.http.post(`${this.baseUrl}`, blog);
+    return this.http.post(`${this.baseUrl}/create`, blog);
   }
 
   deleteBlog(id: number) {
-    return this.http.delete(`${this.baseUrl}/${id}`);
+    return this.http.delete(`${this.baseUrl}/delete/${id}`);
   }
 
-  editBlog(id: number, data: Blogs) {
-    return this.http.put<Blogs>(`${this.baseUrl}/${id}`, data).pipe(
+  editBlog(data: Blogs) {
+    return this.http.put<Blogs>(`${this.baseUrl}/edit`, data).pipe(
       tap(() => this.refreshBlogs())
     );
   }

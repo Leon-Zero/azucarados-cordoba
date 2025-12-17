@@ -21,7 +21,7 @@ export class BlogAddForm {
   onEdit = input<boolean>(false);
 
   blogForm = this.fb.group({
-    id: ['', Validators.required],
+    id: [null,],
     title: ['', [Validators.required, Validators.minLength(8)]],
     resume: ['', Validators.required],
     img: ['',
@@ -80,31 +80,37 @@ export class BlogAddForm {
       this.blogForm.markAllAsTouched();
       return;
     }
-
-    this.setContent();
+    if (!this.setContent()) return;
     const newBlog: any = this.blogForm.getRawValue();
 
-    if (!this.onEdit()) {
-      this.sendPost(newBlog);
+    if (this.onEdit()) {
+      const id = this.id.value;
+      if (id == null) {
+        this.toastService.error('ID inválido para edición');
+        return;
+      }
+      this.sendPut(id, newBlog);
     } else {
-      this.sendPut(this.object().id, newBlog);
+      this.sendPost(newBlog);
     }
   }
 
-  setContent() {
+  setContent(): boolean {
     const contenido = this._editorQ();
     if (!contenido || contenido.trim() === '') {
-      this.toastService.error("El contenido no puede estar vacío");
-      return;
+      this.toastService.error('El contenido no puede estar vacío');
+      return false;
     }
     this.blogForm.patchValue({ content: contenido });
+    return true;
   }
+
 
 
   sendPost(newBlog: Blogs) {
     this.blogsService.addBlog(newBlog).subscribe({
       next: (res) => {
-        // console.log('Blog guardado:', res);
+        console.log('Blog guardado:', res);
         this.toastService.success('Blog/noticia guardado correctamente');
         this.blogForm.reset();
       },
@@ -116,7 +122,7 @@ export class BlogAddForm {
   }
 
   sendPut(id: number, newBlog: Blogs) {
-    this.blogsService.editBlog(id, newBlog).subscribe({
+    this.blogsService.editBlog(newBlog).subscribe({
       next: (res) => {
         console.log('Blog/Noticia actualizado:', res);
         this.toastService.success('Blog actualizado con exito')

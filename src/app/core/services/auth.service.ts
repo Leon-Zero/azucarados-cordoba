@@ -6,6 +6,7 @@ import { tap } from 'rxjs';
 import { RegisterAdmin } from '../../data/interfaces/auth/register-admin.interface';
 import { LoginRequest } from '../../data/interfaces/auth/login-request.interface';
 import { JwtResponse } from '../../data/interfaces/auth/jwt-response.interface';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class AuthService {
 
   private http = inject(HttpClient);
   private platformId = inject(PLATFORM_ID);
-  private API_URL = 'http://localhost:8080/auth';
+  private API_URL = environment.urlBack + '/auth';
 
   login(data: LoginRequest) {
     return this.http

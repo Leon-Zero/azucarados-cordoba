@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { Destacado } from '../../data/interfaces/database/destacado.interface';
 import { map, Observable, tap } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import { map, Observable, tap } from 'rxjs';
 export class DestacadoService {
 
   private http = inject(HttpClient);
-  private baseUrl = 'http://localhost:3005/destacados';
+  private baseUrl = environment.urlBack + '/destacado';
   private _destacadoItem = signal<Destacado[]>([]);
 
   // getter y setter
@@ -46,15 +47,15 @@ export class DestacadoService {
   }
 
   addDestacado(dest: Destacado) {
-    return this.http.post(`${this.baseUrl}`, dest);
+    return this.http.post(`${this.baseUrl}/create`, dest);
   }
 
   deleteDestacado(id: number) {
-    return this.http.delete(`${this.baseUrl}/${id}`);
+    return this.http.delete(`${this.baseUrl}/delete/${id}`);
   }
 
-  editDestacado(id: number, data: Destacado) {
-    return this.http.put<Destacado>(`${this.baseUrl}/${id}`, data).pipe(
+  editDestacado(data: Destacado) {
+    return this.http.put<Destacado>(`${this.baseUrl}/edit`, data).pipe(
       tap(() => this.refreshDestacados())
     );
   }

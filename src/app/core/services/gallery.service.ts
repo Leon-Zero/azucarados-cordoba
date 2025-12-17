@@ -2,13 +2,14 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs';
 import { Img } from '../../data/interfaces/database/img.interface';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GalleryService {
   private http = inject(HttpClient);
-  private baseUrl = 'http://localhost:3001/gallery';
+  private baseUrl = environment.urlBack + '/gallery';
 
   getLastImages(limit: number) {
     return this.http.get<Img[]>(this.baseUrl).pipe(
@@ -39,11 +40,11 @@ export class GalleryService {
   }
 
   deleteImage(id: any) {
-    return this.http.delete(`${this.baseUrl}/${id}`);
+    return this.http.delete(`${this.baseUrl}/delete/${id}`);
   }
 
   addImage(image: Img) {
-    return this.http.post(`${this.baseUrl}`, image);
+    return this.http.post(`${this.baseUrl}/create`, image);
   }
 
 }

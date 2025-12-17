@@ -6,18 +6,18 @@
     <div class="input-wrap">
       <input
         type="text"
-        formControlName="identifier"
-        id="identifier"
+        formControlName="username"
+        id="username"
         placeholder=" "
       />
       <label for="identifier">Usuario o Email</label>
 
-      @if (identifier.invalid && (identifier.dirty || identifier.touched)) {
+      @if (username.invalid && (username.dirty || username.touched)) {
         <p class="error">
-          @if (identifier.errors?.['required']) {
+          @if (username.errors?.['required']) {
             El usuario o email es obligatorio.
           }
-          @if (identifier.errors?.['minlength']) {
+          @if (username.errors?.['minlength']) {
             Mínimo 4 caracteres.
           }
         </p>
@@ -39,6 +39,7 @@
         class="toggle-password"
         (click)="showPassword = !showPassword"
       >
+      boton
         <span class="eye" [class.open]="showPassword"></span>
       </button>
 

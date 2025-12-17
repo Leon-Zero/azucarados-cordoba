@@ -12,43 +12,47 @@ import { ToastService } from '../../../core/services/toast.service';
   styleUrl: './destacados-add.form.css',
 })
 export class DestacadosAddForm {
-  private fb = inject(FormBuilder);
+ private fb = inject(FormBuilder);
   private destacadosService = inject(DestacadoService);
   private toastService = inject(ToastService);
-  object = input<any>([]);
+
+  object = input<any>(null);
   onEdit = input<boolean>(false);
 
   destacadosForm = this.fb.group({
-    id: ['', Validators.required],
+    id: [null],
     text: ['', [Validators.required, Validators.minLength(8)]],
-    img: ['',
+    img: [
+      '',
       [
         Validators.required,
         Validators.pattern(
-          // patrón simple para URL
           /(https?:\/\/.*\.(?:png|jpg|jpeg|gif|webp|svg))/i
         ),
       ],
     ],
+    url: [
+      '',
+      Validators.pattern(/https?:\/\/.+/i)
+    ],
+    ico: [''],
   });
 
-  // getters para validaciones
-  get text() {
-    return this.destacadosForm.get('text')!;
-  }
-  get img() {
-    return this.destacadosForm.get('img')!;
-  }
-  get id() {
-    return this.destacadosForm.get('id')!;
-  }
+  /* GETTERS */
+  get id() { return this.destacadosForm.get('id')!; }
+  get text() { return this.destacadosForm.get('text')!; }
+  get img() { return this.destacadosForm.get('img')!; }
+  get url() { return this.destacadosForm.get('url')!; }
+  get ico() { return this.destacadosForm.get('ico')!; }
 
-  //setter en edit mode
+  /* SETEO EN EDICIÓN */
   setInputs() {
     this.destacadosForm.setValue({
       id: this.object().id,
+      text: this.object().text,
       img: this.object().img,
-      text: this.object().text
+      url: this.object().url ?? '',
+      ico: this.object().ico ?? '',
     });
   }
 
@@ -56,53 +60,55 @@ export class DestacadosAddForm {
     effect(() => {
       const obj = this.object();
       if (!obj || Object.keys(obj).length === 0) return;
-      if (this.onEdit()) {
-        this.setInputs();
-      }
+      if (this.onEdit()) this.setInputs();
     });
   }
-  // Metodos http *******
 
   onSubmit() {
     if (this.destacadosForm.invalid) {
       this.destacadosForm.markAllAsTouched();
       return;
     }
-    const newDestacado: any = this.destacadosForm.value;
-    console.log('POST a json-server:', newDestacado);
-    if (!this.onEdit()) {
-      this.sendPost(newDestacado);
+
+    const payload: any = this.destacadosForm.getRawValue();
+
+    if (this.onEdit()) {
+      const id = this.id.value;
+      if (id == null) {
+        this.toastService.error('ID inválido para edición');
+        return;
+      }
+      this.sendPut(id, payload);
     } else {
-      this.sendPut(this.object().id, newDestacado);
+      this.sendPost(payload);
     }
   }
 
-  sendPost(newDestacado: Destacado) {
-    this.destacadosService.addDestacado(newDestacado).subscribe({
-      next: (res) => {
-        // console.log('Destacado guardada:', res);
+  sendPost(data: Destacado) {
+    this.destacadosService.addDestacado(data).subscribe({
+      next: () => {
         this.toastService.success('Destacado guardado correctamente');
         this.destacadosForm.reset();
       },
-      error: (err) => {
-        this.toastService.error('ERROR al guardar Destacado')
-        console.error('Error al guardar Destacado', err);
-      }
+      error: err => {
+        this.toastService.error('ERROR al guardar Destacado');
+        console.error(err);
+      },
     });
   }
 
-  sendPut(id: number, newDestacado: Destacado) {
-    this.destacadosService.editDestacado(id, newDestacado).subscribe({
-      next: (res) => {
-        console.log('Destacado actualizado:', res);
-        this.toastService.success('Destacado actualizado con exito')
-        this.destacadosForm.reset({});
+  sendPut(id: number, data: Destacado) {
+    this.destacadosService.editDestacado(data).subscribe({
+      next: () => {
+        this.toastService.success('Destacado actualizado con éxito');
+        this.destacadosForm.reset();
         this.destacadosService.scrollToDelete();
-      }, error: (err => {
+      },
+      error: err => {
         this.toastService.error('ERROR al actualizar Destacado');
-        console.error('error al actualizar Destacado', err);
-      })
-    })
+        console.error(err);
+      },
+    });
   }
 
 }
