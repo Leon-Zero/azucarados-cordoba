@@ -56,7 +56,9 @@ export class LoginForm {
       next: () => {
         this.toastService.success('Sesión iniciada correctamente');
         this.loginForm.reset();
-        this.router.navigateByUrl('/admin');
+        this.router.navigate(['/admin']).then(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+});
       },
       error: (err) => {
         this.toastService.error('Usuario o contraseña incorrectos');

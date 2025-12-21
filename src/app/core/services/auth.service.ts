@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { tap } from 'rxjs';
-
 import { RegisterAdmin } from '../../data/interfaces/auth/register-admin.interface';
 import { LoginRequest } from '../../data/interfaces/auth/login-request.interface';
 import { JwtResponse } from '../../data/interfaces/auth/jwt-response.interface';
@@ -38,7 +37,6 @@ export class AuthService {
 
   logout() {
     if (!this.isBrowser()) return;
-
     localStorage.removeItem('token');
     localStorage.removeItem('user');
   }

@@ -89,7 +89,7 @@ export class BlogAddForm {
         this.toastService.error('ID inválido para edición');
         return;
       }
-      this.sendPut(id, newBlog);
+      this.sendPut(newBlog);
     } else {
       this.sendPost(newBlog);
     }
@@ -121,7 +121,7 @@ export class BlogAddForm {
     });
   }
 
-  sendPut(id: number, newBlog: Blogs) {
+  sendPut(newBlog: Blogs) {
     this.blogsService.editBlog(newBlog).subscribe({
       next: (res) => {
         console.log('Blog/Noticia actualizado:', res);

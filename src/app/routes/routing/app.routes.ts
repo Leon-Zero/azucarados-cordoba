@@ -27,7 +27,7 @@ export const routes: Routes = [
 
   { path: 'login', component: AuthPage },
 
-  /* 🔐 ADMIN acceso a crud */
+  /* ADMIN acceso a crud */
   {
     path: 'admin',
     canActivate: [adminGuard],

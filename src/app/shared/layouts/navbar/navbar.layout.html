@@ -23,12 +23,22 @@
         <li class="list-item">
           <a routerLink="contacto" routerLinkActive="linked"> Contacto </a>
         </li>
-        <li class="list-item">
-          <a routerLink="admin" routerLinkActive="linked"> Login </a>
-        </li>
+
+        @if (authService.isLogged()) {
+          <li class="list-item">
+              <a routerLink="admin" routerLinkActive="linked"> Modo Edición</a>
+          </li>
+          <li class="list-item">
+              <a (click)="logOut()"> salir </a>
+          </li>
+        } @else {
+          <li class="list-item">
+            <a routerLink="login" routerLinkActive="linked"> Login </a>
+          </li>
+          }
       </ul>
 
-      <!-- menu hamburguesa para celular y pantallas menores a 860px -->
+      <!-- menu hamburguesa celular -->
       <div class="menu-container">
         <div
           class="menu-burguer"
@@ -60,7 +70,7 @@
           <a routerLink="contacto" (click)="isOpen.set(false)"> contacto </a>
         </li>
         <li>
-          <a href="#"> login </a>
+          <a routerLink="admin"> login </a>
         </li>
       </ul>
     </div>

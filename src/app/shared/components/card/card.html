@@ -9,7 +9,7 @@
     <div class="card-stamp">
       <i>
         <img
-          src="https://static.vecteezy.com/system/resources/previews/016/135/987/non_2x/cartoon-newspaper-icon-in-comic-style-news-sign-illustration-pictogram-newsletter-business-splash-effect-concept-vector.jpg"
+          [src]="_icon()"
           alt=""
         />
       </i>
@@ -21,7 +21,13 @@
           <ng-content></ng-content>
         </strong>
       </div>
-      <app-btn [size]="'medium'">Saber Más</app-btn>
+      <a [href]="_url()"> 
+        <app-btn [size]="'medium'">   Saber Más</app-btn>
+      </a>
     </div>
   </div>
 </div>
+
+
+<!-- TODO: set de iconos
+https://static.vecteezy.com/system/resources/previews/016/135/987/non_2x/cartoon-newspaper-icon-in-comic-style-news-sign-illustration-pictogram-newsletter-business-splash-effect-concept-vector.jpg -->

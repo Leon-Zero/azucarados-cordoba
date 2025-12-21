@@ -6,7 +6,11 @@
   <span class="spacing"></span>
   <div class="flex">
     @for (item of destacados(); track item.id) {
-    <app-card [_img]="item.img">
+    <app-card 
+    [_img]="item.img"
+    [_icon]="item.ico"
+    [_url]="item.url"
+    >
       {{ item.text }}
     </app-card>
     }

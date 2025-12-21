@@ -56,7 +56,6 @@
         class="toggle-password"
         (click)="showSecret.set(!showSecret())"
       >
-      secret boton
         <span class="eye" [class.open]="showSecret()"></span>
       </button>
 
@@ -83,7 +82,6 @@
         class="toggle-password"
         (click)="showPassword.set(!showPassword())"
       >
-      otro boton
         <span class="eye" [class.open]="showPassword()"></span>
       </button>
 
@@ -109,8 +107,9 @@
         type="button"
         class="toggle-password"
         (click)="showRepeatPassword.set(!showRepeatPassword())"
-      >texto boton
-        <span class="eye" [class.open]="showRepeatPassword()"></span>
+      >
+          <img  src="/eye-open.svg" alt="">
+          <!-- <img src="/eye-closed.svg" alt=""> -->
       </button>
 
       @if (repeatPassword.invalid && (repeatPassword.dirty || repeatPassword.touched)) {

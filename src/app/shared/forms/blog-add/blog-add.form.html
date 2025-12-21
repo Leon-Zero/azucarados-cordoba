@@ -50,7 +50,7 @@
       (editorQ)="_editorQ.set($event)">
     </app-editor>
 
-    <app-btn [size]="'large'" type="submit" [attr.disabled]="blogForm.invalid">
+    <app-btn [size]="'large'" type="submit" [disabled]="blogForm.invalid">
       {{ onEdit() ? 'Actualizar Blog/Noticia' : 'Subir Nuevo Blog/Noticia' }}
     </app-btn>
   </div>

@@ -8,5 +8,8 @@ import { Btn } from '../../ui/btn/btn';
   styleUrl: './card.css',
 })
 export class Card {
-  _img = input('');
+  _img = input.required<string>();
+  _url = input.required<string>();
+  _icon = input.required<string>();
+
 }

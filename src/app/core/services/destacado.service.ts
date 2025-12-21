@@ -23,17 +23,8 @@ export class DestacadoService {
   }
   // ------------
 
-  getAllDestacados() {
-    return this.http.get<Destacado[]>(this.baseUrl).pipe(
-      map((items) => {
-        const sorted = [...items].sort((a, b) => b.id - a.id);
-        return sorted.map((dest, i) => ({
-          id: dest.id,
-          img: dest.img,
-          text: dest.text,
-        }));
-      })
-    );
+  getAllDestacados() : Observable<Destacado[]> {
+    return this.http.get<Destacado[]>(this.baseUrl);
   }
 
   refreshDestacados() {

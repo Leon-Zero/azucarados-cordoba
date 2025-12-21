@@ -1,6 +1,7 @@
 import { NgClass } from '@angular/common';
-import { Component, effect, signal } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Component, effect, inject, signal } from '@angular/core';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,4 +11,12 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 })
 export class NavbarLayout {
   isOpen = signal<boolean>(false);
+  authService = inject(AuthService);
+  private router = inject(Router);
+
+
+  logOut(){
+    this.authService.logout();
+    this.router.navigate(['/home'])
+  }
 }

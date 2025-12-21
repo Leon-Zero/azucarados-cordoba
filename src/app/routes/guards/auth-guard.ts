@@ -9,7 +9,6 @@ export const adminGuard: CanActivateFn = () => {
   if (authService.isAdmin()) {
     return true;
   }
-
   authService.logout();
   router.navigate(['/login']);
   return false;

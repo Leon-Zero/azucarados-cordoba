@@ -67,6 +67,7 @@ a {
   min-width: 2rem;
   text-align: center;
   list-style: none;
+  cursor: pointer;
 }
 
 .nav-right .list-content {
