@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { Component, effect, inject, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
 

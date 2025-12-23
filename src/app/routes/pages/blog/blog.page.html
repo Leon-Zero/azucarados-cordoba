@@ -2,19 +2,7 @@
 
 <section>
   <div class="container">
-    <div class="blog-dashboard">
-      @for (blog of paginatedItems; track blog.id) {
-      <div class="blog-item" (click)="goToArticle(blog.title + blog.id)">
-        <div class="item-head">
-          <img [src]="blog.img" [alt]="blog.title" loading="lazy" />
-        </div>
-        <div class="item-text">
-          <h3>{{ blog.title }}</h3>
-          <p>{{ blog.resume }}</p>
-        </div>
-      </div>
-      }
-    </div>
+    <app-blog-dashboard [paginatedItems]="paginatedItems"></app-blog-dashboard>
     <span class="spacing"></span>
     <app-pag-control
       [currentPage]="currentPage"

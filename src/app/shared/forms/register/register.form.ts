@@ -1,8 +1,17 @@
 import { Component, inject, signal } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
-import { Btn } from "../../ui/btn/btn";
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  ValidationErrors,
+  Validators,
+} from '@angular/forms';
+import { Btn } from '../../ui/btn/btn';
 import { AuthService } from '../../../core/services/auth.service';
 import { RegisterAdmin } from '../../../data/interfaces/auth/register-admin.interface';
+import { ToastService } from '../../../core/services/toast.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -11,10 +20,11 @@ import { RegisterAdmin } from '../../../data/interfaces/auth/register-admin.inte
   styleUrl: './register.form.css',
 })
 export class RegisterForm {
-
   registerForm: FormGroup;
   private fb = inject(FormBuilder);
   private authService = inject(AuthService);
+  private toast = inject(ToastService);
+  private router = inject(Router);
   showSecret = signal<boolean>(false);
   showPassword = signal<boolean>(false);
   showRepeatPassword = signal<boolean>(false);
@@ -22,43 +32,25 @@ export class RegisterForm {
   constructor() {
     this.registerForm = this.fb.group(
       {
-        name: ['', [
-          Validators.required,
-          Validators.minLength(6)
-        ]],
+        name: ['', [Validators.required, Validators.minLength(6)]],
 
-        username: ['', [
-          Validators.required,
-          Validators.minLength(4)
-        ]],
+        username: ['', [Validators.required, Validators.minLength(4)]],
 
-        email: ['', [
-          Validators.required,
-          Validators.email
-        ]],
+        email: ['', [Validators.required, Validators.email]],
 
-        adminSecret: ['', [
-          Validators.required,
-          Validators.minLength(8)
-        ]],
+        adminSecret: ['', [Validators.required, Validators.minLength(8)]],
 
-        password: ['', [
-          Validators.required,
-          Validators.minLength(8)
-        ]],
+        password: ['', [Validators.required, Validators.minLength(8)]],
 
-        repeatPassword: ['', Validators.required]
+        repeatPassword: ['', Validators.required],
       },
       {
-        validators: this.passwordMatchValidator
+        validators: this.passwordMatchValidator,
       }
     );
   }
 
-  private passwordMatchValidator(
-    form: AbstractControl
-  ): ValidationErrors | null {
-
+  private passwordMatchValidator(form: AbstractControl): ValidationErrors | null {
     const password = form.get('password')?.value;
     const repeatPassword = form.get('repeatPassword')?.value;
 
@@ -66,9 +58,7 @@ export class RegisterForm {
       return null;
     }
 
-    return password === repeatPassword
-      ? null
-      : { passwordMismatch: true };
+    return password === repeatPassword ? null : { passwordMismatch: true };
   }
 
   /* GETTERS */
@@ -102,30 +92,28 @@ export class RegisterForm {
     this.authService.registerAdmin(payload).subscribe({
       next: () => {
         console.log('Administrador creado correctamente');
+        this.toast.success('Administrador creado correctamente');
+        this.router.navigate(['/login']).then(() => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
         this.registerForm.reset();
       },
       error: (err) => {
+        this.toast.error('No se pudo crear el Usuario');
         console.error('Error al registrar admin', err);
-      }
+      },
     });
   }
 
   private buildPayload() {
-    const {
-      name,
-      username,
-      email,
-      password,
-      adminSecret
-    } = this.registerForm.value;
+    const { name, username, email, password, adminSecret } = this.registerForm.value;
 
     return {
       name,
       username,
       email,
       password,
-      adminSecret
+      adminSecret,
     };
   }
-
 }

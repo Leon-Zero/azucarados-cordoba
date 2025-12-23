@@ -5,20 +5,21 @@ import { PaginationService } from '../../../core/services/pagination.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BlogService } from '../../../core/services/blog.service';
 import { Blogs } from '../../../data/interfaces/database/blog.interface';
+import { BlogDashboard } from "../../../shared/components/blog-dashboard/blog-dashboard";
 
 
 @Component({
   selector: 'app-blog',
   standalone: true,
-  imports: [HeaderLayout, PagControl],
+  imports: [HeaderLayout, PagControl, BlogDashboard],
   templateUrl: './blog.page.html',
   styleUrl: './blog.page.css',
 })
 export class BlogPage implements OnInit {
-  private blogService = inject(BlogService);
   private pagination = inject(PaginationService<Blogs>);
-
-  constructor(private route: ActivatedRoute, private router: Router) { }
+  private blogService = inject(BlogService);
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
 
   ngOnInit() {
     this.loadBlogs();
@@ -52,13 +53,5 @@ export class BlogPage implements OnInit {
     this.pagination.setPage(page);
     this.router.navigate(['/blog/pagina', page]);
   }
-
-  goToArticle(blog: string) {
-    const path = this.blogService.generatePath(blog);
-    this.router.navigate(['/blog/articulo', path]).then(() => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
-
 
 }

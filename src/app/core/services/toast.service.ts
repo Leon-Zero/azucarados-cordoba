@@ -16,7 +16,7 @@ export class ToastService {
     this._messages.update((list) => [...list, msg]);
 
     // Eliminar después de 3s
-    setTimeout(() => this.dismiss(id), 3000);
+    setTimeout(() => this.dismiss(id), 5000);
   }
 
   success(text: string) {
