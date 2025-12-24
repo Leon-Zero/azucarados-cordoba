@@ -3,14 +3,10 @@ import { BlogPage } from '../pages/blog/blog.page';
 
 export const blogRoutes: Routes = [
   { path: '', redirectTo: 'pagina/1', pathMatch: 'full' },
-
-  {
-    path: 'pagina/:page',
+  { path: 'pagina/:page',
     component: BlogPage
   },
-
-  {
-    path: 'articulo/:slug',
+  { path: 'articulo/:slug',
     loadComponent: () =>
       import('../pages/article/article.page')
         .then(m => m.ArticlePage)

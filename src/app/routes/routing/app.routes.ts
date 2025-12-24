@@ -18,8 +18,7 @@ export const routes: Routes = [
   },
   { path: 'login', loadComponent: () => import('../pages/auth/auth.page').then((m) => m.AuthPage) },
   /* ADMIN acceso a crud */
-  {
-    path: 'admin',
+  { path: 'admin',
     canActivate: [adminGuard],
     canActivateChild: [adminGuard],
     loadChildren: () => import('../routing/admin.routes').then((m) => m.adminRoutes),
