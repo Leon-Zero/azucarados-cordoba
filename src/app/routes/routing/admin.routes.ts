@@ -5,7 +5,7 @@ import { EditBlogPage } from '../pages/crud-admin/childpages/edit-blog/edit-blog
 import { EditFotosPage } from '../pages/crud-admin/childpages/edit-fotos/edit-fotos.page';
 
 
-export const admin: Routes = [
+export const adminRoutes: Routes = [
   {
     path: '',
     component: CrudAdminPage,
