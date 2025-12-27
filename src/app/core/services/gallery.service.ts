@@ -20,6 +20,7 @@ export class GalleryService {
           src: img.src,
           alt: img.alt ?? `Foto ${i + 1}`,
           id: img.id,
+          description: img.description
         }));
       })
     );
@@ -34,6 +35,7 @@ export class GalleryService {
           src: img.src,
           alt: img.alt ?? `Foto ${i + 1}`,
           id: img.id,
+          description: img.description
         }));
       })
     );

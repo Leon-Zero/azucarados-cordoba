@@ -1,4 +1,5 @@
 import { Component, Input, signal } from '@angular/core';
+import { Img } from '../../../data/interfaces/database/img.interface';
 
 @Component({
   selector: 'app-main-galery',
@@ -7,5 +8,5 @@ import { Component, Input, signal } from '@angular/core';
   styleUrl: './main-galery.component.css',
 })
 export class MainGaleryComponent {
-  @Input() paginatedItems: any = [];
+  @Input() paginatedItems: Img[] = [];
 }

@@ -30,4 +30,10 @@ span {
   span {
     height: 5rem;
   }
+  .banner {
+    aspect-ratio: 1/1;
+  }
+  .banner img {
+    object-fit: fill;
+  }
 }

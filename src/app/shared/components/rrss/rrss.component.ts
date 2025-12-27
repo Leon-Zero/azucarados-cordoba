@@ -1,5 +1,4 @@
 import { Component, signal } from '@angular/core';
-import { Img } from '../../../data/interfaces/database/img.interface';
 
 @Component({
   selector: 'app-rrss',
@@ -8,7 +7,7 @@ import { Img } from '../../../data/interfaces/database/img.interface';
   styleUrl: './rrss.component.css',
 })
 export class RrssComponent {
-  rrss = signal<Img[]>([
+  rrss = signal([
     {
       id: 1,
       src: '/icon-whatsapp.svg',
