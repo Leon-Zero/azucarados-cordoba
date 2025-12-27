@@ -6,7 +6,7 @@
 
 <!-- TEMPLATE IZQUIERDA -->
 <ng-template #leftTpl let-content>
-  <div class="text-wrap bg-content">
+  <div class="text-wrap bg-content scroll-view">
     <img class="img-float" [src]="img" alt="" />
     <ng-container [ngTemplateOutlet]="content"></ng-container>
   </div>
@@ -14,7 +14,7 @@
 
 <!-- TEMPLATE DERECHA -->
 <ng-template #rightTpl let-content>
-  <div class="text-flex">
+  <div class="text-flex scroll-view">
     <div class="img-flex">
       <img [src]="img" alt="" />
     </div>

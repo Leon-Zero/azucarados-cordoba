@@ -4,6 +4,9 @@
   height: fit-content;
   padding: 1rem;
 }
+h2{
+  text-align: center;
+}
 @media screen and (max-width: 620px) {
   .container {
     width: 100%;
