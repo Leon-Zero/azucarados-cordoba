@@ -5,6 +5,7 @@ import { BlogService } from '../../../core/services/blog.service';
 import { Blogs } from '../../../data/interfaces/database/blog.interface';
 import { Btn } from "../../ui/btn/btn";
 import { EditorPage } from "../../../routes/pages/editor/editor.page";
+import { transformQuillHtml } from '../../../core/utils/quill-glue';
 
 @Component({
   selector: 'form-blog-add',
@@ -74,13 +75,15 @@ export class BlogAddForm {
     });
   }
 
-  // Metodos http *******
-  onSubmit() {
+  async onSubmit() {
     if (this.blogForm.invalid) {
       this.blogForm.markAllAsTouched();
       return;
     }
-    if (!this.setContent()) return;
+
+    const ok = await this.setContentAndParse();
+    if (!ok) return;
+
     const newBlog: any = this.blogForm.getRawValue();
 
     if (this.onEdit()) {
@@ -95,17 +98,27 @@ export class BlogAddForm {
     }
   }
 
-  setContent(): boolean {
+
+  async setContentAndParse(): Promise<boolean> {
     const contenido = this._editorQ();
+
     if (!contenido || contenido.trim() === '') {
       this.toastService.error('El contenido no puede estar vacío');
       return false;
     }
-    this.blogForm.patchValue({ content: contenido });
-    return true;
+    try {
+      const parsedHtml = await transformQuillHtml(contenido);
+
+      this.blogForm.patchValue({
+        content: parsedHtml
+      });
+      return true;
+    } catch (err) {
+      console.error('Error procesando contenido de Quill', err);
+      this.toastService.error('Error procesando el contenido');
+      return false;
+    }
   }
-
-
 
   sendPost(newBlog: Blogs) {
     this.blogsService.addBlog(newBlog).subscribe({

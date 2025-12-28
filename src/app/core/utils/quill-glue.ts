@@ -1,4 +1,35 @@
-export function transformQuillHtml(quillHtml: string): string {
+import { ref, uploadString, getDownloadURL } from 'firebase/storage';
+import { firebaseStorage } from './firebase-storage';
+
+// Base64 a Firebase Storage
+async function uploadBase64(
+  base64: string,
+  folder = 'quill-images'
+): Promise<string> {
+
+  const storage = firebaseStorage;
+
+  const match = base64.match(/^data:(image\/[a-zA-Z0-9+.-]+);base64,(.*)$/);
+  if (!match) {
+    throw new Error('Formato base64 inválido');
+  }
+
+  const mimeType = match[1];
+  const extension = mimeType.split('/')[1] ?? 'png';
+
+  const fileName = `${folder}/${crypto.randomUUID()}.${extension}`;
+  const storageRef = ref(storage, fileName);
+
+  await uploadString(storageRef, base64, 'data_url', {
+    contentType: mimeType,
+  });
+
+  return await getDownloadURL(storageRef);
+}
+
+// parseo de html
+
+export async function transformQuillHtml(quillHtml: string): Promise<string> {
   if (!quillHtml) return '';
 
   if (typeof DOMParser === 'undefined') {
@@ -7,6 +38,23 @@ export function transformQuillHtml(quillHtml: string): string {
 
   const parser = new DOMParser();
   const doc = parser.parseFromString(quillHtml, 'text/html');
+
+  const images = Array.from(doc.querySelectorAll('img'));
+
+  for (const img of images) {
+    const src = img.getAttribute('src') ?? '';
+    if (!src.startsWith('data:image/')) continue;
+
+    try {
+      const url = await uploadBase64(src);
+      img.setAttribute('src', url);
+      img.removeAttribute('data-src');
+    } catch (err) {
+      console.error('Error subiendo imagen a Firebase', err);
+    }
+  }
+
+  // Iframe para yotube
 
   function parseYouTube(urlStr: string): { id: string | null; qs: string } {
     try {
@@ -17,12 +65,16 @@ export function transformQuillHtml(quillHtml: string): string {
       const host = url.hostname.toLowerCase();
       let id: string | null = null;
 
-      if (host.includes('youtu.be')) id = url.pathname.split('/').filter(Boolean)[0] ?? null;
-      else if (host.includes('youtube.com')) {
-        if (url.pathname.startsWith('/watch')) id = url.searchParams.get('v');
-        else if (url.pathname.startsWith('/embed/'))
+      if (host.includes('youtu.be')) {
+        id = url.pathname.split('/').filter(Boolean)[0] ?? null;
+      } else if (host.includes('youtube.com')) {
+        if (url.pathname.startsWith('/watch')) {
+          id = url.searchParams.get('v');
+        } else if (url.pathname.startsWith('/embed/')) {
           id = url.pathname.split('/embed/')[1]?.split('/')[0] ?? null;
-        else id = url.searchParams.get('v');
+        } else {
+          id = url.searchParams.get('v');
+        }
       }
 
       const keep = ['si', 'start', 't', 'autoplay', 'rel', 'controls', 'mute'];
@@ -45,9 +97,12 @@ export function transformQuillHtml(quillHtml: string): string {
     const { id, qs } = parseYouTube(href.trim());
     if (!id) return;
 
-    const src = `https://www.youtube.com/embed/${encodeURIComponent(id)}${qs ? '?' + qs : ''}`;
+    const src = `https://www.youtube.com/embed/${encodeURIComponent(id)}${qs ? '?' + qs : ''
+      }`;
+
     const iframe = doc.createElement('iframe');
-    iframe.style.cssText = 'width:100%;height:100%;border:0;position:absolute;top:0;left:0;';
+    iframe.style.cssText =
+      'width:100%;height:100%;border:0;position:absolute;top:0;left:0;';
     iframe.setAttribute('src', src);
     iframe.setAttribute('allowfullscreen', '');
 
@@ -60,14 +115,22 @@ export function transformQuillHtml(quillHtml: string): string {
     a.replaceWith(wrapper);
   });
 
+  // salto de linea <p>
+
   function isTrulyEmptyP(p: Element): boolean {
     if (p.tagName !== 'P') return false;
     if (p.querySelector('img')) return false;
 
-    const innerHtml = (p.innerHTML || '').replace(/&nbsp;|\u00A0|\u200B/g, '').trim();
-    const text = (p.textContent || '').replace(/\u00A0|\u200B/g, '').trim();
+    const innerHtml = (p.innerHTML || '')
+      .replace(/&nbsp;|\u00A0|\u200B/g, '')
+      .trim();
+    const text = (p.textContent || '')
+      .replace(/\u00A0|\u200B/g, '')
+      .trim();
 
-    return (innerHtml === '' || innerHtml.toLowerCase() === '<br>') && text === '';
+    return (
+      (innerHtml === '' || innerHtml.toLowerCase() === '<br>') && text === ''
+    );
   }
 
   const bodyChildren = Array.from(doc.body.childNodes);
@@ -99,7 +162,10 @@ export function transformQuillHtml(quillHtml: string): string {
   for (let i = 0; i < bodyChildren.length; i++) {
     const node = bodyChildren[i];
 
-    if (node.nodeType === Node.ELEMENT_NODE && (node as Element).tagName === 'P') {
+    if (
+      node.nodeType === Node.ELEMENT_NODE &&
+      (node as Element).tagName === 'P'
+    ) {
       const pEl = node as Element;
       if (isTrulyEmptyP(pEl)) {
         buffer.push(pEl);
