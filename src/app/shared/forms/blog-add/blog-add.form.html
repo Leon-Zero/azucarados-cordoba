@@ -10,6 +10,11 @@
     </div>
     <input type="hidden" formControlName="id" id="id" placeholder=" " />
 
+    @if (onEdit()) {
+      <small class="hint">El título no puede modificarse</small>
+    } @else {
+      <small class="hint">ADVERTENCIA: Una vez creado, el titulo no puede modificarse</small>
+    }
     <div class="input-wrap">
       <input type="text" formControlName="title" id="title" placeholder=" " />
       <label for="title">Título</label>
@@ -21,15 +26,18 @@
         (title.errors?.['minlength']) { Mínimo 8 caracteres. }
       </p>
       }
+      @if (title.hasError('duplicated')) {
+        <p class="error">Ya existe un blog con ese título</p>
+      }
     </div>
 
-    <div class="input-wrap">
-      <input type="text" formControlName="resume" id="resume" placeholder=" " />
-      <label for="resume">Resumen</label>
-
+    <div class="area-wrap" id="_area">
+      <textarea formControlName="resume" id="message" rows="6" cols="2" placeholder=" "></textarea>
+      <label for="message">Resumen del contenido</label>
+      
       <!-- validaciones -->
       @if (resume.invalid && (resume.dirty || resume.touched)) {
-      <p class="error">@if (resume.errors?.['required']) { El resumen es obligatorio. }</p>
+        <p class="error">@if (resume.errors?.['required']) { El resumen es obligatorio. }</p>
       }
     </div>
 
@@ -46,6 +54,7 @@
     </div>
 
     <app-editor 
+      #editor
       [initialContent]="object() ? object().content : ''"
       (editorQ)="_editorQ.set($event)">
     </app-editor>

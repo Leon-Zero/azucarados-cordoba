@@ -1,8 +1,5 @@
 <span class="spacing"></span>
 <article>
-  <div class="container">
-    <app-btn [size]="'large'">volver a Blog</app-btn>
-  </div>
 
   @if (blog()) {
   <app-view [content]="blog()!.content"></app-view>
@@ -11,6 +8,6 @@
   }
 
   <div class="container">
-    <app-btn [size]="'large'">volver a Blog</app-btn>
+    <app-btn [size]="'large'" routerLink="/blog">volver a Blog</app-btn>
   </div>
 </article>

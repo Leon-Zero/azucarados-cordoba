@@ -1,6 +1,7 @@
 import { Component, inject, input, output } from '@angular/core';
 import { BlogService } from '../../../core/services/blog.service';
 import { ToastService } from '../../../core/services/toast.service';
+import { deleteBlogFolder } from '../../../core/utils/firebase-delete';
 
 @Component({
   selector: 'form-blog-delete',
@@ -12,7 +13,8 @@ export class BlogDeleteForm {
 
   private blogService = inject(BlogService);
   private toastService = inject(ToastService);
-  object = output();
+
+  object = output<any>();
   onEdit = input<boolean>(false);
 
   get blogs() {
@@ -20,9 +22,8 @@ export class BlogDeleteForm {
   }
 
   setObject(obj: any): void {
-    return this.object.emit(obj);
+    this.object.emit(obj);
   }
-
 
   ngOnInit() {
     this.loadBlogs();
@@ -36,36 +37,39 @@ export class BlogDeleteForm {
     });
   }
 
-  
-
   getForId(id: number) {
-    this.blogService.getBlogForId(id).subscribe(
-      {
-        next: (res) => {
-          console.log('item por id', res);
-          this.setObject(res);
-          this.blogService.scrollToEdit();
-        }, error: (err) => {
-          console.log('error al buscar por id', err);
-        }
-      }
-    );
+    this.blogService.getBlogForId(id).subscribe({
+      next: (res) => {
+        this.setObject(res);
+        this.blogService.scrollToEdit();
+      },
+      error: (err) => {
+        console.log('error al buscar por id', err);
+      },
+    });
   }
 
-  deleteBlog(id: number) {
-    console.log(typeof id, id);
-    this.blogService.deleteBlog(id).subscribe(
-      {
+  async deleteBlog(id: number, title: string) {
+    const slug = this.blogService.generatePath(title);
+
+    try {
+      await deleteBlogFolder(slug);
+
+      this.blogService.deleteBlog(id).subscribe({
         next: () => {
-          this.toastService.success('Blogs/Noticia eliminado con exito!')
+          this.toastService.success('Blogs/Noticia eliminado con éxito!');
           this.blogService.updateBlogs(id);
-        }, error: (err) => {
-          this.toastService.error('ERROR al eliminar Blogs/Noticia')
-          console.log("error al eliminar", err);
-        }
-      }
-    );
-  }
+        },
+        error: (err) => {
+          this.toastService.error('ERROR al eliminar Blogs/Noticia');
+          console.log('error al eliminar', err);
+        },
+      });
 
+    } catch (err) {
+      console.error('Error eliminando imágenes del bucket', err);
+      this.toastService.error('Error eliminando imágenes del blog');
+    }
+  }
 
 }

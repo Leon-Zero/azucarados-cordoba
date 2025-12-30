@@ -5,46 +5,46 @@ import { map, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class BlogService {
   private http = inject(HttpClient);
   private baseUrl = environment.urlBack + '/blog';
   private _blogItem = signal<Blogs[]>([]);
 
-  // getter y setter
   readonly BlogItem = this._blogItem.asReadonly;
+
   setBlog(blog: Blogs[]) {
     this._blogItem.set(blog);
   }
+
   updateBlogs(id: number) {
     this._blogItem.update((upd) => upd.filter((upd: any) => upd.id !== id));
   }
-  // ------------
 
   getAllBlogs() {
     return this.http.get<Blogs[]>(this.baseUrl).pipe(
       map((items) => {
         const sorted = [...items].sort((a, b) => b.id - a.id);
-        return sorted.map((blog, i) => ({
+        return sorted.map((blog) => ({
           id: blog.id,
           title: blog.title,
           resume: blog.resume,
           img: blog.img,
-          content: blog.content
+          content: blog.content,
         }));
       })
     );
   }
 
   refreshBlogs() {
-    this.getAllBlogs().subscribe(res => {
+    this.getAllBlogs().subscribe((res) => {
       this.setBlog(res);
     });
   }
 
   getBlogForId(id: number) {
-    return this.http.get<Blogs[]>(`${this.baseUrl}/${id}`)
+    return this.http.get<Blogs[]>(`${this.baseUrl}/${id}`);
   }
 
   addBlog(blog: Blogs) {
@@ -56,9 +56,7 @@ export class BlogService {
   }
 
   editBlog(data: Blogs) {
-    return this.http.put<Blogs>(`${this.baseUrl}/edit`, data).pipe(
-      tap(() => this.refreshBlogs())
-    );
+    return this.http.put<Blogs>(`${this.baseUrl}/edit`, data).pipe(tap(() => this.refreshBlogs()));
   }
 
   generatePath(title: string): string {
@@ -68,6 +66,20 @@ export class BlogService {
       .replace(/\s+/g, '-')
       .replace(/[^\w\-]+/g, '')
       .replace(/\-\-+/g, '-');
+  }
+
+  titleExists(title: string, excludeId?: number): boolean {
+    const slug = this.generatePath(title);
+
+    return this._blogItem().some((blog) => {
+      const blogSlug = this.generatePath(blog.title);
+
+      if (excludeId !== undefined && blog.id === excludeId) {
+        return false;
+      }
+
+      return blogSlug === slug;
+    });
   }
 
   scrollToEdit() {
@@ -84,4 +96,10 @@ export class BlogService {
     }
   }
 
+  scrollToAdd() {
+    const el = document.getElementById('blog-add');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
 }

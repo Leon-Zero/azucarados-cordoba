@@ -7,7 +7,7 @@
       <span class="id">ID: {{ blog.id }}</span>
       <span class="id">{{ blog.title }}</span>
       @if (!onEdit()) {
-      <button class="btn-delete" (click)="deleteBlog(blog.id)">Eliminar</button>
+      <button class="btn-delete" (click)="deleteBlog(blog.id, blog.title)">Eliminar</button>
       }
       @if (onEdit()) {
       <button class="btn-edit" (click)="getForId(blog.id)">editar</button>
