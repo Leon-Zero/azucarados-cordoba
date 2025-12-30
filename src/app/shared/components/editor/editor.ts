@@ -1,15 +1,15 @@
-import { Component, effect, input, output, signal } from '@angular/core';
-import { QuillModule } from 'ngx-quill';
-import { FormsModule } from '@angular/forms';
-import { Btn } from '../../../shared/ui/btn/btn';
+import { Component, effect, input, output } from '@angular/core';
+import { QuillEditorComponent } from "ngx-quill";
+import { Btn } from "../../ui/btn/btn";
 
 @Component({
   selector: 'app-editor',
-  imports: [QuillModule, FormsModule, Btn],
-  templateUrl: './editor.page.html',
-  styleUrl: './editor.page.css',
+  imports: [QuillEditorComponent, Btn],
+  templateUrl: './editor.html',
+  styleUrl: './editor.css',
 })
-export class EditorPage {
+export class Editor {
+
   editorQ = output<string>();
   initialContent = input<string>('');
 
@@ -62,4 +62,5 @@ export class EditorPage {
     this.quill.setContents([]);
     this.editorQ.emit('');
   }
+
 }

@@ -4,12 +4,12 @@ import { ToastService } from '../../../core/services/toast.service';
 import { BlogService } from '../../../core/services/blog.service';
 import { Blogs } from '../../../data/interfaces/database/blog.interface';
 import { Btn } from "../../ui/btn/btn";
-import { EditorPage } from "../../../routes/pages/editor/editor.page";
 import { transformQuillHtml } from '../../../core/utils/quill-glue';
+import { Editor } from "../../components/editor/editor";
 
 @Component({
   selector: 'form-blog-add',
-  imports: [ReactiveFormsModule, Btn, EditorPage],
+  imports: [ReactiveFormsModule, Btn, Editor],
   templateUrl: './blog-add.form.html',
   styleUrl: './blog-add.form.css',
 })
