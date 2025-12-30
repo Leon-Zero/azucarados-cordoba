@@ -27,21 +27,15 @@
     <!-- Password -->
     <div class="input-wrap password-wrap">
       <input
-        [type]="showPassword ? 'text' : 'password'"
+        [type]="showPassword() ? 'text' : 'password'"
         formControlName="password"
         id="password"
         placeholder=" "
       />
       <label for="password">Contraseña</label>
 
-      <button
-        type="button"
-        class="toggle-password"
-        (click)="showPassword = !showPassword"
-      >
-      boton
-        <span class="eye" [class.open]="showPassword"></span>
-      </button>
+      <btn-eyes (emmitState)="showPassword.set($event)" >
+      </btn-eyes>
 
       @if (password.invalid && (password.dirty || password.touched)) {
         <p class="error">

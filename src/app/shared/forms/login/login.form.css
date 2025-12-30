@@ -1,3 +1,4 @@
+
 form {
   width: 100%;
   padding: 2rem 1rem;
@@ -150,36 +151,6 @@ textarea:not(:placeholder-shown):invalid {
   margin: 0.2rem 0;
   position: absolute;
   right: 0;
-}
-
-.password-wrap {
-  position: relative;
-}
-
-.toggle-password {
-  position: absolute;
-  right: 0.6rem;
-  top: 50%;
-  transform: translateY(-50%);
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  z-index: 200;
-  padding: 0;
-}
-
-.eye {
-  display: block;
-  width: 20px;
-  height: 20px;
-  background-color: var(--color-dark-300);
-  mask: url('/assets/icons/eye-closed.svg') no-repeat center;
-  -webkit-mask: url('/assets/icons/eye-closed.svg') no-repeat center;
-}
-
-.eye.open {
-  mask: url('/assets/icons/eye-open.svg') no-repeat center;
-  -webkit-mask: url('/assets/icons/eye-open.svg') no-repeat center;
 }
 
 

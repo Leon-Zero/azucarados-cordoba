@@ -1,14 +1,15 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Btn } from "../../ui/btn/btn";
 import { AuthService } from '../../../core/services/auth.service';
 import { LoginRequest } from '../../../data/interfaces/auth/login-request.interface';
 import { ToastService } from '../../../core/services/toast.service';
+import { BtnEyes } from "../../ui/btn-eyes/btn-eyes";
 
 @Component({
   selector: 'app-login',
-  imports: [Btn, ReactiveFormsModule],
+  imports: [Btn, ReactiveFormsModule, BtnEyes],
   templateUrl: './login.form.html',
   styleUrl: './login.form.css',
 })
@@ -20,7 +21,7 @@ export class LoginForm {
   private router = inject(Router);
 
   loginForm: FormGroup;
-  showPassword = false;
+  showPassword = signal(false);
 
   constructor() {
     this.loginForm = this.fb.group({

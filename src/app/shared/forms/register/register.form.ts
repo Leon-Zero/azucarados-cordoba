@@ -12,10 +12,11 @@ import { AuthService } from '../../../core/services/auth.service';
 import { RegisterAdmin } from '../../../data/interfaces/auth/register-admin.interface';
 import { ToastService } from '../../../core/services/toast.service';
 import { Router } from '@angular/router';
+import { BtnEyes } from "../../ui/btn-eyes/btn-eyes";
 
 @Component({
   selector: 'app-register',
-  imports: [Btn, ReactiveFormsModule],
+  imports: [Btn, ReactiveFormsModule, BtnEyes],
   templateUrl: './register.form.html',
   styleUrl: './register.form.css',
 })

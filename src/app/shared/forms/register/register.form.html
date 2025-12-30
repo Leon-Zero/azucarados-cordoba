@@ -51,13 +51,8 @@
       />
       <label for="adminSecret">Clave Secreta de Administrador</label>
 
-      <button
-        type="button"
-        class="toggle-password"
-        (click)="showSecret.set(!showSecret())"
-      >
-        <span class="eye" [class.open]="showSecret()"></span>
-      </button>
+      <btn-eyes (emmitState)="showSecret.set($event)" >
+      </btn-eyes>
 
       @if (adminSecret.invalid && (adminSecret.dirty || adminSecret.touched)) {
         <p class="error">
@@ -77,13 +72,8 @@
       />
       <label for="password">Contraseña</label>
 
-      <button
-        type="button"
-        class="toggle-password"
-        (click)="showPassword.set(!showPassword())"
-      >
-        <span class="eye" [class.open]="showPassword()"></span>
-      </button>
+      <btn-eyes (emmitState)="showPassword.set($event)" >
+      </btn-eyes>
 
       @if (password.invalid && (password.dirty || password.touched)) {
         <p class="error">
@@ -103,14 +93,8 @@
       />
       <label for="repeatPassword">Repetir contraseña</label>
 
-      <button
-        type="button"
-        class="toggle-password"
-        (click)="showRepeatPassword.set(!showRepeatPassword())"
-      >
-          <img  src="/eye-open.svg" alt="">
-          <!-- <img src="/eye-closed.svg" alt=""> -->
-      </button>
+      <btn-eyes (emmitState)="showRepeatPassword.set($event)" >
+      </btn-eyes>
 
       @if (repeatPassword.invalid && (repeatPassword.dirty || repeatPassword.touched)) {
         <p class="error">
