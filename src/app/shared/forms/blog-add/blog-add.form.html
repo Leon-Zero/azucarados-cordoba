@@ -3,11 +3,11 @@
     <h2>Agregar Blog/Noticia</h2>
 
     <!-- id provicional  -->
-    <div class="input-wrap">
-        @if (onEdit()) {
+    @if (onEdit()) {
+        <div class="input-wrap">
           <h4>ID: {{id.value}}</h4>
-        }
-    </div>
+        </div>
+      }
     <input type="hidden" formControlName="id" id="id" placeholder=" " />
 
     @if (onEdit()) {
@@ -42,14 +42,15 @@
     </div>
 
     <div class="input-wrap">
-      <input type="text" formControlName="img" id="img" placeholder=" " />
-      <label for="img">URL imagen</label>
+      <app-image-picker (imageSelected)="onImageSelected($event)">
+        Seleccionar imagen para BLOG
+      </app-image-picker>
+
       <!-- validaciones -->
       @if (img.invalid && (img.dirty || img.touched)) {
-      <p class="error">
-        @if (img.errors?.['required']) { La URL es obligatoria. } @if (img.errors?.['pattern']) {
-        Debe ser una URL válida. }
-      </p>
+        <p class="error">
+          @if (img.errors?.['required']) { La imagen es obligatoria. }
+        </p>
       }
     </div>
 

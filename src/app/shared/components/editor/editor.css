@@ -3,8 +3,8 @@ section {
   height: 100%;
   display: grid;
   place-items: center;
-  gap: 1rem;
-  padding: .5rem auto;
+  gap: .5rem;
+  padding: .2rem auto;
 }
 .flex{
   padding: 0;
@@ -17,9 +17,8 @@ form {
   height: 100%;
   display: grid;
   place-items: center center;
-  padding: 2rem auto;
-  margin-top: 2rem;
-  margin: auto;
+  padding: 0 auto;
+  margin: 0 auto;
   border: 1px solid var(--color-border-200);
   border-radius: 1rem;
   background: var(--color-tertiary-100);
@@ -47,7 +46,7 @@ quill-editor {
   align-items: center;
   gap: 1.5rem;
   width: 100%;
-  padding: 1rem;
+  padding: .5rem;
   height: fit-content;
 }
 

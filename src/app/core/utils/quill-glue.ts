@@ -2,7 +2,7 @@ import { ref, uploadString, getDownloadURL } from 'firebase/storage';
 import { firebaseStorage } from './firebase-storage';
 
 // Base64 a Firebase Storage
-async function uploadBase64(base64: string, slug: string): Promise<string> {
+export async function uploadBase64(base64: string, slug: string): Promise<string> {
   const storage = firebaseStorage;
 
   const match = base64.match(/^data:(image\/[a-zA-Z0-9+.-]+);base64,(.*)$/);

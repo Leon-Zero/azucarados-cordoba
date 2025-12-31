@@ -1,0 +1,28 @@
+<div class="container flex">
+  <h3>
+    <ng-content></ng-content>
+  </h3>
+  <div class="image-picker">
+    <label class="upload-btn">
+      Cambiar imagen
+      <input
+        type="file"
+        accept="image/jpeg,image/png,image/webp,image/svg+xml"
+        hidden
+        (change)="onFileChange($event)"
+      />
+    </label>
+
+    <div class="preview" [class.empty]="!imageBase64()">
+      @if (imageBase64()) {
+      <img [src]="imageBase64()" />
+      } @else {
+      <span class="placeholder">Sin imagen</span>
+      }
+    </div>
+
+    @if (error()) {
+    <p class="error">{{ error() }}</p>
+    }
+  </div>
+</div>

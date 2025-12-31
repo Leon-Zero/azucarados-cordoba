@@ -4,12 +4,13 @@ import { ToastService } from '../../../core/services/toast.service';
 import { BlogService } from '../../../core/services/blog.service';
 import { Blogs } from '../../../data/interfaces/database/blog.interface';
 import { Btn } from '../../ui/btn/btn';
-import { transformQuillHtml } from '../../../core/utils/quill-glue';
+import { transformQuillHtml, uploadBase64 } from '../../../core/utils/quill-glue';
 import { Editor } from '../../components/editor/editor';
+import { ImagePicker } from '../../components/image-picker/image-picker';
 
 @Component({
   selector: 'form-blog-add',
-  imports: [ReactiveFormsModule, Btn, Editor],
+  imports: [ReactiveFormsModule, Btn, Editor, ImagePicker],
   templateUrl: './blog-add.form.html',
   styleUrl: './blog-add.form.css',
 })
@@ -23,15 +24,13 @@ export class BlogAddForm {
   _editorQ = signal<any>([]);
   object = input<any>(null);
   onEdit = input<boolean>(false);
+  imageFileBase64 = signal<string | null>(null);
 
   blogForm = this.fb.group({
     id: [null],
     title: ['', [Validators.required, Validators.minLength(8)]],
     resume: ['', Validators.required],
-    img: [
-      '',
-      [Validators.required, Validators.pattern(/(https?:\/\/.*\.(?:png|jpg|jpeg|gif|webp|svg))/i)],
-    ],
+    img: [ '', Validators.required],
     content: [''],
   });
 
@@ -58,6 +57,19 @@ export class BlogAddForm {
     });
 
     this.title.disable();
+  }
+
+  onImageSelected(data: { base64: string } | null) {
+    if (!data) {
+      this.imageFileBase64.set(null);
+      this.img.reset();
+      return;
+    }
+
+    this.imageFileBase64.set(data.base64);
+    this.img.setValue('pending-upload');
+    this.img.markAsDirty();
+    this.img.markAsTouched();
   }
 
   constructor() {
@@ -101,6 +113,12 @@ export class BlogAddForm {
       return false;
     }
     const slug = this.blogsService.generatePath(this.title.value!);
+
+    if (this.imageFileBase64()) {
+      const url = await uploadBase64(this.imageFileBase64()!, slug);
+      this.blogForm.patchValue({ img: url });
+    }
+
     try {
       const parsedHtml = await transformQuillHtml(contenido, slug);
       this.blogForm.patchValue({
