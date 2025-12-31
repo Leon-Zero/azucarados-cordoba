@@ -7,6 +7,7 @@ import { Btn } from '../../ui/btn/btn';
 import { transformQuillHtml, uploadBase64 } from '../../../core/utils/quill-glue';
 import { Editor } from '../../components/editor/editor';
 import { ImagePicker } from '../../components/image-picker/image-picker';
+import { deleteFileByUrl } from '../../../core/utils/firebase-delete';
 
 @Component({
   selector: 'form-blog-add',
@@ -30,7 +31,7 @@ export class BlogAddForm {
     id: [null],
     title: ['', [Validators.required, Validators.minLength(8)]],
     resume: ['', Validators.required],
-    img: [ '', Validators.required],
+    img: ['', Validators.required],
     content: [''],
   });
 
@@ -115,8 +116,13 @@ export class BlogAddForm {
     const slug = this.blogsService.generatePath(this.title.value!);
 
     if (this.imageFileBase64()) {
-      const url = await uploadBase64(this.imageFileBase64()!, slug);
-      this.blogForm.patchValue({ img: url });
+      const oldImageUrl = this.object()?.img;
+      const newUrl = await uploadBase64(this.imageFileBase64()!, slug);
+      this.blogForm.patchValue({ img: newUrl });
+
+      if (this.onEdit() && oldImageUrl && oldImageUrl !== newUrl) {
+        await deleteFileByUrl(oldImageUrl);
+      }
     }
 
     try {
