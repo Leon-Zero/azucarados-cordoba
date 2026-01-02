@@ -5,11 +5,10 @@ import { HeaderLayout } from '../../../shared/layouts/header/header.layout';
 import { AboutUs } from '../../../shared/components/about-us/about-us';
 import { DestacadoService } from '../../../core/services/destacado.service';
 import { Destacado } from '../../../data/interfaces/database/destacado.interface';
-import { BlogAddForm } from "../../../shared/forms/blog-add/blog-add.form";
 
 @Component({
   selector: 'app-home',
-  imports: [Card, Gallery, HeaderLayout, AboutUs, BlogAddForm],
+  imports: [Card, Gallery, HeaderLayout, AboutUs],
   templateUrl: './home.page.html',
   styleUrl: './home.page.css',
 })

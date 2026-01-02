@@ -85,11 +85,12 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -80%);
-  width: 4rem;
-  height: 4rem;
+  width: 4.5rem;
+  height: 4.5rem;
+  padding: .1rem;
   border: 1px solid var(--color-border-300);
   border-radius: 50%;
-  background-color: var(--color-dark-100);
+  background-color: var(--color-primary-100);
   filter: drop-shadow(-2px 2px 4px var(--color-border-400));
   z-index: 100;
 }

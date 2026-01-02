@@ -11,12 +11,20 @@ export async function deleteBlogFolder(slug: string): Promise<void> {
 }
 
 export async function deleteFileByUrl(url: string): Promise<void> {
-  const storage = firebaseStorage;
-
   try {
-    const fileRef = ref(storage, url);
+    const fileRef = ref(firebaseStorage, url);
     await deleteObject(fileRef);
   } catch (err) {
     console.warn('No se pudo eliminar la imagen anterior', err);
   }
+}
+
+export async function deleteDestacadoFolder(id: number): Promise<void> {
+  const storage = firebaseStorage;
+  const folderRef = ref(storage, `destacados/${id}`);
+
+  const result = await listAll(folderRef);
+  const deletions = result.items.map(item => deleteObject(item));
+
+  await Promise.all(deletions);
 }

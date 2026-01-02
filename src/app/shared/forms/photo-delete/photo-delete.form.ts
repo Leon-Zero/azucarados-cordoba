@@ -2,6 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { GalleryService } from '../../../core/services/gallery.service';
 import { Img } from '../../../data/interfaces/database/img.interface';
 import { ToastService } from '../../../core/services/toast.service';
+import { deleteFileByUrl } from '../../../core/utils/firebase-delete';
 
 @Component({
   selector: 'form-photo-delete',
@@ -27,15 +28,25 @@ export class PhotoDelete {
     });
   }
 
-  deleteImage(id: number) {
-    this.imageService.deleteImage(id).subscribe({
-      next: () => {
-        this.toastService.success('Imagen eliminada con exito!');
-        this.images.update((imgs) => imgs.filter((img) => img.id !== id));
-      }, error: (err) => {
-        this.toastService.error('ERROR al eliminar la imagen');
-        console.log('error al eliminar', err);
-      }
-    });
+  async deleteImage(id: number) {
+    const img = this.images().find((i) => i.id === id);
+    if (!img) return;
+
+    try {
+      await deleteFileByUrl(img.src);
+      this.imageService.deleteImage(id).subscribe({
+        next: () => {
+          this.toastService.success('Imagen eliminada con éxito!');
+          this.images.update((imgs) => imgs.filter((i) => i.id !== id));
+        },
+        error: (err) => {
+          this.toastService.error('ERROR al eliminar la imagen');
+          console.error(err);
+        },
+      });
+    } catch (err) {
+      console.error(err);
+      this.toastService.error('Error eliminando imagen del bucket');
+    }
   }
 }

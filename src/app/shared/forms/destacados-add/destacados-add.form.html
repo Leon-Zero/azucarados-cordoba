@@ -3,23 +3,21 @@
     <h2>Agregar Destacado</h2>
 
     <!-- ID -->
-    <div class="input-wrap">
-      @if (onEdit()) {
+    @if (onEdit()) {
+      <div class="input-wrap">
         <h4>ID: {{ id.value }}</h4>
-      }
-      <input type="hidden" formControlName="id" />
-    </div>
+        <input type="hidden" formControlName="id" />
+      </div>
+    }
 
     <!-- IMG -->
     <div class="input-wrap">
-      <input type="text" formControlName="img" id="img" placeholder=" " />
-      <label for="img">URL imagen</label>
+      <app-image-picker (imageSelected)="onImageSelected($event)" [imagePreview]="imageBase64()">
+        Seleccionar imagen para BLOG
+      </app-image-picker>
 
       @if (img.invalid && (img.dirty || img.touched)) {
-        <p class="error">
-          @if (img.errors?.['required']) { La imagen es obligatoria. }
-          @if (img.errors?.['pattern']) { URL de imagen inválida. }
-        </p>
+      <p class="error">La imagen es obligatoria.</p>
       }
     </div>
 
@@ -28,37 +26,54 @@
       <input type="text" formControlName="text" id="text" placeholder=" " />
       <label for="text">Texto</label>
 
-      @if (text.invalid && (text.dirty || text.touched)) {
+        @if (text.invalid && (text.dirty || text.touched)) {
         <p class="error">
-          @if (text.errors?.['required']) { El texto es obligatorio. }
-          @if (text.errors?.['minlength']) { Mínimo 8 caracteres. }
+          @if (text.errors?.['required']) { el texto es obligatorio obligatorio. }
         </p>
       }
+
     </div>
 
     <!-- URL -->
     <div class="input-wrap">
       <input type="text" formControlName="url" id="url" placeholder=" " />
-      <label for="url">Enlace (opcional)</label>
-
-      @if (url.invalid && (url.dirty || url.touched)) {
+      <label for="url">Enlace / URL </label>
+      
+        @if (url.invalid && (url.dirty || url.touched)) {
         <p class="error">
-          URL inválida.
+          @if (url.errors?.['required']) { El enlace es obligatorio. }
+          @if (url.errors?.['pattern']) { Debe tener un enlace valido (comenzar con https://). }
         </p>
       }
     </div>
 
-    <!-- ICONO -->
-    <div class="input-wrap">
-      <input type="text" formControlName="ico" id="ico" placeholder=" " />
-      <label for="ico">Ícono (opcional)</label>
+    <!-- ICONOS -->
+    <div class="fieldset-wrap">
+      <fieldset class="icon-fieldset">
+        <legend>Ícono (opcional)</legend>
+
+        <div class="icon-grid">
+          @for (icon of icons(); track icon.id) {
+          <div class="icon-item">
+            <input type="radio" formControlName="ico" [id]="'icon-' + icon.id" [value]="icon.src" />
+
+            <label class="icon-mark" [for]="'icon-' + icon.id">
+              <img [src]="icon.src" />
+            </label>
+          </div>
+          }
+        </div>
+      </fieldset>
+
+      
+        @if (ico.invalid && (ico.dirty || ico.touched)) {
+        <p class="error">
+          @if (ico.errors?.['required']) { Elige un icono para el Destacado. }
+        </p>
+      }
     </div>
 
-    <app-btn
-      [size]="'large'"
-      type="submit"
-      [disabled]="destacadosForm.invalid"
-    >
+    <app-btn type="submit" size="large" [disabled]="destacadosForm.invalid">
       {{ onEdit() ? 'Actualizar Destacado' : 'Subir Nuevo Destacado' }}
     </app-btn>
   </div>

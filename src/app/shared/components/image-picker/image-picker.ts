@@ -1,4 +1,4 @@
-import { Component, output, signal } from '@angular/core';
+import { Component, input, output, signal } from '@angular/core';
 import { fileToBase64, validateImageFile } from '../../../core/utils/img-file';
 
 @Component({
@@ -9,6 +9,7 @@ import { fileToBase64, validateImageFile } from '../../../core/utils/img-file';
 })
 export class ImagePicker {
 
+  imagePreview = input<string | null>(null);
   imageBase64 = signal<string | null>(null);
   error = signal<string | null>(null);
 
@@ -24,21 +25,21 @@ export class ImagePicker {
     if (error) {
       this.error.set(error);
       this.clear();
+      this.imageSelected.emit(null);
       input.value = '';
       return;
     }
 
     const base64 = await fileToBase64(file);
     this.imageBase64.set(base64);
-    this.error.set(null);
-
     this.imageSelected.emit({ base64, file });
+    this.clear();
+    input.value = '';
   }
 
   clear() {
     this.imageBase64.set(null);
     this.error.set(null);
-    this.imageSelected.emit(null);
   }
   
 }

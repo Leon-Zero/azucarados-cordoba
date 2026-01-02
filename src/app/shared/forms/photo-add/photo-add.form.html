@@ -2,7 +2,6 @@
   <div class="form-container">
     <h2>Agregar Imagen</h2>
 
-    <!-- ID (hidden, sin modo edit) -->
     <input type="hidden" formControlName="id" />
 
     <!-- TÍTULO / ALT -->
@@ -14,6 +13,22 @@
         <p class="error">
           @if (alt.errors?.['required']) { El título es obligatorio. }
           @if (alt.errors?.['minlength']) { Mínimo 5 caracteres. }
+        </p>
+      }
+    </div>
+
+     <!-- IMAGEN -->
+    <div class="input-wrap">
+      <app-image-picker 
+        [imagePreview]="imageBase64()"
+        (imageSelected)="onImageSelected($event)" >
+        Seleccionar imagen para BLOG
+      </app-image-picker>
+
+      <!-- validaciones -->
+      @if (src.invalid && (src.dirty || src.touched)) {
+        <p class="error">
+          @if (src.errors?.['required']) { La imagen es obligatoria. }
         </p>
       }
     </div>
@@ -36,19 +51,6 @@
           @if (description.errors?.['minlength']) {
             Mínimo 10 caracteres.
           }
-        </p>
-      }
-    </div>
-
-    <!-- IMAGEN -->
-    <div class="input-wrap">
-      <input type="text" formControlName="src" id="src" placeholder=" " />
-      <label for="src">URL de la imagen</label>
-
-      @if (src.invalid && (src.dirty || src.touched)) {
-        <p class="error">
-          @if (src.errors?.['required']) { La URL es obligatoria. }
-          @if (src.errors?.['pattern']) { URL de imagen inválida. }
         </p>
       }
     </div>

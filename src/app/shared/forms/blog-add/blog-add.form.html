@@ -42,7 +42,9 @@
     </div>
 
     <div class="input-wrap">
-      <app-image-picker (imageSelected)="onImageSelected($event)">
+      <app-image-picker 
+        (imageSelected)="onImageSelected($event)"
+        [imagePreview]="this.imageBase64()" >
         Seleccionar imagen para BLOG
       </app-image-picker>
 

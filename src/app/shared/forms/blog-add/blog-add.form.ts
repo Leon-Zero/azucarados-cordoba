@@ -25,7 +25,7 @@ export class BlogAddForm {
   _editorQ = signal<any>([]);
   object = input<any>(null);
   onEdit = input<boolean>(false);
-  imageFileBase64 = signal<string | null>(null);
+  imageBase64 = signal<string | null>(null);
 
   blogForm = this.fb.group({
     id: [null],
@@ -56,18 +56,18 @@ export class BlogAddForm {
       content: this.object().content,
       img: this.object().img,
     });
-
+    this.imageBase64.set(this.img.value);
     this.title.disable();
   }
 
   onImageSelected(data: { base64: string } | null) {
     if (!data) {
-      this.imageFileBase64.set(null);
+      this.imageBase64.set(null);
       this.img.reset();
       return;
     }
 
-    this.imageFileBase64.set(data.base64);
+    this.imageBase64.set(data.base64);
     this.img.setValue('pending-upload');
     this.img.markAsDirty();
     this.img.markAsTouched();
@@ -115,9 +115,9 @@ export class BlogAddForm {
     }
     const slug = this.blogsService.generatePath(this.title.value!);
 
-    if (this.imageFileBase64()) {
+    if (this.imageBase64()) {
       const oldImageUrl = this.object()?.img;
-      const newUrl = await uploadBase64(this.imageFileBase64()!, slug);
+      const newUrl = await uploadBase64(this.imageBase64()!, slug);
       this.blogForm.patchValue({ img: newUrl });
 
       if (this.onEdit() && oldImageUrl && oldImageUrl !== newUrl) {
@@ -145,6 +145,7 @@ export class BlogAddForm {
         this.blogForm.reset();
         this._editorQ.set('');
         this.editorComponent?.cleanContent();
+        this.imageBase64.set(null);
         this.blogsService.scrollToAdd();
       },
       error: () => {
@@ -160,6 +161,7 @@ export class BlogAddForm {
         this.blogForm.reset({});
         this._editorQ.set('');
         this.editorComponent?.cleanContent();
+        this.imageBase64.set(null);
         this.blogsService.scrollToDelete();
       },
       error: () => {

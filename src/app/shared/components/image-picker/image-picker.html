@@ -13,12 +13,12 @@
       />
     </label>
 
-    <div class="preview" [class.empty]="!imageBase64()">
-      @if (imageBase64()) {
-      <img [src]="imageBase64()" />
-      } @else {
-      <span class="placeholder">Sin imagen</span>
-      }
+    <div class="preview" [class.empty]="!imagePreview()">
+     @if (imagePreview()) {
+        <img [src]="imagePreview()" />
+     } @else {
+        <span class="placeholder">Sin imagen</span>
+     }
     </div>
 
     @if (error()) {
