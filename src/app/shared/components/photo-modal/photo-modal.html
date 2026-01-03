@@ -1,0 +1,32 @@
+@if (open()) {
+  <div class="modal" (click)="closeModal()">
+    <div class="modal-inner" (click)="$event.stopPropagation()">
+
+      <button class="btn-close" (click)="closeModal()" aria-label="Cerrar">
+        ✕
+      </button>
+
+      <div class="modal-main">
+        <img
+          [src]="image().src"
+          [alt]="image().alt"
+        />
+      </div>
+
+      <aside class="modal-info">
+        <span class="counter">
+          {{ index() + 1 }} / {{ total() }}
+        </span>
+
+        <h4>{{ image().alt }}</h4>
+        <p>{{ image().description }}</p>
+
+        <div class="nav">
+          <button (click)="prev()">‹</button>
+          <button (click)="next()">›</button>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+}

@@ -1,16 +1,23 @@
 <div class="galery">
-  @for (item of paginatedItems; track item.id) { @defer (on viewport) {
-  <div class="item">
-    <img [src]="item.src" [alt]="item.alt" loading="lazy" />
-    <div class="item-hov">
-      <i>
-        <strong> Zoom + </strong>
-      </i>
-    </div>
-  </div>
-  } @placeholder {
-  <div class="item placeholder">
-    <div class="loading-skeleton"></div>
-  </div>
-  } }
+  @for (item of paginatedItems(); let i = $index; track item.id) {
+    @defer (on viewport) {
+      <div class="item" (click)="open(i)">
+        <img [src]="item.src" [alt]="item.alt" loading="lazy" />
+        <div class="item-hov">
+          <i><strong> Ver + </strong></i>
+        </div>
+      </div>
+    } @placeholder {
+      <div class="item placeholder">
+        <div class="loading-skeleton"></div>
+      </div>
+    }
+  }
 </div>
+
+<app-photo-modal
+  [items]="paginatedItems()"
+  [startIndex]="selectedIndex()"
+  [open]="modalOpen()"
+  (close)="closeModal()">
+</app-photo-modal>
