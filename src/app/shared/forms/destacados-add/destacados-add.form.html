@@ -50,16 +50,18 @@
     <!-- ICONOS -->
     <div class="fieldset-wrap">
       <fieldset class="icon-fieldset">
-        <legend>Ícono (opcional)</legend>
+        <legend> Seleccionar Ícono </legend>
 
         <div class="icon-grid">
           @for (icon of icons(); track icon.id) {
           <div class="icon-item">
             <input type="radio" formControlName="ico" [id]="'icon-' + icon.id" [value]="icon.src" />
-
             <label class="icon-mark" [for]="'icon-' + icon.id">
               <img [src]="icon.src" />
             </label>
+            <span>
+              <p>{{icon.id}}</p>
+            </span>
           </div>
           }
         </div>

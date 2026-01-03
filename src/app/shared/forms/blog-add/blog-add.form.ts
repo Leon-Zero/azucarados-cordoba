@@ -113,11 +113,13 @@ export class BlogAddForm {
       this.toastService.error('El contenido no puede estar vacío');
       return false;
     }
-    const slug = this.blogsService.generatePath(this.title.value!);
 
-    if (this.imageBase64()) {
+    const slug = this.blogsService.generatePath(this.title.value!);
+    const preview = this.imageBase64();
+
+    if (preview && this.isBase64Image(preview)) {
       const oldImageUrl = this.object()?.img;
-      const newUrl = await uploadBase64(this.imageBase64()!, slug);
+      const newUrl = await uploadBase64(preview, slug);
       this.blogForm.patchValue({ img: newUrl });
 
       if (this.onEdit() && oldImageUrl && oldImageUrl !== newUrl) {
@@ -168,5 +170,9 @@ export class BlogAddForm {
         this.toastService.error('ERROR al actualizar Blog/Noticia');
       },
     });
+  }
+
+  isBase64Image(value: string): boolean {
+    return value.startsWith('data:image/');
   }
 }

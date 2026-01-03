@@ -31,10 +31,16 @@ export class DestacadosAddForm {
   });
 
   icons = signal([
-    { id: 'logo azucarados', src: '/icons/logo azucarados.svg' },
-    { id: 'news', src: '/icons/news.png' },
-    { id: 'gota', src: '/icons/gota.png' },
-    { id: 'info', src: '/icons/info.png' },
+    { id: 'Azucarados', src: '/icons/azucarados.svg' },
+    { id: 'noticias', src: '/icons/news.png' },
+    { id: 'gato', src: '/icons/cat.svg' },
+    { id: 'perro', src: '/icons/dog.svg' },
+    { id: 'especialistas', src: '/icons/smartphone.svg' },
+    { id: 'medicamentos', src: '/icons/medicine.svg' },
+    { id: 'solidaridad', src: '/icons/donation.svg' },
+    { id: 'informacion', src: '/icons/info.svg' },
+    { id: 'sitioweb', src: '/icons/internet.svg' },
+    { id: 'tutoriales', src: '/icons/videocamera.svg' },
   ]);
 
   /* GETTERS */
@@ -81,14 +87,17 @@ export class DestacadosAddForm {
     }
 
     const payload: any = this.destacadosForm.getRawValue();
+    const preview = this.imageBase64();
 
-    if (this.imageBase64()) {
+    if (preview && this.isBase64Image(preview)) {
       const folder = this.onEdit()
         ? `destacados/${this.id.value}`
         : `destacados/${crypto.randomUUID()}`;
 
-      const url = await uploadBase64(this.imageBase64()!, folder);
+      const url = await uploadBase64(preview, folder);
       payload.img = url;
+    } else {
+      payload.img = this.img.value;
     }
 
     if (this.onEdit()) {
@@ -104,6 +113,7 @@ export class DestacadosAddForm {
         this.toastService.success('Destacado guardado correctamente');
         this.destacadosForm.reset();
         this.imageBase64.set(null);
+        this.destacadosService.scrollToAdd();
       },
       error: (err) => {
         this.toastService.error('ERROR al guardar Destacado');
@@ -138,5 +148,9 @@ export class DestacadosAddForm {
     this.img.setValue('pending-upload');
     this.img.markAsDirty();
     this.img.markAsTouched();
+  }
+
+  isBase64Image(value: string): boolean {
+    return value.startsWith('data:image/');
   }
 }

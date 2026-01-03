@@ -64,4 +64,11 @@ export class DestacadoService {
       el.scrollIntoView({ behavior: 'smooth' });
     }
   }
+
+  scrollToAdd() {
+    const el = document.getElementById('form-add');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
 }
