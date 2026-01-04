@@ -3,17 +3,21 @@ import { GalleryService } from '../../../core/services/gallery.service';
 import { Img } from '../../../data/interfaces/database/img.interface';
 import { ToastService } from '../../../core/services/toast.service';
 import { deleteFileByUrl } from '../../../core/utils/firebase-delete';
+import { ModalConfirm } from "../../ui/modal-confirm/modal-confirm";
 
 @Component({
   selector: 'form-photo-delete',
-  imports: [],
+  imports: [ModalConfirm],
   templateUrl: './photo-delete.form.html',
   styleUrl: './photo-delete.form.css',
 })
 export class PhotoDelete {
   private imageService = inject(GalleryService);
   private toastService = inject(ToastService);
+
   images = signal<Img[]>([]);
+  confirmOpen = signal(false);
+  pendingDeleteId = signal<number | null>(null);
 
   ngOnInit() {
     this.loadImages();
@@ -28,25 +32,40 @@ export class PhotoDelete {
     });
   }
 
-  async deleteImage(id: number) {
+  async confirmDelete() {
+    const id = this.pendingDeleteId();
+    if (id === null) return;
+
     const img = this.images().find((i) => i.id === id);
     if (!img) return;
 
     try {
       await deleteFileByUrl(img.src);
+
       this.imageService.deleteImage(id).subscribe({
         next: () => {
           this.toastService.success('Imagen eliminada con éxito!');
           this.images.update((imgs) => imgs.filter((i) => i.id !== id));
+          this.cancelDelete();
         },
         error: (err) => {
-          this.toastService.error('ERROR al eliminar la imagen');
           console.error(err);
+          this.toastService.error('ERROR al eliminar la imagen');
         },
       });
     } catch (err) {
       console.error(err);
       this.toastService.error('Error eliminando imagen del bucket');
     }
+  }
+
+   requestDelete(id: number) {
+    this.pendingDeleteId.set(id);
+    this.confirmOpen.set(true);
+  }
+
+  cancelDelete() {
+    this.confirmOpen.set(false);
+    this.pendingDeleteId.set(null);
   }
 }

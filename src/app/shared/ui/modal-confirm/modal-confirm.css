@@ -1,0 +1,62 @@
+.confirm-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.confirm-box {
+  background: var(--color-bg-100);
+  border: 2px solid var(--color-border-300);
+  border-radius: 14px;
+  padding: 24px;
+  width: min(90%, 420px);
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.confirm-box h3 {
+  margin: 0 0 12px;
+  color: var(--color-dark);
+}
+
+.confirm-box p {
+  color: var(--color-dark);
+  margin-bottom: 20px;
+}
+
+.confirm-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-confirm {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background: var(--color-danger);
+  color: var(--color-blank);
+}
+
+.btn-confirm:hover {
+  filter: brightness(1.05);
+}
+
+.btn-cancel {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background: var(--color-tertiary-300);
+  color: var(--color-dark);
+}
+
+.btn-cancel:hover {
+  background: var(--color-tertiary-500);
+}

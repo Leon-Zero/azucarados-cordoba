@@ -174,9 +174,8 @@ input:disabled {
 
 
 @media screen and (max-width: 620px) {
-  form {
-    width: 95%;
-    height: fit-content;
+   form {
+    width: clamp(28rem, 60rem, 100vw);
     padding: 0;
   }
 }

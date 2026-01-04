@@ -1,0 +1,32 @@
+@if (open()) {
+  <div class="confirm-backdrop">
+    <div class="confirm-box">
+      <h3>{{ title() }}</h3>
+
+      <p>{{ message() }}</p>
+
+      <div class="confirm-actions">
+        <button class="btn-cancel" (click)="onCancel()">
+          {{ cancelText() }}
+        </button>
+
+        <button class="btn-confirm" (click)="onConfirm()">
+          {{ confirmText() }}
+        </button>
+      </div>
+    </div>
+  </div>
+}
+
+
+<!-- ejemplo de uso 
+
+<app-modal-confirm 
+  [open]="confirmOpen()"
+  title="¿Eliminar elemento?"
+  [message]="'¿Estás seguro de eliminar el elemento con ID ' + pendingDeleteId() + '?'"
+  confirmText="Eliminar"
+  cancelText="Cancelar"
+  (confirm)="confirmDelete()"
+  (cancel)="cancelDelete()" >
+</app-modal-confirm> -->

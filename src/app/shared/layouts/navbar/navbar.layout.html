@@ -55,23 +55,33 @@
     <div class="menu-content" [ngClass]="{ 'active-menu': isOpen(), 'closed-menu': !isOpen() }">
       <ul>
         <li>
-          <a routerLink="/home" fragment="about-us" (click)="isOpen.set(false)"> sobre nostros </a>
+          <a routerLink="/home" routerLinkActive="linked" fragment="about-us" (click)="isOpen.set(false)"> sobre nostros </a>
         </li>
         <li>
-          <a routerLink="/donaciones" (click)="isOpen.set(false)"> Donaciones </a>
+          <a routerLink="/donaciones" routerLinkActive="linked" (click)="isOpen.set(false)"> Donaciones </a>
         </li>
         <li>
-          <a routerLink="blog" (click)="isOpen.set(false)"> blog </a>
+          <a routerLink="blog" routerLinkActive="linked" (click)="isOpen.set(false)"> blog </a>
         </li>
         <li>
-          <a routerLink="nuestros-peludos" (click)="isOpen.set(false)"> nuestros guerreros </a>
+          <a routerLink="nuestros-peludos" routerLinkActive="linked" (click)="isOpen.set(false)"> nuestros guerreros </a>
         </li>
         <li>
-          <a routerLink="contacto" (click)="isOpen.set(false)"> contacto </a>
+          <a routerLink="contacto" routerLinkActive="linked" (click)="isOpen.set(false)"> contacto </a>
         </li>
-        <li>
-          <a routerLink="admin"> login </a>
-        </li>
+
+        @if (authService.isLogged()) {
+          <li>
+              <a routerLink="admin" routerLinkActive="linked"> Modo Edición</a>
+          </li>
+          <li>
+              <a (click)="logOut()"> salir </a>
+          </li>
+        } @else {
+          <li>
+            <a routerLink="login" routerLinkActive="linked"> Login </a>
+          </li>
+          }
       </ul>
     </div>
   </div>

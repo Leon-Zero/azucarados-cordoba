@@ -7,11 +7,22 @@
       <span class="id">ID: {{ dest.id }}</span>
       <span class="id">{{ dest.text }}</span>
       @if (!onEdit()) {
-      <button class="btn-delete" (click)="deleteDestacado(dest.id)">Eliminar</button>
+      <button class="btn-delete" (click)="requestDelete(dest.id)">Eliminar</button>
       } @if (onEdit()) {
       <button class="btn-edit" (click)="getForId(dest.id)">editar</button>
       }
     </div>
+    
   </div>
   }
 </div>
+
+<app-modal-confirm
+  [open]="confirmOpen()"
+  title="¿Eliminar destacado?"
+  [message]="'¿Estás seguro de eliminar el destacado con ID ' + pendingDeleteId() + '?'"
+  confirmText="Eliminar"
+  cancelText="Cancelar"
+  (confirm)="confirmDelete()"
+  (cancel)="cancelDelete()" >
+</app-modal-confirm>

@@ -7,12 +7,22 @@
       <span class="id">ID: {{ blog.id }}</span>
       <span class="id">{{ blog.title }}</span>
       @if (!onEdit()) {
-      <button class="btn-delete" (click)="deleteBlog(blog.id, blog.title)">Eliminar</button>
+      <button class="btn-delete" (click)="requestDelete(blog.id, blog.title)" >Eliminar</button>
       }
       @if (onEdit()) {
-      <button class="btn-edit" (click)="getForId(blog.id)">editar</button>
+      <button class="btn-edit" (click)="getForId(blog.id)" >editar</button>
       }
     </div>
   </div>
   }
 </div>
+
+<app-modal-confirm  
+  [open]="confirmOpen()"
+  title="¿Eliminar blog?"
+  [message]="'¿Estás seguro de eliminar el blog: ' + pendingDeleteTitle() + ', (ID: ' + pendingDeleteId() + ')?'"
+  confirmText="Eliminar"
+  cancelText="Cancelar"
+  (confirm)="confirmDelete()"
+  (cancel)="cancelDelete()" >
+</app-modal-confirm>

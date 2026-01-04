@@ -176,7 +176,7 @@ textarea {
 
 @media screen and (max-width: 620px) {
   form {
-    width: 24rem;
+    width: clamp(26rem, 60rem, 100vw);
     padding: 0;
   }
 }
