@@ -2,6 +2,7 @@ section {
   margin: 2rem auto;
   padding: 1 2rem;
   text-align: center;
+  width: 95%;
 }
 .option {
   flex-flow: column nowrap;

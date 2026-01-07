@@ -9,8 +9,8 @@ nav {
   place-items: center;
 }
 
-h4{
-  font-size: .8rem;
+h4 {
+  font-size: 0.8rem;
 }
 
 a {
@@ -177,7 +177,7 @@ a {
   opacity: 1;
 }
 
-@media screen and (max-width: 1020px) {
+@media screen and (max-width: 900px) {
   nav {
     height: 8rem;
   }
@@ -195,6 +195,13 @@ a {
     padding: 0 1.2rem;
   }
   .menu-content {
-  height: 23rem;
+    height: 23rem;
+  }
+
+  .logo {
+    width: 8rem;
+  }
+  h4 {
+    font-size: 1.2rem;
   }
 }

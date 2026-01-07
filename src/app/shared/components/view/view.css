@@ -1,18 +1,18 @@
 .viewer {
-  width: 100%;
-  max-width: 95vw;
+  width: clamp(25rem, 90% + 10rem, 90vw);
   height: auto;
   border: 1px solid var(--color-border-100);
   border-radius: 2rem 0 2rem 0;
   background: var(--color-blank);
   box-shadow: 1px -1px 4px 2px var(--color-border-100), 2px -2px 8px 4px var(--color-border-300);
   margin: 0 auto;
-  padding: .1rem;
+  padding: .2rem;
 }
 quill-view-html {
   display: block;
   margin: 0 auto;
-  width: clamp(24rem, 100%, 98vw);
+  width: 100%;
+  max-width: 98vw;
   padding: .5rem;
 }
 
@@ -40,10 +40,12 @@ quill-view-html {
 
 @media screen and (max-width: 620px) {
  .viewer {
+  width: 98%;
   padding: 0;
-  max-width: 98vw;
 }
 quill-view-html {
-  padding: .2rem;
+  width: 95%;
+  max-width: 95vw;
+  padding: .1rem;
 }
 }

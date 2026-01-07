@@ -154,7 +154,7 @@ textarea:not(:placeholder-shown):invalid {
 
 @media screen and (max-width: 620px) {
   form {
-    width: clamp(28rem, 60rem, 100vw);
+    width: clamp(25rem, 50rem, 95vw);
     height: fit-content;
     padding: 0;
   }
