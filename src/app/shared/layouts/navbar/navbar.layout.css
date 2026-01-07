@@ -171,7 +171,7 @@ a {
 }
 .active-menu {
   display: block;
-  height: 20.5rem;
+  height: 20rem;
 }
 .active-menu ul {
   opacity: 1;
@@ -179,15 +179,22 @@ a {
 
 @media screen and (max-width: 1020px) {
   nav {
-    height: 5.5rem;
+    height: 8rem;
   }
   .nav-right .list-content {
     display: none;
   }
   .menu-burguer {
     display: block;
+    width: 32px;
+    height: 32px;
   }
   .nav-container {
+    width: 100%;
     grid-area: 1 / 1 / 2 / 13;
+    padding: 0 1.2rem;
+  }
+  .menu-content {
+  height: 23rem;
   }
 }

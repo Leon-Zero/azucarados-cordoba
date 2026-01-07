@@ -5,10 +5,6 @@
 @import '../src/app/shared/features/animations/_scroll.css';
 
 
-/* * {
-  outline: dashed 1px red;
-} */
-
 *,
 *::before,
 *::after {
@@ -18,11 +14,13 @@
 }
 
 html {
-  scroll-behavior: smooth;
+ scroll-behavior: smooth;
+ font-size: clamp(0.625rem, 0.3581rem + 1.0169vw, 1.375rem);
 }
 body {
   background-color: var(--color-bg-100);
   min-height: 100dvh;
+  width: 100%;
 }
 
 .bg {
@@ -30,7 +28,7 @@ body {
   height: 100%;
   background-image: url('/imabg.jpg');
   background-repeat: repeat;
-  background-size: 20rem 20rem;
+  background-size: 18rem 18rem;
   position: fixed;
   background-size: cover;
   background-position: center;
@@ -71,6 +69,6 @@ section {
     padding: 1rem 0.5rem;
   }
   .spacing {
-  height: 3.5rem;
+  height: 4rem;
 }
 }

@@ -102,24 +102,15 @@
 
 /* botón reiniciar */
 .btn-reset {
-  width: 2.5rem;
-  aspect-ratio: 1/1;
-  padding: 6px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  flex: 0 1 20%;
   background: var(--color-tertiary-200);
   border: 1px solid var(--color-border-300);
-  border-radius: 8px;
   color: var(--color-dark);
-  cursor: pointer;
   box-shadow: 0 2px 6px var(--color-dark-100);
   transition: transform 0.12s ease, background 0.12s ease;
 }
 
 .btn-reset svg {
-  width: 25px;
-  height: 25px;
   fill: currentColor;
 }
 
@@ -153,8 +144,8 @@
 @media (max-width: 620px) {
   .crud-toolbar {
     gap: 1rem;
-    padding: 0 1rem;
-    width: 25rem;
+    padding: 0 .5rem;
+    width: 90%;
     justify-content: space-evenly;
   }
   .btn {

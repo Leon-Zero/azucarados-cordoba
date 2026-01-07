@@ -46,6 +46,7 @@ quill-editor {
   padding: .5rem;
   height: fit-content;
 }
+
 @media screen and (max-width: 620px) {
   section{
     padding-inline: 0;

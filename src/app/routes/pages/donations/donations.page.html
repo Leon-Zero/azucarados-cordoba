@@ -23,8 +23,10 @@
       </app-text-float>
     </div>
 
-    <app-btn [size]="'large'">DONAR MEDICAMENTOS</app-btn>
-  </div>
+    <app-btn [size]="'large'"
+      (click)="enviarWhatsApp('Hola!, tengo medicamentos para la diabetes y me gustaría donarlos al grupo')" >
+      DONAR MEDICAMENTOS</app-btn>
+    </div>
 
   <div class="container">
     <h2>Donaciones de Dinero</h2>
@@ -41,6 +43,10 @@
       </ng-template>
     </app-text-float>
 
-    <app-btn [size]="'large'">DONAR EFECTIVO</app-btn>
+    <app-btn [size]="'large'"
+        (click)="enviarWhatsApp('Hola!, me gustaría donar efectivo para ayudar a las mascotas diabeticas!')" >
+        DONAR EFECTIVO
+    </app-btn>
+
   </div>
 </section>
