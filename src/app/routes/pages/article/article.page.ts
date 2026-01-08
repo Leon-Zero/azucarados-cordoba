@@ -22,7 +22,7 @@ export class ArticlePage {
 
     this.blogService.getAllBlogs().subscribe(blogs => {
       const match = blogs.find(b =>
-        this.blogService.generatePath(b.title + b.id) === path
+        this.blogService.generatePath(b.title) === path
       );
 
       this.blog.set(match ?? null);

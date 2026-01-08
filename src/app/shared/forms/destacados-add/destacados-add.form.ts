@@ -5,7 +5,7 @@ import { Btn } from '../../ui/btn/btn';
 import { Destacado } from '../../../data/interfaces/database/destacado.interface';
 import { ToastService } from '../../../core/services/toast.service';
 import { ImagePicker } from '../../components/image-picker/image-picker';
-import { uploadBase64 } from '../../../core/utils/quill-glue';
+import { QuillGlueService } from '../../../core/services/quillGlue.service';
 
 @Component({
   selector: 'form-destacados-add',
@@ -17,6 +17,7 @@ export class DestacadosAddForm {
   private fb = inject(FormBuilder);
   private destacadosService = inject(DestacadoService);
   private toastService = inject(ToastService);
+  private quillGlueService = inject(QuillGlueService);
 
   object = input<any>(null);
   onEdit = input<boolean>(false);
@@ -90,21 +91,13 @@ export class DestacadosAddForm {
     const preview = this.imageBase64();
 
     if (preview && this.isBase64Image(preview)) {
-      const folder = this.onEdit()
-        ? `destacados/${this.id.value}`
-        : `destacados/${crypto.randomUUID()}`;
-
-      const url = await uploadBase64(preview, folder);
+      const url = await this.quillGlueService.uploadBase64(preview, 'destacados');
       payload.img = url;
     } else {
       payload.img = this.img.value;
     }
 
-    if (this.onEdit()) {
-      this.sendPut(this.id.value!, payload);
-    } else {
-      this.sendPost(payload);
-    }
+    this.onEdit() ? this.sendPut(this.id.value!, payload) : this.sendPost(payload);
   }
 
   sendPost(data: Destacado) {

@@ -44,7 +44,7 @@ export class BlogService {
   }
 
   getBlogForId(id: number) {
-    return this.http.get<Blogs[]>(`${this.baseUrl}/${id}`);
+    return this.http.get<Blogs>(`${this.baseUrl}/${id}`);
   }
 
   addBlog(blog: Blogs) {

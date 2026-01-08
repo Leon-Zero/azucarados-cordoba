@@ -34,7 +34,7 @@ export class DestacadoService {
   }
 
   getDestacoForId(id: number) {
-    return this.http.get<Destacado[]>(`${this.baseUrl}/${id}`)
+    return this.http.get<Destacado>(`${this.baseUrl}/${id}`)
   }
 
   addDestacado(dest: Destacado) {

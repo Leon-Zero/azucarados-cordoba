@@ -4,7 +4,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { GalleryService } from '../../../core/services/gallery.service';
 import { ToastService } from '../../../core/services/toast.service';
 import { ImagePicker } from '../../components/image-picker/image-picker';
-import { uploadBase64 } from '../../../core/utils/quill-glue';
+import { QuillGlueService } from '../../../core/services/quillGlue.service';
 
 @Component({
   selector: 'form-photo-add',
@@ -16,6 +16,7 @@ export class PhotoAddForm {
   private fb = inject(FormBuilder);
   private imgService = inject(GalleryService);
   private toastService = inject(ToastService);
+  private quillGlueService = inject(QuillGlueService);
 
   imageBase64 = signal<string | null>(null);
 
@@ -45,20 +46,21 @@ export class PhotoAddForm {
       this.imgForm.markAllAsTouched();
       return;
     }
+
     if (!this.imageBase64()) {
       this.toastService.error('Debe seleccionar una imagen');
       return;
     }
 
     try {
-      const url = await uploadBase64(this.imageBase64()!, 'gallery');
+      const url = await this.quillGlueService.uploadBase64(this.imageBase64()!, 'gallery');
       this.imgForm.patchValue({ src: url });
+
       const payload: any = this.imgForm.getRawValue();
 
       this.imgService.addImage(payload).subscribe({
         next: () => {
           this.toastService.success('Imagen añadida correctamente');
-          this.src.setValue(null);
           this.imgForm.reset();
           this.imageBase64.set(null);
         },

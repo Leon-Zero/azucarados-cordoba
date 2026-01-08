@@ -1,8 +1,7 @@
 import { Component, inject, input, output, signal } from '@angular/core';
 import { DestacadoService } from '../../../core/services/destacado.service';
 import { ToastService } from '../../../core/services/toast.service';
-import { deleteDestacadoFolder } from '../../../core/utils/firebase-delete';
-import { ModalConfirm } from "../../ui/modal-confirm/modal-confirm";
+import { ModalConfirm } from '../../ui/modal-confirm/modal-confirm';
 
 @Component({
   selector: 'form-destacados-delete',
@@ -55,24 +54,17 @@ export class DestacadosDeleteForm {
     const id = this.pendingDeleteId();
     if (id === null) return;
 
-    try {
-      await deleteDestacadoFolder(id);
-
-      this.destacadoService.deleteDestacado(id).subscribe({
-        next: () => {
-          this.toastService.success('Destacado eliminado con éxito!');
-          this.destacadoService.updateDestacado(id);
-          this.cancelDelete();
-        },
-        error: (err) => {
-          this.toastService.error('ERROR al eliminar destacado');
-          console.error(err);
-        },
-      });
-    } catch (err) {
-      console.error('Error eliminando imágenes del destacado', err);
-      this.toastService.error('Error eliminando imágenes del destacado');
-    }
+    this.destacadoService.deleteDestacado(id).subscribe({
+      next: () => {
+        this.toastService.success('Destacado eliminado con éxito!');
+        this.destacadoService.updateDestacado(id);
+        this.cancelDelete();
+      },
+      error: (err) => {
+        console.error(err);
+        this.toastService.error('ERROR al eliminar destacado');
+      },
+    });
   }
 
   requestDelete(id: number) {

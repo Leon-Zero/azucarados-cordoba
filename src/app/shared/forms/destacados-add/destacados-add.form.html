@@ -30,6 +30,9 @@
         <p class="error">
           @if (text.errors?.['required']) { el texto es obligatorio obligatorio. }
         </p>
+        <p class="error">
+          @if (text.errors?.['minLength']) { el texto debe contener 8 o mas caracteres. }
+        </p>
       }
 
     </div>

@@ -1,8 +1,7 @@
 import { Component, inject, input, output, signal } from '@angular/core';
 import { BlogService } from '../../../core/services/blog.service';
 import { ToastService } from '../../../core/services/toast.service';
-import { deleteBlogFolder } from '../../../core/utils/firebase-delete';
-import { ModalConfirm } from "../../ui/modal-confirm/modal-confirm";
+import { ModalConfirm } from '../../ui/modal-confirm/modal-confirm';
 
 @Component({
   selector: 'form-blog-delete',
@@ -11,7 +10,6 @@ import { ModalConfirm } from "../../ui/modal-confirm/modal-confirm";
   styleUrl: './blog-delete.form.css',
 })
 export class BlogDeleteForm {
-
   private blogService = inject(BlogService);
   private toastService = inject(ToastService);
   object = output<any>();
@@ -55,27 +53,19 @@ export class BlogDeleteForm {
 
   async confirmDelete() {
     const id = this.pendingDeleteId();
-    const title = this.pendingDeleteTitle();
-    if (id === null || !title) return;
-    const slug = this.blogService.generatePath(title);
+    if (id === null) return;
 
-    try {
-      await deleteBlogFolder(slug);
-      this.blogService.deleteBlog(id).subscribe({
-        next: () => {
-          this.toastService.success('Blog / Noticia eliminado con éxito!');
-          this.blogService.updateBlogs(id);
-          this.cancelDelete();
-        },
-        error: (err) => {
-          this.toastService.error('ERROR al eliminar Blog / Noticia');
-          console.error(err);
-        },
-      });
-    } catch (err) {
-      console.error('Error eliminando imágenes del bucket', err);
-      this.toastService.error('Error eliminando imágenes del blog');
-    }
+    this.blogService.deleteBlog(id).subscribe({
+      next: () => {
+        this.toastService.success('Blog / Noticia eliminado con éxito!');
+        this.blogService.updateBlogs(id);
+        this.cancelDelete();
+      },
+      error: (err) => {
+        console.error(err);
+        this.toastService.error('ERROR al eliminar Blog / Noticia');
+      },
+    });
   }
 
   requestDelete(id: number, title: string) {

@@ -1,6 +1,11 @@
 <form [formGroup]="blogForm" (ngSubmit)="onSubmit()">
   <div class="form-container">
-    <h2>Agregar Blog/Noticia</h2>
+
+    @if (onEdit()) {
+      <h2>Editar Blog/Noticia</h2>
+    } @else {
+      <h2>Agregar Blog/Noticia</h2>
+    }
 
     <!-- id provicional  -->
     @if (onEdit()) {
@@ -56,11 +61,14 @@
       }
     </div>
 
-    <app-editor 
-      #editor
-      [initialContent]="object() ? object().content : ''"
-      (editorQ)="_editorQ.set($event)">
-    </app-editor>
+
+    <div class="input-wrap">
+      <app-editor 
+        #editor
+        [initialContent]="object() ? object().content : ''"
+        (editorQ)="_editorQ.set($event)">
+      </app-editor>
+    </div>
 
     <app-btn [size]="'large'" type="submit" [disabled]="blogForm.invalid">
       {{ onEdit() ? 'Actualizar Blog/Noticia' : 'Subir Nuevo Blog/Noticia' }}

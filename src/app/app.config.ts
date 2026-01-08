@@ -4,10 +4,6 @@ import {
   provideZonelessChangeDetection,
 } from '@angular/core';
 
-import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
-import { provideStorage, getStorage } from '@angular/fire/storage';
-import { environment } from '../environments/environment';
-
 import { provideRouter, withInMemoryScrolling, withViewTransitions } from '@angular/router';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import {provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
@@ -19,8 +15,6 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideStorage(() => getStorage()),
     provideRouter(
       routes,
       withViewTransitions(),

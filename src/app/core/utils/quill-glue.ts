@@ -1,194 +1,214 @@
-import { ref, uploadString, getDownloadURL } from 'firebase/storage';
-import { firebaseStorage } from './firebase-storage';
+// import { environment } from '../../../environments/environment';
 
-// Base64 a Firebase Storage
-export async function uploadBase64(base64: string, slug: string): Promise<string> {
-  const storage = firebaseStorage;
+// export async function uploadBase64(base64: string, slug: string): Promise<string> {
 
-  const match = base64.match(/^data:(image\/[a-zA-Z0-9+.-]+);base64,(.*)$/);
-  if (!match) {
-    throw new Error('Formato base64 inválido');
-  }
+//   const token = localStorage.getItem('token');
 
-  const mimeType = match[1];
-  const extension = mimeType.split('/')[1] ?? 'png';
+//   const match = base64.match(/^data:(image\/[a-zA-Z0-9+.-]+);base64,(.*)$/);
+//   if (!match) throw new Error('Formato base64 inválido');
 
-  const fileName = `blogs/${slug}/${crypto.randomUUID()}.${extension}`;
-  const storageRef = ref(storage, fileName);
+//   const mimeType = match[1];
+//   const binary = atob(match[2]);
+//   const array = new Uint8Array(binary.length);
 
-  await uploadString(storageRef, base64, 'data_url', {
-    contentType: mimeType,
-  });
+//   for (let i = 0; i < binary.length; i++) {
+//     array[i] = binary.charCodeAt(i);
+//   }
 
-  return await getDownloadURL(storageRef);
-}
+//   const file = new File([array], `image.${mimeType.split('/')[1]}`, {
+//     type: mimeType,
+//   });
 
-// imagenes base64
+//   const formData = new FormData();
+//   formData.append('file', file);
+//   formData.append('path', slug);
 
-async function processImages(doc: Document, slug: string): Promise<void> {
-  const images = Array.from(doc.querySelectorAll('img'));
+//   const res = await fetch(`${environment.urlBack}/storage/upload`, {
+//     method: 'POST',
+//     headers: {
+//       Authorization: `Bearer ${token}`,
+//     },
+//     body: formData,
+//   });
 
-  for (const img of images) {
-    const src = img.getAttribute('src') ?? '';
-    if (!src.startsWith('data:image/')) continue;
+//   if (!res.ok) {
+//     throw new Error('Error subiendo imagen al backend');
+//   }
 
-    try {
-      const url = await uploadBase64(src, slug);
-      img.setAttribute('src', url);
-      img.removeAttribute('data-src');
-    } catch (err) {
-      console.error('Error subiendo imagen a Firebase', err);
-    }
-  }
-}
+//   return await res.text();
+// }
 
-// Iframe para yotube
 
-function parseYouTube(urlStr: string): { id: string | null; qs: string } {
-  try {
-    const url = urlStr.startsWith('http')
-      ? new URL(urlStr)
-      : new URL(urlStr, 'https://example.com');
+// /* --------------------------------------------- */
+// /* IMÁGENES BASE64 EN QUILL */
+// /* --------------------------------------------- */
 
-    const host = url.hostname.toLowerCase();
-    let id: string | null = null;
+// async function processImages(doc: Document, slug: string): Promise<void> {
+//   const images = Array.from(doc.querySelectorAll('img'));
 
-    if (host.includes('youtu.be')) {
-      id = url.pathname.split('/').filter(Boolean)[0] ?? null;
-    } else if (host.includes('youtube.com')) {
-      if (url.pathname.startsWith('/watch')) {
-        id = url.searchParams.get('v');
-      } else if (url.pathname.startsWith('/embed/')) {
-        id = url.pathname.split('/embed/')[1]?.split('/')[0] ?? null;
-      } else {
-        id = url.searchParams.get('v');
-      }
-    }
+//   for (const img of images) {
+//     const src = img.getAttribute('src') ?? '';
+//     if (!src.startsWith('data:image/')) continue;
 
-    const keep = ['si', 'start', 't', 'autoplay', 'rel', 'controls', 'mute'];
-    const qs = Array.from(url.searchParams.entries())
-      .filter(([k]) => k !== 'v' && keep.includes(k))
-      .map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(v)}`)
-      .join('&');
+//     try {
+//       const url = await uploadBase64(src, slug);
+//       img.setAttribute('src', url);
+//       img.removeAttribute('data-src');
+//     } catch (err) {
+//       console.error('Error subiendo imagen al backend', err);
+//     }
+//   }
+// }
 
-    return { id, qs };
-  } catch {
-    return { id: null, qs: '' };
-  }
-}
+// /* --------------------------------------------- */
+// /* YOUTUBE IFRAME */
+// /* --------------------------------------------- */
 
-function processYouTubeEmbeds(doc: Document): void {
-  const anchors = Array.from(doc.querySelectorAll('a'));
+// function parseYouTube(urlStr: string): { id: string | null; qs: string } {
+//   try {
+//     const url = urlStr.startsWith('http')
+//       ? new URL(urlStr)
+//       : new URL(urlStr, 'https://example.com');
 
-  anchors.forEach((a) => {
-    const href = a.getAttribute('href') ?? a.textContent ?? '';
-    if (!/youtube\.com|youtu\.be/i.test(href)) return;
+//     const host = url.hostname.toLowerCase();
+//     let id: string | null = null;
 
-    const { id, qs } = parseYouTube(href.trim());
-    if (!id) return;
+//     if (host.includes('youtu.be')) {
+//       id = url.pathname.split('/').filter(Boolean)[0] ?? null;
+//     } else if (host.includes('youtube.com')) {
+//       if (url.pathname.startsWith('/watch')) {
+//         id = url.searchParams.get('v');
+//       } else if (url.pathname.startsWith('/embed/')) {
+//         id = url.pathname.split('/embed/')[1]?.split('/')[0] ?? null;
+//       } else {
+//         id = url.searchParams.get('v');
+//       }
+//     }
 
-    const src = `https://www.youtube.com/embed/${encodeURIComponent(id)}${qs ? '?' + qs : ''}`;
+//     const keep = ['si', 'start', 't', 'autoplay', 'rel', 'controls', 'mute'];
+//     const qs = Array.from(url.searchParams.entries())
+//       .filter(([k]) => k !== 'v' && keep.includes(k))
+//       .map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(v)}`)
+//       .join('&');
 
-    const iframe = doc.createElement('iframe');
-    iframe.style.cssText = 'width:100%;height:100%;border:0;position:absolute;top:0;left:0;';
-    iframe.setAttribute('src', src);
-    iframe.setAttribute('allowfullscreen', '');
+//     return { id, qs };
+//   } catch {
+//     return { id: null, qs: '' };
+//   }
+// }
 
-    const wrapper = doc.createElement('div');
-    wrapper.className = 'quill-video-wrapper';
-    wrapper.style.cssText =
-      'position:relative;aspect-ratio:16/9;overflow:hidden;max-width:600px;margin:1rem auto;';
-    wrapper.appendChild(iframe);
+// function processYouTubeEmbeds(doc: Document): void {
+//   const anchors = Array.from(doc.querySelectorAll('a'));
 
-    a.replaceWith(wrapper);
-  });
-}
+//   anchors.forEach((a) => {
+//     const href = a.getAttribute('href') ?? a.textContent ?? '';
+//     if (!/youtube\.com|youtu\.be/i.test(href)) return;
 
-// salto de linea <p>
+//     const { id, qs } = parseYouTube(href.trim());
+//     if (!id) return;
 
-function isTrulyEmptyP(p: Element): boolean {
-  if (p.tagName !== 'P') return false;
-  if (p.querySelector('img')) return false;
+//     const src = `https://www.youtube.com/embed/${encodeURIComponent(id)}${qs ? '?' + qs : ''}`;
 
-  const innerHtml = (p.innerHTML || '').replace(/&nbsp;|\u00A0|\u200B/g, '').trim();
-  const text = (p.textContent || '').replace(/\u00A0|\u200B/g, '').trim();
+//     const iframe = doc.createElement('iframe');
+//     iframe.style.cssText = 'width:100%;height:100%;border:0;position:absolute;top:0;left:0;';
+//     iframe.setAttribute('src', src);
+//     iframe.setAttribute('allowfullscreen', '');
 
-  return (innerHtml === '' || innerHtml.toLowerCase() === '<br>') && text === '';
-}
+//     const wrapper = doc.createElement('div');
+//     wrapper.className = 'quill-video-wrapper';
+//     wrapper.style.cssText =
+//       'position:relative;aspect-ratio:16/9;overflow:hidden;max-width:600px;margin:1rem auto;';
+//     wrapper.appendChild(iframe);
 
-function processParagraphSpacing(doc: Document): void {
-  const bodyChildren = Array.from(doc.body.childNodes);
-  const buffer: Element[] = [];
+//     a.replaceWith(wrapper);
+//   });
+// }
 
-  function insertReplacementBefore(referenceNode: Node | null, count: number) {
-    let repl: Node;
+// /* --------------------------------------------- */
+// /* PÁRRAFOS VACÍOS / ESPACIADO */
+// /* --------------------------------------------- */
 
-    if (count === 1) {
-      repl = doc.createElement('br');
-    } else if (count === 2) {
-      const d = doc.createElement('div');
-      d.innerHTML = '<br><br>';
-      repl = d;
-    } else {
-      const d = doc.createElement('div');
-      d.className = `quill-gap quill-gap-${count}`;
-      d.style.height = `${count * 0.7}rem`;
-      repl = d;
-    }
+// function isTrulyEmptyP(p: Element): boolean {
+//   if (p.tagName !== 'P') return false;
+//   if (p.querySelector('img')) return false;
 
-    if (referenceNode && referenceNode.parentNode) {
-      referenceNode.parentNode.insertBefore(repl, referenceNode);
-    } else {
-      doc.body.appendChild(repl);
-    }
-  }
+//   const innerHtml = (p.innerHTML || '')
+//     .replace(/&nbsp;|\u00A0|\u200B/g, '')
+//     .trim();
 
-  for (let i = 0; i < bodyChildren.length; i++) {
-    const node = bodyChildren[i];
+//   const text = (p.textContent || '')
+//     .replace(/\u00A0|\u200B/g, '')
+//     .trim();
 
-    if (node.nodeType === Node.ELEMENT_NODE && (node as Element).tagName === 'P') {
-      const pEl = node as Element;
-      if (isTrulyEmptyP(pEl)) {
-        buffer.push(pEl);
-        continue;
-      } else {
-        if (buffer.length > 0) {
-          buffer.forEach((el) => el.remove());
-          insertReplacementBefore(node, buffer.length);
-          buffer.length = 0;
-        }
-        continue;
-      }
-    } else {
-      if (buffer.length > 0) {
-        buffer.forEach((el) => el.remove());
-        insertReplacementBefore(node, buffer.length);
-        buffer.length = 0;
-      }
-    }
-  }
+//   return (innerHtml === '' || innerHtml.toLowerCase() === '<br>') && text === '';
+// }
 
-  if (buffer.length > 0) {
-    buffer.forEach((el) => el.remove());
-    insertReplacementBefore(null, buffer.length);
-  }
-}
+// function processParagraphSpacing(doc: Document): void {
+//   const bodyChildren = Array.from(doc.body.childNodes);
+//   const buffer: Element[] = [];
 
-// parseo de html
+//   function insertReplacementBefore(referenceNode: Node | null, count: number) {
+//     let repl: Node;
 
-export async function transformQuillHtml(quillHtml: string, slug: string): Promise<string> {
-  if (!quillHtml) return '';
+//     if (count === 1) {
+//       repl = doc.createElement('br');
+//     } else if (count === 2) {
+//       const d = doc.createElement('div');
+//       d.innerHTML = '<br><br>';
+//       repl = d;
+//     } else {
+//       const d = doc.createElement('div');
+//       d.className = `quill-gap quill-gap-${count}`;
+//       d.style.height = `${count * 0.7}rem`;
+//       repl = d;
+//     }
 
-  if (typeof DOMParser === 'undefined') {
-    return quillHtml;
-  }
+//     if (referenceNode && referenceNode.parentNode) {
+//       referenceNode.parentNode.insertBefore(repl, referenceNode);
+//     } else {
+//       doc.body.appendChild(repl);
+//     }
+//   }
 
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(quillHtml, 'text/html');
+//   for (const node of bodyChildren) {
+//     if (node.nodeType === Node.ELEMENT_NODE && (node as Element).tagName === 'P') {
+//       const pEl = node as Element;
+//       if (isTrulyEmptyP(pEl)) {
+//         buffer.push(pEl);
+//         continue;
+//       }
+//     }
 
-  await processImages(doc, slug);
-  processYouTubeEmbeds(doc);
-  processParagraphSpacing(doc);
+//     if (buffer.length > 0) {
+//       buffer.forEach((el) => el.remove());
+//       insertReplacementBefore(node, buffer.length);
+//       buffer.length = 0;
+//     }
+//   }
 
-  return doc.body.innerHTML;
-}
+//   if (buffer.length > 0) {
+//     buffer.forEach((el) => el.remove());
+//     insertReplacementBefore(null, buffer.length);
+//   }
+// }
+
+// export async function transformQuillHtml(
+//   quillHtml: string,
+//   slug: string
+// ): Promise<string> {
+
+//   if (!quillHtml) return '';
+
+//   if (typeof DOMParser === 'undefined') {
+//     return quillHtml;
+//   }
+
+//   const parser = new DOMParser();
+//   const doc = parser.parseFromString(quillHtml, 'text/html');
+
+//   await processImages(doc, slug);
+//   processYouTubeEmbeds(doc);
+//   processParagraphSpacing(doc);
+
+//   return doc.body.innerHTML;
+// }

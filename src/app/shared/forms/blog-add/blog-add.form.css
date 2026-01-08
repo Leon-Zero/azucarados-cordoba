@@ -1,5 +1,5 @@
 form {
-  width: 100%;
+  width: clamp(25rem, 98%, 95vw);
   padding: 2rem 1rem;
   margin: 0 auto;
   border: 1px solid var(--color-border-200);

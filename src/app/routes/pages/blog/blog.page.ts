@@ -33,7 +33,7 @@ export class BlogPage implements OnInit {
   loadBlogs() {
     this.blogService.getAllBlogs().subscribe((items: Blogs[]) => {
       this.pagination.setItems(items);
-      this.pagination.setItemsPerPage(4);
+      this.pagination.setItemsPerPage(6);
     });
   }
 

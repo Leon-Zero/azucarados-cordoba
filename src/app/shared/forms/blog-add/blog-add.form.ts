@@ -4,10 +4,9 @@ import { ToastService } from '../../../core/services/toast.service';
 import { BlogService } from '../../../core/services/blog.service';
 import { Blogs } from '../../../data/interfaces/database/blog.interface';
 import { Btn } from '../../ui/btn/btn';
-import { transformQuillHtml, uploadBase64 } from '../../../core/utils/quill-glue';
 import { Editor } from '../../components/editor/editor';
 import { ImagePicker } from '../../components/image-picker/image-picker';
-import { deleteFileByUrl } from '../../../core/utils/firebase-delete';
+import { QuillGlueService } from '../../../core/services/quillGlue.service';
 
 @Component({
   selector: 'form-blog-add',
@@ -19,6 +18,7 @@ export class BlogAddForm {
   private fb = inject(FormBuilder);
   private blogsService = inject(BlogService);
   private toastService = inject(ToastService);
+  private quillGlueService = inject(QuillGlueService);
 
   @ViewChild(Editor) editorComponent!: Editor;
 
@@ -118,20 +118,13 @@ export class BlogAddForm {
     const preview = this.imageBase64();
 
     if (preview && this.isBase64Image(preview)) {
-      const oldImageUrl = this.object()?.img;
-      const newUrl = await uploadBase64(preview, slug);
+      const newUrl = await this.quillGlueService.uploadBase64(preview, `blog-profile/${slug}`);
       this.blogForm.patchValue({ img: newUrl });
-
-      if (this.onEdit() && oldImageUrl && oldImageUrl !== newUrl) {
-        await deleteFileByUrl(oldImageUrl);
-      }
     }
 
     try {
-      const parsedHtml = await transformQuillHtml(contenido, slug);
-      this.blogForm.patchValue({
-        content: parsedHtml,
-      });
+      const parsedHtml = await this.quillGlueService.transformQuillHtml(contenido, slug);
+      this.blogForm.patchValue({ content: parsedHtml });
       return true;
     } catch (err) {
       console.error(err);
