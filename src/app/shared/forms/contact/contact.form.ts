@@ -11,10 +11,10 @@ import { environment } from '../../../../environments/environment';
 })
 export class ContactForm {
   mail: string = environment.formsubmit_mail;
-  asunto: string = 'WEB Azucarados Cordoba - form. contacto';
+  asunto: string = 'WEB Mascotas Diabéticas Córdoba - form. contacto';
   web: string = 'https://azucarados-cordoba.web.app';
   autoResponse: string = `Muchas gracias por escribir, su consulta será analizada y me estaré comunicando a la brevedad.
-    Atte.: Azucarados Córdoba; 
+    Atte.: Mascotas Diabéticas Córdoba; 
     email: ${this.mail}`;
   return: string = this.web;
   contactMethod: 'telefono' | 'mail' | null = null;

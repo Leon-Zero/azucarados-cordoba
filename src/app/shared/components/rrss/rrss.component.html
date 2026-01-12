@@ -1,7 +1,9 @@
 <ul>
   @for (item of rrss(); track $index) {
   <li>
-    <i><img [src]="item.src" [alt]="item.alt" /></i>
+    <a [href]="item.href" target="_blank" rel="noopener noreferrer">
+      <i><img [src]="item.src" [alt]="item.alt"  /></i>
+    </a>
   </li>
   }
 </ul>

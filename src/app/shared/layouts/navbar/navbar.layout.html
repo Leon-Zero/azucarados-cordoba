@@ -3,7 +3,7 @@
     <div class="nav-left">
       <div class="logo" routerLink="/home" (click)="isOpen.set(false)">
         <img src="/logo azucarados.svg" alt="" />
-        <h4>Azucarados Córdoba</h4>
+        <!-- <h4><strong>Mascotas Diabéticas</strong></h4> -->
       </div>
     </div>
     <div class="nav-right">
@@ -40,6 +40,9 @@
 
       <!-- menu hamburguesa celular -->
       <div class="menu-container">
+       
+          <span class="menu-info">MENU</span>
+      
         <div
           class="menu-burguer"
           [ngClass]="{ 'open-burguer': isOpen(), 'closed-burguer': !isOpen() }"
@@ -51,35 +54,34 @@
         <!-- desplegable de menu hamburguesa -->
       </div>
     </div>
-
     <div class="menu-content" [ngClass]="{ 'active-menu': isOpen(), 'closed-menu': !isOpen() }">
       <ul>
-        <li>
-          <a routerLink="/home" routerLinkActive="linked" fragment="about-us" (click)="isOpen.set(false)"> sobre nostros </a>
+        <li routerLink="/home"  fragment="about-us" routerLinkActive="linked" (click)="isOpen.set(false)" >
+          <a  > SOBRE NOSOTROS </a>
         </li>
-        <li>
-          <a routerLink="/donaciones" routerLinkActive="linked" (click)="isOpen.set(false)"> Donaciones </a>
+        <li routerLink="/donaciones" routerLinkActive="linked"  (click)="isOpen.set(false)">
+          <a  > DONACIONES </a>
         </li>
-        <li>
-          <a routerLink="blog" routerLinkActive="linked" (click)="isOpen.set(false)"> blog </a>
+        <li routerLink="blog" routerLinkActive="linked" (click)="isOpen.set(false)">
+          <a > BLOG </a>
         </li>
-        <li>
-          <a routerLink="nuestros-peludos" routerLinkActive="linked" (click)="isOpen.set(false)"> nuestros guerreros </a>
+        <li routerLink="nuestros-peludos" routerLinkActive="linked" (click)="isOpen.set(false)" >
+          <a > NUESTROS GUERREROS </a>
         </li>
-        <li>
-          <a routerLink="contacto" routerLinkActive="linked" (click)="isOpen.set(false)"> contacto </a>
+        <li routerLink="contacto" routerLinkActive="linked" (click)="isOpen.set(false)">
+          <a > CONTACTO </a>
         </li>
 
         @if (authService.isLogged()) {
-          <li>
-              <a routerLink="admin" routerLinkActive="linked"> Modo Edición</a>
+          <li routerLink="admin" routerLinkActive="linked" (click)="isOpen.set(false)">
+              <a >MODO EDICIÓN</a>
           </li>
-          <li>
-              <a (click)="logOut()"> salir </a>
+          <li (click)="logOut()" (click)="isOpen.set(false)" >
+              <a > salir </a>
           </li>
         } @else {
-          <li>
-            <a routerLink="login" routerLinkActive="linked"> Login </a>
+          <li  routerLink="login" routerLinkActive="linked" (click)="isOpen.set(false)" >
+            <a> LOGIN </a>
           </li>
           }
       </ul>

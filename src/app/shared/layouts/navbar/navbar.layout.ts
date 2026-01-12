@@ -17,6 +17,9 @@ export class NavbarLayout {
 
   logOut(){
     this.authService.logout();
-    this.router.navigate(['/home'])
+    this.router.navigate(['/home']).then(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
   }
+
 }

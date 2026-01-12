@@ -41,8 +41,8 @@
 }
 
 .upload-btn {
-  background: var(--color-secondary-400);
-  color: var(--color-blank);
+  background: var(--color-primary-300);
+  color: var(--color-dark);
   padding: 0.35rem 0.9rem;
   box-shadow: 2px 2px 8px var(--color-dark-100);
   border-radius: 4px;
@@ -57,7 +57,7 @@
 }
 
 .upload-btn:hover {
-  background: var(--color-secondary-400);
+  background: var(--color-primary-400);
 }
 
 .error {

@@ -4,8 +4,8 @@ form {
   padding: 2rem 1rem;
   margin: 0 auto;
   border: 1px solid var(--color-border-200);
-  background: var(--color-tertiary-100);
-  opacity: 0.8;
+  background: var(--color-bg-100);
+  opacity: 0.9;
   text-align: center;
   position: relative;
   box-shadow:
@@ -36,11 +36,11 @@ textarea {
   position: relative;
   z-index: 100;
   padding: 0 1rem;
-  border: 1px solid var(--color-border-200);
-  background-color: var(--color-primary-100);
+  border: 1px solid var(--color-border-300);
+  background-color: var(--color-blank);
   border-radius: 4px;
   font-size: 1rem;
-  opacity: 0.7;
+  opacity: 0.5;
 }
 
 .input-wrap label {
@@ -70,7 +70,7 @@ textarea {
 }
 
 .icon-fieldset {
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--color-dark-100);
   border-radius: .6rem;
   padding-inline: 1rem;
   padding-bottom: 1.5rem;
@@ -78,8 +78,9 @@ textarea {
 }
 
 .icon-fieldset legend {
-  padding: 0 .5rem;
+  padding: 0 2rem;
   font-weight: 600;
+  text-transform: capitalize;
 }
 
 .icon-grid {
@@ -118,7 +119,7 @@ textarea {
   position: absolute;
   inset: 0;
   border-radius: .6rem;
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--color-border-300);
   background: var(--color-bg-100);
   transition: all .3s ease;
 }
@@ -141,8 +142,8 @@ textarea {
   left: 50%;
   transform: translate(-50%, -60%) rotate(45deg) scale(0);
   opacity: 0;
-  border-right: 6px solid var(--color-tertiary);
-  border-bottom: 6px solid var(--color-tertiary);
+  border-right: 6px solid var(--color-tertiary-400);
+  border-bottom: 6px solid var(--color-tertiary-400);
   transition: all .3s ease;
 }
 

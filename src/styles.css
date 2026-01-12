@@ -60,6 +60,7 @@ img, video, iframe, table {
   background-size: cover;
   background-position: center;
   transform: translateZ(-1px);
+  background-color: var(--color-bg-200);
   z-index: -1;
   opacity: 0.2;
 }

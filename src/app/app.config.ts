@@ -20,7 +20,7 @@ export const appConfig: ApplicationConfig = {
       withViewTransitions(),
       withInMemoryScrolling({
         anchorScrolling: 'enabled',
-        scrollPositionRestoration: 'disabled',
+        scrollPositionRestoration: 'top',
       })
     ),
     provideClientHydration(withEventReplay()),

@@ -19,10 +19,10 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--gap);
-  background: var(--color-tertiary-100);
+  background: var(--color-blank);
   border-radius: 0 1rem 0 1rem;
   box-shadow: var(--shadow);
-  border: 1px solid var(--color-border-100);
+  border: 1px solid var(--color-border-200);
 }
 
 .btn {
@@ -43,70 +43,71 @@
   transition: transform 0.08s ease, box-shadow 0.12s ease, background 0.12s ease, color 0.12s ease;
   outline: none;
   line-height: 1;
-  text-shadow: 1px 0 var(--color-dark);
   letter-spacing: 0.05rem;
 }
 
 .btn svg {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   fill: currentColor;
   display: block;
-  filter: drop-shadow(1px 0 1px var(--color-dark-100));
+  filter: drop-shadow(0.0625rem 0 0.0625rem var(--color-dark-100));
 }
 
 .btn:focus-visible {
-  box-shadow: 0 0 0 4px rgba(70, 166, 195, 0.28);
+  box-shadow: 0 0 0 4px rgba(93, 211, 247, 0.28);
   transform: translateY(-1px);
 }
 
 /* agregar */
 .btn-add {
   background: var(--color-primary-400);
-  border-color: var(--color-primary-500);
+  border-color: var(--color-primary-600);
   color: var(--color-blank);
+  text-shadow: 0.0625rem 0.0625rem 0 var(--color-dark);
   padding: 10px 14px;
   border-radius: 10px;
   box-shadow: 0 4px 10px var(--color-dark-300);
 }
 
 .btn-add:hover {
-  background: var(--color-primary-600);
+  background: var(--color-primary-500);
   transform: translateY(-2px);
 }
 
 /* editar */
 .btn-edit {
-  background: transparent;
-  border-color: var(--color-secondary-200);
-  color: var(--color-secondary-600);
+  background: var(--color-warning);
+  border-color: var(--color-tertiary-300);
+  color: var(--color-dark-300);
 }
 
 .btn-edit:hover {
-  background: var(--color-secondary-100);
-  color: var(--color-secondary-700);
+  background: var(--color-warning-light);
+  color: var(--color-secondary-800);
   transform: translateY(-1px);
 }
 
 /* eliminar */
 .btn-delete {
-  background: transparent;
-  border-color: var(--color-primary-900);
-  color: var(--color-dark);
+  background: var(--color-danger);
+  border-color: var(--color-danger-light);
+  color: var(--color-blank);
+  text-shadow: 0.0625rem 0.0625rem 0 var(--color-dark);
 }
 
 .btn-delete:hover {
-  background: var(--color-danger);
+  background: var(--color-danger-light);
   transform: translateY(-1px);
 }
 
 /* botón reiniciar */
 .btn-reset {
   flex: 0 1 15%;
-  background: var(--color-tertiary-200);
+  background: var(--color-secondary-300);
   border: 1px solid var(--color-border-300);
   color: var(--color-dark);
-  box-shadow: 0 2px 6px var(--color-dark-100);
+  box-shadow: 0 1px 4px var(--color-dark-100);
   transition: transform 0.12s ease, background 0.12s ease;
 }
 
@@ -115,7 +116,7 @@
 }
 
 .btn-reset:hover {
-  background: var(--color-tertiary-300);
+  background: var(--color-secondary-200);
   transform: translateY(-1px);
 }
 

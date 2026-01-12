@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "mascotasdiabeticascordoba",
     "public": "dist/mock/browser",
     "ignore": [
       "firebase.json",

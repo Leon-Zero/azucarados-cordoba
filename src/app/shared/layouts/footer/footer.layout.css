@@ -6,7 +6,7 @@ footer {
   padding: 0.5rem;
   display: grid;
   place-items: center;
-  background: linear-gradient(33deg, var(--color-primary-200) 40%, var(--color-primary-400) 60%);
+  background: linear-gradient(33deg, var(--color-primary-200) 40%, var(--color-primary-300) 60%);
   margin-top: 2rem;
   border-radius: 5rem 5rem 0 0;
   box-shadow: 0 -2px 10px var(--color-dark-200);

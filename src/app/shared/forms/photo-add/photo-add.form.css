@@ -3,8 +3,8 @@ form {
   padding: 2rem 1rem;
   margin: 0 auto;
   border: 1px solid var(--color-border-200);
-  background: var(--color-tertiary-100);
-  opacity: 0.8;
+  background: var(--color-bg-100);
+  opacity: 0.9;
   text-align: center;
   position: relative;
   box-shadow: inset 2px 2px 6px var(--color-dark-300), inset -2px -2px 6px var(--color-dark-300);
@@ -39,11 +39,11 @@ textarea {
   left: 0;
   z-index: 100;
   padding: 0 1rem;
-  border: 1px solid var(--color-border-200);
-  background-color: var(--color-primary-100);
+  border: 1px solid var(--color-border-300);
+  background-color: var(--color-blank);
   border-radius: 4px;
   font-size: 1rem;
-  opacity: 0.7;
+  opacity: 0.5;
 }
 
 #_area {
@@ -88,7 +88,7 @@ fieldset {
   justify-content: space-evenly;
   flex-flow: row nowrap;
   gap: 0.5rem;
-  border: 1px solid #ccc;
+  border: 1px solid var(--color-dark-100);
 }
 
 legend {
@@ -110,7 +110,7 @@ fieldset label {
   width: 7rem;
   height: 3rem;
   text-align: center;
-  border: 1px solid #ccc;
+  border: 1px solid var(--color-border-300);
   border-radius: 0.2rem;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -127,10 +127,10 @@ input[type='radio'] {
 }
 
 input[type='radio']:checked + label {
-  background: var(--color-secondary-300);
-  border-color: var(--color-secondary-700);
-  color: #ffffff;
-  text-shadow: 0px 1px 4px var(--color-dark-300);
+  background: var(--color-primary-300);
+  border-color: var(--color-border-300);
+  color: var(--color-blank);
+  text-shadow: 0px 1px 2px var(--color-dark-500);
 }
 
 input:focus,

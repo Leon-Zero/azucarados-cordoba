@@ -82,6 +82,12 @@ export class BlogService {
     });
   }
 
+  deleteFolder(folder: string) {
+    return this.http.delete(`${environment.urlBack}/api/storage/delete-folder`, {
+      params: { folder },
+    });
+  }
+
   scrollToEdit() {
     const el = document.getElementById('blog-edit');
     if (el) {

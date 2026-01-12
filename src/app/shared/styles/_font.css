@@ -17,74 +17,76 @@ h6 {
   font-style: oblique;
   letter-spacing: 0.2rem;
   line-height: 1.2;
-  color: var(--color-secondary-400);
-  filter: contrast(150%);
-  text-shadow: 1px 1px 0 var(--color-bg-200), 2px 2px 0 var(--color-bg-300),
-    3px 3px 0 var(--color-bg-400), 4px 4px 0 var(--color-dark-100);
+  color: var(--color-primary-700);
+  filter: contrast(120%);
 }
 
 h1 {
-  font-size: clamp(2rem, .5rem + 5vw, 3.5rem);
-  color: var(--color-secondary-600);
+  font-size: clamp(2rem, 0.5rem + 5vw, 3.5rem);
+  color: var(--color-bg-500);
   letter-spacing: 0.26rem;
   margin-bottom: 1.4rem;
-
-  text-shadow: 1px 1px 0 var(--color-bg-100), 2px 2px 0 var(--color-bg-200),
-    3px 3px 0 var(--color-bg-300);
+   text-shadow:
+    0.0625rem 0.0625rem 0 var(--color-bg-200),
+    0.125rem 0.125rem 0 var(--color-dark-200);
 }
 
 h2 {
   font-size: clamp(1.8rem, 3.5vw, 2.4rem);
-  color: var(--color-secondary-500);
+  color: var(--color-primary-600);
   margin-bottom: 1.2rem;
-
-  text-shadow: 1px 1px 0 var(--color-bg-100), 2px 2px 0 var(--color-bg-200);
+   text-shadow:
+    0.0625rem 0.0625rem 0 var(--color-bg-200),
+    0.125rem 0.125rem 0 var(--color-dark-200);
 }
 
 h3 {
-  font-size: clamp(1rem, .5vw, 1.9rem);
-  color: var(--color-secondary-400);
-  text-shadow: 1px 1px 0 var(--color-bg-100), 2px 2px 0 var(--color-bg-200);
+  font-size: clamp(1rem, 0.5vw, 1.9rem);
 }
 
 h4 {
   font-size: 1.15rem;
-  color: var(--color-secondary-300);
-  text-shadow: 1px 1px 0 var(--color-bg-100);
+  color: var(--color-primary-400);
 }
 
 h5 {
   font-size: 0.95rem;
-  color: var(--color-secondary-200);
-  text-shadow: 1px 1px 0 var(--color-bg-100);
+  color: var(--color-tertiary-300);
 }
 
 h6 {
   font-size: 0.8rem;
-  color: var(--color-secondary-100);
-  text-shadow: 1px 1px 0 var(--color-bg-100);
+  color: var(--color-tertiary-200);
+  text-shadow: 0.0625rem 0.0625rem 0 var(--color-bg-100);
 }
 
 p {
   font-size: 1rem;
   line-height: 1.1;
-  color: var(--color-dark-100);
-  text-shadow: 0.5px 0.5px 0 var(--color-bg-100);
-    margin: .2rem 0;
-
+  color: var(--color-dark-300);
+  text-shadow: 0.03125rem 0.03125rem 0 var(--color-tertiary-100);
+  margin: 0.2rem 0;
 }
 
 strong {
-  font-weight: 700;
-  color: var(--color-secondary-600);
-  letter-spacing: 0.04rem;
-  text-shadow: 1px 1px 0 var(--color-border-100);
+  font-weight: 900;
+  color: var(--color-primary-600);
 }
 
 /* strong dentro de títulos */
 h1 strong,
 h2 strong,
 h3 strong {
-  color: var(--color-bg-300);
-  text-shadow: 1px 1px 0 var(--color-bg-100), 2px 2px 0 var(--color-bg-200);
+  color: var(--color-border-500);
+}
+
+@media screen and (max-width: 900px) {
+  h1,
+h2,
+h3,
+h4,
+h5,
+h6, p {
+    text-shadow: none;
+  }
 }

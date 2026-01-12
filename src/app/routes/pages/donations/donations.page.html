@@ -22,31 +22,38 @@
         </ng-template>
       </app-text-float>
     </div>
-
+    <span class="spacing"></span>
     <app-btn [size]="'large'"
       (click)="enviarWhatsApp('Hola!, tengo medicamentos para la diabetes y me gustaría donarlos al grupo')" >
-      DONAR MEDICAMENTOS</app-btn>
+      DONAR MEDICAMENTOS O INSUMOS</app-btn>
     </div>
 
-  <div class="container">
-    <h2>Donaciones de Dinero</h2>
-    <app-text-float img="/donar.jpg" side="right">
-      <ng-template #content>
-        <p>
-          A veces con el tratamiento no es suficiente, se requiere de constante vigilancia y
-          atención veterinaria, analisis y demás para asegurar la salud de nuestros pequeños. No
-          siempre podemos con los gastos, por eso nuestro grupo cuenta con una
-          <strong>caja de ahorro de emergencia</strong>, cuya finalidad es usarse en caso urgentes
-          de algunos de nuestros integrantes cuando no tienen para alcanzar a pagar noche de
-          internación, cirugías u otras cuestiones de urgencia inmediata.
-        </p>
-      </ng-template>
-    </app-text-float>
+    <!-- Tabla Donaciones Frecuentes -->
+<section class="donations-table">
+  <h3 class="table-title">Las donaciones frecuentes</h3>
+    <div class="table-wrapper">
+      <div class="table-header">
+        <span>Artículo</span>
+        <span>Imagen</span>
+        <span>Descripción</span>
+      </div>
 
-    <app-btn [size]="'large'"
-        (click)="enviarWhatsApp('Hola!, me gustaría donar efectivo para ayudar a las mascotas diabeticas!')" >
-        DONAR EFECTIVO
-    </app-btn>
+      @for (donation of donations(); track donation.item) {
+        <div class="table-row">
+          <div class="col item">
+            {{ donation.item }}
+          </div>
 
-  </div>
+          <div class="col image">
+            <img [src]="donation.img" [alt]="donation.item" />
+          </div>
+
+          <div class="col description">
+            {{ donation.description }}
+          </div>
+        </div>
+      }
+    </div>
+</section>
+
 </section>

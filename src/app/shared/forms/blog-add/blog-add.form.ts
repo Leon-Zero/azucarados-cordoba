@@ -7,6 +7,7 @@ import { Btn } from '../../ui/btn/btn';
 import { Editor } from '../../components/editor/editor';
 import { ImagePicker } from '../../components/image-picker/image-picker';
 import { QuillGlueService } from '../../../core/services/quillGlue.service';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'form-blog-add',
@@ -115,15 +116,23 @@ export class BlogAddForm {
     }
 
     const slug = this.blogsService.generatePath(this.title.value!);
-    const preview = this.imageBase64();
-
-    if (preview && this.isBase64Image(preview)) {
-      const newUrl = await this.quillGlueService.uploadBase64(preview, `blog-profile/${slug}`);
-      this.blogForm.patchValue({ img: newUrl });
-    }
+    const profilePath = `blog-profile/${slug}`;
+    const blogPath = `blogs/${slug}`;
 
     try {
-      const parsedHtml = await this.quillGlueService.transformQuillHtml(contenido, slug);
+      const preview = this.imageBase64();
+
+      if (this.onEdit() && preview && this.isBase64Image(preview)) {
+        await firstValueFrom(this.blogsService.deleteFolder(profilePath));
+      }
+
+      if (preview && this.isBase64Image(preview)) {
+        const newUrl = await this.quillGlueService.uploadBase64(preview, profilePath);
+        this.blogForm.patchValue({ img: newUrl });
+      }
+
+      const parsedHtml = await this.quillGlueService.transformQuillHtml(contenido, blogPath);
+
       this.blogForm.patchValue({ content: parsedHtml });
       return true;
     } catch (err) {

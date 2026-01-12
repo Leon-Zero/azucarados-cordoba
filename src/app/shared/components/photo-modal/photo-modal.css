@@ -39,6 +39,10 @@
   object-fit: contain;
 }
 
+h4{
+  color: var(--color-primary-700);
+}
+
 .modal-info {
   padding: 1.2rem;
   background: var(--color-bg-100);
