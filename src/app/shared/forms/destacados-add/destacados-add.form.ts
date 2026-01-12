@@ -32,7 +32,7 @@ export class DestacadosAddForm {
   });
 
   icons = signal([
-    // { id: 'Azucarados', src: '/icons/azucarados.svg' },
+    { id: 'azucarados', src: '/icons/azucarados.svg' },
     { id: 'noticias', src: '/icons/news.png' },
     { id: 'gato', src: '/icons/cat.svg' },
     { id: 'perro', src: '/icons/dog.svg' },

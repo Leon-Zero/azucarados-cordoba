@@ -17,10 +17,11 @@ export class QuillGlueService {
     try {
       const payload = JSON.parse(atob(token.split('.')[1]));
       const roles = payload.roles || payload.authorities || payload.role || payload.authority;
-      const isAdmin = Array.isArray(roles) ? roles.includes('ROLE_ADMIN') : (typeof roles === 'string' && roles.includes('ROLE_ADMIN'));
+      const isAdmin = Array.isArray(roles)
+        ? roles.includes('ROLE_ADMIN')
+        : typeof roles === 'string' && roles.includes('ROLE_ADMIN');
       if (!isAdmin) throw new Error('Necesitas permisos de administrador para subir imágenes.');
-    } catch {
-    }
+    } catch {}
 
     const body = { base64, folder: slug };
 
@@ -75,7 +76,6 @@ export class QuillGlueService {
 
   private processYouTubeEmbeds(doc: Document): void {
     const anchors = Array.from(doc.querySelectorAll('a'));
-
     anchors.forEach((a) => {
       const href = a.getAttribute('href') ?? a.textContent ?? '';
       if (!/youtube\.com|youtu\.be/i.test(href)) return;
@@ -83,34 +83,55 @@ export class QuillGlueService {
       const { id, qs } = this.parseYouTube(href.trim());
       if (!id) return;
 
-      const src = `https://www.youtube.com/embed/${encodeURIComponent(id)}${qs ? '?' + qs : ''}`;
-
-      const iframe = doc.createElement('iframe');
-      iframe.style.cssText = 'width:100%;height:100%;border:0;position:absolute;top:0;left:0;';
-      iframe.setAttribute('src', src);
-      iframe.setAttribute('allowfullscreen', '');
-
-      const wrapper = doc.createElement('div');
-      wrapper.className = 'quill-video-wrapper';
-      wrapper.style.cssText =
-        'position:relative;aspect-ratio:16/9;overflow:hidden;max-width:600px;margin:1rem auto;';
-      wrapper.appendChild(iframe);
+      const iframe = this.createYouTubeIframe(id, qs);
+      const wrapper = this.wrapIframe(iframe);
 
       a.replaceWith(wrapper);
     });
+
+    const iframes = Array.from(doc.querySelectorAll('iframe'));
+
+    iframes.forEach((iframe) => {
+      const src = iframe.getAttribute('src') ?? '';
+      if (!/youtube\.com\/embed\//i.test(src)) return;
+      if (iframe.closest('.quill-video-wrapper')) return;
+
+      iframe.removeAttribute('width');
+      iframe.removeAttribute('height');
+      iframe.style.cssText = 'width:100%;height:100%;border:0;position:absolute;top:0;left:0;';
+
+      const wrapper = this.wrapIframe(iframe);
+      iframe.replaceWith(wrapper);
+    });
+  }
+
+  private createYouTubeIframe(id: string, qs: string): HTMLIFrameElement {
+    const iframe = document.createElement('iframe');
+    iframe.setAttribute(
+      'src',
+      `https://www.youtube.com/embed/${encodeURIComponent(id)}${qs ? '?' + qs : ''}`
+    );
+    iframe.setAttribute('allowfullscreen', '');
+    iframe.style.cssText = 'width:100%;height:100%;border:0;position:absolute;top:0;left:0;';
+    return iframe;
+  }
+
+  private wrapIframe(iframe: HTMLIFrameElement): HTMLDivElement {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'quill-video-wrapper';
+    wrapper.style.cssText =
+      'position:relative;aspect-ratio:16/9;overflow:hidden;max-width:600px;margin:1rem auto;';
+    wrapper.appendChild(iframe);
+    return wrapper;
   }
 
   private isTrulyEmptyP(p: Element): boolean {
     if (p.tagName !== 'P') return false;
     if (p.querySelector('img')) return false;
 
-    const innerHtml = (p.innerHTML || '')
-      .replace(/&nbsp;|\u00A0|\u200B/g, '')
-      .trim();
+    const innerHtml = (p.innerHTML || '').replace(/&nbsp;|\u00A0|\u200B/g, '').trim();
 
-    const text = (p.textContent || '')
-      .replace(/\u00A0|\u200B/g, '')
-      .trim();
+    const text = (p.textContent || '').replace(/\u00A0|\u200B/g, '').trim();
 
     return (innerHtml === '' || innerHtml.toLowerCase() === '<br>') && text === '';
   }
