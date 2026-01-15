@@ -7,19 +7,36 @@
           <h2>Nuestra Mision:</h2>
           <br />
           <p>
-            Con el apoyo de todos, podemos salir adelante y ayudar a nuestras mascotas a sobrellevar
-            esta enfermedad. ¡La diabetes no es el final!, puede llevarse una vida sana para
-            nuestros pequeños. JUNTOS podemos más. Somos una comunidad de
-            <strong>Dueños de Mascotas Diabeticas</strong>, con el objetivo de acompañar, aconsejar,
-            poner en manifiesto nuestras experiencias y el ayudar en la gestion de donaciones de
-            medicamentos e insumos para quienes no pueden acarrear los costos del tratamiento.
+            Somos una comunidad de dueños y dueñas de <strong>mascotas con diabetes</strong> que se
+            unieron con un mismo objetivo:
+            <br />
+            acompañar, orientar y compartir experiencias reales, para que ninguna familia tenga que
+            atravesar este camino sola.
+            <br />
+            <br />
+            Creemos que, con asesoramiento de veterinarios especializados, acompañamiento y apoyo
+            mutuo, es posible salir adelante y ayudar a nuestras mascotas a sobrellevar la diabetes.
+            <br />
+            ¡La diabetes no es el final! Con el tratamiento adecuado y mucho amor, nuestros pequeños
+            pueden llevar una vida sana y feliz.
+            <br /><br />
+            Además, colaboramos en la gestión de donaciones de medicamentos e insumos para aquellas
+            personas que no pueden afrontar los costos del tratamiento, promoviendo la solidaridad y
+            el cuidado responsable. <strong>¡Porque juntos podemos más!</strong>
           </p>
         </ng-template>
       </app-text-float>
     </div>
-    <app-btn [size]="'large'"
-      (click)="enviarWhatsApp('Hola!, soy dueño de una mascota diabetica y quiero unirme al grupo de Mascotas Diabéticas Córdoba, por favor cuentame los requisitos')" >
-      Unirme al GRUPO</app-btn>
-    <app-btn [size]="'large'" (click)="goToDonation()">Quiero Donar</app-btn>
+    <app-btn
+      [size]="'large'"
+      (click)="
+        enviarWhatsApp(
+          'Hola!, soy dueño de una mascota diabetica y quiero unirme al grupo de Mascotas Diabéticas Córdoba, por favor cuentame los requisitos'
+        )
+      "
+    >
+      Unirme al GRUPO</app-btn
+    >
+    <app-btn [size]="'large'" routerLink="/donaciones/formulario">Quiero Donar</app-btn>
   </div>
 </section>

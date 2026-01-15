@@ -49,6 +49,10 @@ video, iframe, table {
   max-width: 100%;
 }
 
+.inner-list{
+  margin-left: 2rem;
+}
+
 .bg {
   width: 100%;
   height: 100%;

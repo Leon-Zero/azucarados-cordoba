@@ -1,0 +1,57 @@
+<span class="spacing"></span>
+<span class="spacing"></span>
+
+<form [formGroup]="donationForm" (ngSubmit)="onSubmit()">
+  <div class="form-container">
+    <h2>Formulario de Donaciones</h2>
+
+    <!-- Nombre -->
+    <div class="input-wrap">
+      <input type="text" formControlName="name" id="donation-name" placeholder=" " />
+      <label for="donation-name">Nombre</label>
+
+      @if (name.invalid && (name.dirty || name.touched)) {
+      <p class="error">
+        @if (name.errors?.['required']) { El nombre es obligatorio. } @if
+        (name.errors?.['minlength']) { Mínimo 3 caracteres. }
+      </p>
+      }
+    </div>
+
+    <!-- ¿Es del barrio? -->
+    <div class="input-wrap">
+      <input type="text" formControlName="barrio" id="barrio" placeholder=" " />
+      <label for="barrio">¿Sos del barrio?</label>
+      @if (barrio.invalid && (barrio.dirty || barrio.touched)) {
+      <p class="error">Debes escribir un lugar</p>
+      }
+    </div>
+
+    <!-- Tipo de donación -->
+    <div class="input-wrap">
+      <select formControlName="donationType" id="donationType">
+        <option id="option-empty" value="">Elegir Opción:</option>
+        <option value="Insulinas">Insulinas</option>
+        <option value="Tiras De Glucosa">Tiras Reactivas</option>
+        <option value="Glucometros">Glucometros</option>
+        <option value="Jeringas o Lancetas">Jeringas o Lancetas</option>
+        <option value="Medicamentos Veterinarios">Medicamentos Veterinarios</option>
+        <option value="Otros...">Otros...</option>
+      </select>
+
+      <label for="donationType">¿Qué querés donar?</label>
+
+      @if (donationType.invalid && (donationType.dirty || donationType.touched)) {
+      <p class="error">Seleccioná una donación.</p>
+      }
+    </div>
+
+    <!-- Botón enviar -->
+    <app-btn type="submit" [size]="'large'" [disabled]="donationForm.invalid">
+      Enviar por WhatsApp
+    </app-btn>
+  </div>
+</form>
+
+<span class="spacing"></span>
+

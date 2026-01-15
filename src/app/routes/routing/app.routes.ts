@@ -4,6 +4,7 @@ import { DonationsPage } from '../pages/donations/donations.page';
 import { ContactPage } from '../pages/contact/contact.page';
 import { NotFoundPage } from '../pages/not-found/not-found.page';
 import { adminGuard } from '../guards/auth-guard';
+import { DonationForm } from '../../shared/forms/donation/donation.form';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -16,8 +17,11 @@ export const routes: Routes = [
   { path: 'nuestros-peludos', loadChildren: () => import('../routing/gallery.routes')
     .then((m) => m.galleryRoutes),
   },
-  { path: 'login', loadComponent: () => import('../pages/auth/auth.page').then((m) => m.AuthPage) },
-  /* ADMIN acceso a crud */
+  { path: 'login', loadComponent: () => import('../pages/auth/auth.page')
+    .then((m) => m.AuthPage) 
+  },
+  { path: 'donaciones/formulario', component: DonationForm },
+
   { path: 'admin',
     canActivate: [adminGuard],
     canActivateChild: [adminGuard],
