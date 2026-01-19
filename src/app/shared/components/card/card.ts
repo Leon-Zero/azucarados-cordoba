@@ -1,9 +1,10 @@
 import { Component, input } from '@angular/core';
 import { Btn } from '../../ui/btn/btn';
+import { ScrollTransition } from '../../features/directives/scroll-transition';
 
 @Component({
   selector: 'app-card',
-  imports: [Btn],
+  imports: [Btn, ScrollTransition],
   templateUrl: './card.html',
   styleUrl: './card.css',
 })

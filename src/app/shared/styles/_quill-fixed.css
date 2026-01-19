@@ -1,0 +1,66 @@
+
+#editor video, iframe, table {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+#editor .ql-container, .ql-editor {
+  max-width: 100%;
+  box-sizing: border-box;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+#editor .ql-editor img {
+  max-width: 100%;
+}
+
+
+
+/* ---------------- */
+
+
+.quill-viewer video,
+.quill-viewer iframe,
+.quill-viewer table {
+  max-width: 100%;
+  height: auto;
+  display: block;
+} 
+
+.quill-viewer.ql-snow .ql-container,
+.quill-viewer.ql-snow .quill-view .ql-editor {
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-wrap: break-word;
+  word-break: normal;
+  white-space: normal;
+  hyphens: none;
+}
+
+.quill-viewer.ql-snow .quill-view .ql-editor img {
+  max-width: 100%;
+  height: auto;
+}
+
+.quill-viewer.ql-snow .quill-view br {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.quill-viewer.ql-snow .quill-view .quill-gap {
+  width: 100%;
+}
+
+.quill-viewer.ql-snow .quill-view .quill-gap.quill-gap-3 {
+  height: 2rem;
+}
+
+.quill-viewer .quill-gap.quill-gap-4 {
+  height: 2.5rem;
+}
+
+.quill-viewer.ql-snow .quill-view .quill-gap {
+  margin: 0.3rem auto;
+}

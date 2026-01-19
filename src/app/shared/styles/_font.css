@@ -36,7 +36,7 @@ h2 {
   color: var(--color-primary-600);
   margin-bottom: 1.2rem;
    text-shadow:
-    0.0625rem 0.0625rem 0 var(--color-bg-200),
+    0.0325rem 0.0325rem 0 var(--color-bg-200),
     0.125rem 0.125rem 0 var(--color-dark-200);
 }
 
@@ -64,7 +64,7 @@ p {
   font-size: 1rem;
   line-height: 1.1;
   color: var(--color-dark-300);
-  text-shadow: 0.03125rem 0.03125rem 0 var(--color-tertiary-100);
+  /* text-shadow: 0.03125rem 0.03125rem 0 var(--color-tertiary-100); */
   margin: 0.2rem 0;
 }
 
@@ -80,8 +80,38 @@ h3 strong {
   color: var(--color-border-500);
 }
 
+#editor h1 strong,
+#editor h2 strong,
+#editor h3 strong {
+  color: var(--color-dark-500);
+}
+
+.quill-viewer h1 strong,
+.quill-viewer h2 strong,
+.quill-viewer h3 strong {
+  color: var(--color-dark-500);
+}
+
+#editor h2,
+#editor h3,
+#editor h4,
+#editor h5,
+#editor h6, 
+#editor p {
+  text-shadow: none;
+}
+
+.quill-viewer .ql-editor h2,
+.quill-viewer .ql-editor h3,
+.quill-viewer .ql-editor h4,
+.quill-viewer .ql-editor h5,
+.quill-viewer .ql-editor h6, 
+.quill-viewer .ql-editor p {
+  text-shadow: none;
+} 
+
 @media screen and (max-width: 900px) {
-  h1,
+h1,
 h2,
 h3,
 h4,

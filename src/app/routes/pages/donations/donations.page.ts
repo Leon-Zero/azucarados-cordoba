@@ -4,10 +4,11 @@ import { Btn } from '../../../shared/ui/btn/btn';
 import { TextFloatComponent } from '../../../shared/components/text-float/text-float.component';
 import { DonationItem } from '../../../data/interfaces/database/donation.interface';
 import { RouterLink } from "@angular/router";
+import { ScrollTransition } from '../../../shared/features/directives/scroll-transition';
 
 @Component({
   selector: 'app-donations',
-  imports: [HeaderLayout, Btn, TextFloatComponent, RouterLink],
+  imports: [HeaderLayout, Btn, TextFloatComponent, ScrollTransition , RouterLink],
   templateUrl: './donations.page.html',
   styleUrl: './donations.page.css',
 })

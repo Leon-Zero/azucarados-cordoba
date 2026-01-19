@@ -2,10 +2,11 @@ import { Component, inject, input } from '@angular/core';
 import { BlogService } from '../../../core/services/blog.service';
 import { Router } from '@angular/router';
 import { Blogs } from '../../../data/interfaces/database/blog.interface';
+import { ScrollTransition } from '../../features/directives/scroll-transition';
 
 @Component({
   selector: 'app-blog-dashboard',
-  imports: [],
+  imports: [ScrollTransition],
   templateUrl: './blog-dashboard.html',
   styleUrl: './blog-dashboard.css',
 })

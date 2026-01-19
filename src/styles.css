@@ -1,6 +1,7 @@
 @import '../src/app/shared/styles/_variables.css';
 @import '../src/app/shared/styles/_font.css';
 @import '../src/app/shared/styles/_normalize.css';
+@import '../src/app/shared/styles/_quill-fixed.css';
 @import '../src/app/shared/features/animations/_view-transition.css';
 @import '../src/app/shared/features/animations/_scroll.css';
 
@@ -30,23 +31,6 @@ body {
 html, body {
   max-width: 100%;
   overflow-x: hidden;
-}
-
-video, iframe, table {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-.ql-container, .ql-editor {
-  max-width: 100%;
-  box-sizing: border-box;
-  word-break: break-word;
-  overflow-wrap: break-word;
-}
-
-.ql-editor img {
-  max-width: 100%;
 }
 
 .inner-list{

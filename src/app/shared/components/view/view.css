@@ -1,14 +1,14 @@
-.viewer {
+.quill-viewer {
   width: clamp(25rem, 90% + 10rem, 90vw);
   height: auto;
   border: 1px solid var(--color-border-100);
   border-radius: 2rem 0 2rem 0;
-  background: var(--color-blank);
-  box-shadow: 1px -1px 4px 2px var(--color-border-100), 2px -2px 8px 4px var(--color-border-300);
+  background: #ffffff;
+  box-shadow: 1px -1px 4px var(--color-border-100), 1px -1px 4px var(--color-border-300);
   margin: 0 auto;
   padding: .2rem;
 }
-quill-view-html {
+.quill-view {
   display: block;
   margin: 0 auto;
   width: 100%;
@@ -16,7 +16,7 @@ quill-view-html {
   padding: .5rem;
 }
 
-.viewer br {
+.quill-viewer br {
   display: block;
   margin-bottom: 0.5rem;
 }
@@ -37,15 +37,39 @@ quill-view-html {
   margin: 0.3rem auto;
 }
 
+.quill-viewer video,
+.quill-viewer iframe,
+.quill-viewer table {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.quill-viewer .ql-container,
+.quill-viewer .ql-editor {
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-wrap: break-word;
+  word-break: normal;
+  white-space: normal;
+  hyphens: none;
+}
+
+.quill-viewer .ql-editor img {
+  max-width: 100%;
+  height: auto;
+}
+
+
 
 @media screen and (max-width: 620px) {
- .viewer {
+ .quill-viewer {
   width: 98%;
   padding: 0;
 }
-quill-view-html {
-  width: 95%;
-  max-width: 95vw;
+.quill-view {
+  width: 100%;
+  max-width: 98vw;
   padding: .1rem;
 }
 }

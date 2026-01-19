@@ -1,20 +1,16 @@
-.scroll-view{
-    animation-name: scroll;
-    view-timeline-name: --reveal;
-    animation-fill-mode: both;
-    animation-timeline: --reveal;
-    animation-range: entry 10% cover 50%;
+.scroll-view {
+    transform: scale(0.5);
+    filter: brightness(0.5);
+    opacity: 0.5;
+
+    transition:
+      transform 0.6s ease,
+      filter 0.6s ease,
+      opacity 0.6s ease;
 }
 
-@keyframes scroll{
-    from{
-        transform: scale(.5);
-        filter: brightness(.5);
-        opacity: .5;
-    }
-    to {
-        transform: scale(1);
-        filter: brightness(1);
-        opacity: 1;
-    }
+.scroll-view.in-view {
+    transform: scale(1);
+    filter: brightness(1);
+    opacity: 1;
 }

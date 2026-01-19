@@ -1,19 +1,22 @@
 import { Component, input, signal, SimpleChanges } from '@angular/core';
-import { QuillViewHTMLComponent } from "ngx-quill";
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-view',
-  imports: [QuillViewHTMLComponent],
+  imports: [],
   templateUrl: './view.html',
   styleUrl: './view.css',
 })
 export class View {
-  content = input('');
-  html = signal<string>('');
+  content = input<string>('');
+  html = signal<SafeHtml>('');
+
+  constructor(private sanitizer: DomSanitizer) {}
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['content']) {
-      this.html.set(this.content() || '');
+      const value = this.content() || '';
+      this.html.set(this.sanitizer.bypassSecurityTrustHtml(value));
     }
   }
 

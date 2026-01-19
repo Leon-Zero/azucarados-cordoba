@@ -3,10 +3,11 @@ import { Btn } from '../../ui/btn/btn';
 import { GalleryService } from '../../../core/services/gallery.service';
 import { Img } from '../../../data/interfaces/database/img.interface';
 import { Router} from "@angular/router";
+import { ScrollTransition } from '../../features/directives/scroll-transition';
 
 @Component({
   selector: 'app-gallery',
-  imports: [Btn],
+  imports: [Btn, ScrollTransition],
   templateUrl: './gallery.html',
   styleUrl: './gallery.css',
 })

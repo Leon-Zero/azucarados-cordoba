@@ -94,9 +94,3 @@ section {
     background-position: -200% 0;
   }
 }
-
-@media screen and (max-width: 620px) {
-  .item {
-    flex: 0 1 10rem;
-  }
-}

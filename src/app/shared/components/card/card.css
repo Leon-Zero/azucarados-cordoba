@@ -1,5 +1,5 @@
 .card {
-  width: clamp(18rem, 16rem + 2vw, 22rem);
+  width: clamp(16rem, 16rem + 2vw, 20rem);
   aspect-ratio: 17 / 25;
   border: 1px solid var(--color-border-300);
   border-radius: 1.5rem;
@@ -141,4 +141,13 @@ strong {
 
 a{
   text-decoration: none;
+}
+
+
+@media screen and (max-width: 900px) {
+
+  .card {
+    width: 25rem;
+  }
+  
 }

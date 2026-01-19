@@ -1,4 +1,10 @@
 
-<div class="viewer">
-  <quill-view-html  class="view" [content]="html()" theme="snow" [sanitize]="false"></quill-view-html>
+<div class="quill-viewer ql-snow">
+  <div class="quill-view">
+    <div
+      class="ql-editor"
+      [innerHTML]="html()">
+    </div>
+  </div>
 </div>
+
