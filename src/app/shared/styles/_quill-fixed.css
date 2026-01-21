@@ -33,10 +33,6 @@
 .quill-viewer.ql-snow .quill-view .ql-editor {
   max-width: 100%;
   box-sizing: border-box;
-  overflow-wrap: break-word;
-  word-break: normal;
-  white-space: normal;
-  hyphens: none;
 }
 
 .quill-viewer.ql-snow .quill-view .ql-editor img {

@@ -42,46 +42,40 @@ export class QuillGlueService {
   }
 
   private parseYouTube(urlStr: string): { id: string | null; qs: string } {
-  try {
-    const url = new URL(urlStr);
+    try {
+      const url = new URL(urlStr);
 
-    let id: string | null = null;
+      let id: string | null = null;
 
-    if (url.hostname.includes('youtu.be')) {
-      id = url.pathname.split('/').filter(Boolean)[0] ?? null;
-
-    } else if (url.hostname.includes('youtube.com')) {
-
-      if (url.pathname.startsWith('/watch')) {
-        id = url.searchParams.get('v');
-
-      } else if (url.pathname.startsWith('/embed/')) {
-        id = url.pathname.split('/embed/')[1]?.split('/')[0] ?? null;
-
-      } else {
-        id = url.searchParams.get('v');
+      if (url.hostname.includes('youtu.be')) {
+        id = url.pathname.split('/').filter(Boolean)[0] ?? null;
+      } else if (url.hostname.includes('youtube.com')) {
+        if (url.pathname.startsWith('/watch')) {
+          id = url.searchParams.get('v');
+        } else if (url.pathname.startsWith('/embed/')) {
+          id = url.pathname.split('/embed/')[1]?.split('/')[0] ?? null;
+        } else {
+          id = url.searchParams.get('v');
+        }
       }
+
+      const keep = ['start', 't', 'autoplay', 'rel', 'controls', 'mute', 'showinfo'];
+      const qs = Array.from(url.searchParams.entries())
+        .filter(([k]) => k !== 'v' && keep.includes(k))
+        .map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(v)}`)
+        .join('&');
+
+      return { id, qs };
+    } catch {
+      return { id: null, qs: '' };
     }
-
-    const keep = ['start', 't', 'autoplay', 'rel', 'controls', 'mute', 'showinfo'];
-    const qs = Array.from(url.searchParams.entries())
-      .filter(([k]) => k !== 'v' && keep.includes(k))
-      .map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(v)}`)
-      .join('&');
-
-    return { id, qs };
-  } catch {
-    return { id: null, qs: '' };
   }
-}
-
 
   private createYouTubeIframe(id: string, qs: string): HTMLIFrameElement {
     const iframe = document.createElement('iframe');
     iframe.src = `https://www.youtube.com/embed/${id}${qs ? '?' + qs : ''}`;
     iframe.allowFullscreen = true;
-    iframe.style.cssText =
-      'width:100%;height:100%;border:0;position:absolute;top:0;left:0;';
+    iframe.style.cssText = 'width:100%;height:100%;border:0;position:absolute;top:0;left:0;';
     return iframe;
   }
 
@@ -123,9 +117,7 @@ export class QuillGlueService {
         .replace(/<br\s*\/?>/gi, '')
         .trim();
 
-      const text = (el.textContent || '')
-        .replace(/\u00A0|\u200B/g, '')
-        .trim();
+      const text = (el.textContent || '').replace(/\u00A0|\u200B/g, '').trim();
 
       return html === '' && text === '';
     }
@@ -167,6 +159,30 @@ export class QuillGlueService {
   }
 
   /* --------------------------------------------- */
+  /* NORMALIZACIÓN DE ESPACIOS (&nbsp;) EN DOM */
+  /* --------------------------------------------- */
+  processNbspNormalization(doc: Document): void {
+    const walker = doc.createTreeWalker(doc.body, NodeFilter.SHOW_TEXT, null);
+
+    let node: Text | null;
+
+    while ((node = walker.nextNode() as Text | null)) {
+      const value = node.nodeValue;
+      if (!value) continue;
+
+      const normalized = value
+        // NBSP y variantes unicode
+        .replace(/[\u00A0\u2007\u202F]/g, ' ')
+        // espacios múltiples → uno solo
+        .replace(/ {2,}/g, ' ');
+
+      if (normalized !== value) {
+        node.nodeValue = normalized;
+      }
+    }
+  }
+
+  /* --------------------------------------------- */
   /* IMÁGENES */
   /* --------------------------------------------- */
 
@@ -194,6 +210,7 @@ export class QuillGlueService {
     await this.processImages(doc, slug);
     this.processYouTubeEmbeds(doc);
     this.processParagraphSpacing(doc);
+    this.processNbspNormalization(doc);
 
     return doc.body.innerHTML;
   }

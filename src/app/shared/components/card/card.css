@@ -1,5 +1,5 @@
 .card {
-  width: clamp(16rem, 16rem + 2vw, 20rem);
+  width: clamp(16rem, 16.5rem + 2vw, 20rem);
   aspect-ratio: 17 / 25;
   border: 1px solid var(--color-border-300);
   border-radius: 1.5rem;
@@ -52,11 +52,12 @@
 }
 
 .card-banner {
-  width: 100%;
+  width: 95%;
   height: 100%;
   border-radius: 1.2rem 1.2rem 0 0;
   padding-inline: 0.2rem;
   overflow: hidden;
+  margin: 0 auto;
 }
 .card-banner img {
   object-fit: fill;
@@ -66,11 +67,12 @@
 }
 
 .card-divider {
-  width: 100%;
+  width: 98%;
   height: 100%;
   box-shadow: 0 2px 6px var(--color-primary-400), 0 -1px 3px 1px var(--color-dark-100);
   border-radius: 0 0 1rem 1rem;
   background: linear-gradient(15deg, var(--color-primary-400) 40%, var(--color-border-100) 80%);
+  margin: 0 auto;
 }
 
 .card-stamp {

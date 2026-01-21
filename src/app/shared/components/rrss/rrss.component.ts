@@ -22,6 +22,19 @@ export class RrssComponent {
       alt: 'Instagram by Pixel Icons',
       href: 'https://www.instagram.com/mascotasdiabeticascordoba/',
     },
+     {
+      id: 3,
+      src: '/icon-facebook.svg',
+      alt: 'Facebook by Pixel Icons',
+      href: 'https://www.facebook.com/share/1CziuBfxv5/?mibextid=wwXIfr/',
+    },
+     {
+      id: 4,
+      src: '/icon-youtube.svg',
+      alt: 'SVGREPO - COLLECTION: Colored Svg Logos, LICENSE: Logo License, AUTHOR: gilbarbara',
+      href: 'https://www.youtube.com/channel/UCZF0h-pJRSnm5OQUDR8w0eQ'
+    },
   ]);
 
+  
 }
