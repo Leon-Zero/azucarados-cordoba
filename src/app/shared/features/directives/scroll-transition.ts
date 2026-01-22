@@ -1,18 +1,23 @@
-import { Directive, ElementRef, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, Renderer2, Inject, PLATFORM_ID, AfterViewInit, OnDestroy } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Directive({
   selector: '[scrollReveal]'
 })
-export class ScrollTransition {
+export class ScrollTransition implements AfterViewInit, OnDestroy {
 
- private observer!: IntersectionObserver;
+  private observer?: IntersectionObserver;
 
   constructor(
     private el: ElementRef,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
   ngAfterViewInit() {
+
+    if (!isPlatformBrowser(this.platformId)) return;
+
     this.observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -34,5 +39,4 @@ export class ScrollTransition {
       this.observer.disconnect();
     }
   }
-
 }

@@ -11,7 +11,7 @@
 .text-wrap img {
   border-radius: 50%;
   object-fit: cover;
-  opacity: 0.8;
+  opacity: 1;
 }
 
 .bg-content {
